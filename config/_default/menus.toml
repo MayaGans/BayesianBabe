@@ -12,11 +12,11 @@
   name = "Posts"
   url = "#posts"
   weight = 20
-
+  
 [[main]]
-  name = "Projects"
-  url = "#projects"
-  weight = 30
+  name = "TidyBlocks"
+  url = "#tidyblocks
+  weight = 60
 
 [[main]]
   name = "Publications"

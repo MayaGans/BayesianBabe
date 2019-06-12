@@ -1,0 +1,137 @@
+---
+title: Intro to Networks
+author: Maya Gans
+date: '2019-06-12'
+slug: []
+categories:
+  - Network Science
+tags:
+  - Networks
+  - iGraph
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-12T14:42:18-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div id="chapter-2" class="section level2">
+<h2>Chapter 2</h2>
+</div>
+<div id="pivotal-node" class="section level1">
+<h1>PIVOTAL NODE</h1>
+<p>Create a simple, cyclic graph</p>
+<pre class="r"><code>g1 &lt;- graph( c(&quot;E&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;D&quot;, &quot;D&quot;, &quot;C&quot;, &quot;C&quot;, &quot;F&quot;, &quot;F&quot;, &quot;E&quot;, &quot;B&quot;, &quot;C&quot;), directed = FALSE)</code></pre>
+<p>When the edge list has vertex names, the number of nodes is not needed</p>
+<pre class="r"><code>ggraph(g1, layout = &quot;kk&quot;) + 
+  geom_edge_link(colour = &quot;lightgrey&quot;) + 
+  geom_node_point(colour = &quot;grey&quot;, size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="node-b-is-pivotal-for-the-pair-consisting-of-a-and-c-and-a-and-d." class="section level3">
+<h3>Node <strong>B</strong> is pivotal for the pair consisting of A and C and A and D.</h3>
+<pre class="r"><code># add edge data for pivotal nodes
+E(g1)$pivotalB &lt;- c(&quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;,&quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;)
+V(g1)$pivotalB &lt;- c(&quot;No&quot;,&quot;No&quot;,&quot;Yes&quot;,&quot;No&quot;,&quot;No&quot;,&quot;No&quot;)
+
+ggraph(g1, layout = &quot;kk&quot;) + 
+  geom_edge_link(aes(colour = E(g1)$pivotalB)) + 
+  geom_node_point(aes(colour = V(g1)$pivotalB), size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_edge_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightpink&quot;)) +
+  scale_color_manual(values = c(&quot;grey&quot;, &quot;lightpink&quot;)) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>B is NOT pivotal for the pair consisting of D and E because because there is another shortest path which does not contain B (B is not on every shortest path between D and E).</p>
+<pre class="r"><code># add edge data for NOT pivotal nodes
+E(g1)$pivotalB &lt;- c(&quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;,&quot;No&quot;, &quot;No&quot;, &quot;NotPath&quot;)
+
+ggraph(g1, layout = &quot;kk&quot;) + 
+  geom_edge_link(aes(colour = E(g1)$pivotalB)) + 
+  geom_node_point(colour = &quot;grey&quot;, size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_edge_color_manual(values = c(&quot;gold&quot;, &quot;lightgrey&quot;, &quot;lightpink&quot;)) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Also note D is not pivatol for <em>any</em> pairs.</p>
+<pre class="r"><code># D is NOT pivotal
+V(g1)$pivotalD &lt;- c(&quot;No&quot;,&quot;No&quot;,&quot;No&quot;,&quot;Yes&quot;,&quot;No&quot;,&quot;No&quot;)
+
+ggraph(g1, layout = &quot;kk&quot;) + 
+  geom_edge_link(colour = &quot;lightgrey&quot;) + 
+  geom_node_point(aes(colour = V(g1)$pivotalD), size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_color_manual(values = c(&quot;grey&quot;, &quot;lightpink&quot;)) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+</div>
+<div id="gatekeeper" class="section level1">
+<h1>GATEKEEPER</h1>
+<pre class="r"><code>g2 &lt;- graph( c(&quot;E&quot;, &quot;F&quot;, &quot;F&quot;, &quot;A&quot;, &quot;A&quot;, &quot;E&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;D&quot;, &quot;D&quot;, &quot;C&quot;, &quot;C&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;), directed = FALSE)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = &quot;kk&quot;) + 
+  geom_edge_link(colour = &quot;lightgrey&quot;) + 
+  geom_node_point(colour = &quot;grey&quot;, size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>A node is a gatekeeper if in order to connect two neighboring nodes the edges must pass through that node. For example: node A below is a gatekeeper because it lies on every path from B to E.</p>
+<pre class="r"><code>V(g2)$globalA &lt;- c(1,0,1,1,0,0)
+E(g2)$globalA &lt;- c(0,0,1,1,0,0,0,0)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = &quot;kk&quot;) + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$globalA))) + 
+  geom_node_point(aes(colour = as.factor(V(g2)$globalA)), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightblue&quot;)) +
+  scale_edge_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightblue&quot;)) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The gatekeeper role can be relative to the scale at which you’re looking at the graph. For instance node D is a <em>local</em> gatekeeper because it connects nodes C and B</p>
+<pre class="r"><code>V(g2)$local &lt;- c(&quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;)
+E(g2)$local &lt;- c(0,0,0,0,1,1,0,0)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = &quot;kk&quot;) + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$local))) + 
+  geom_node_point(aes(colour = V(g2)$local), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightblue&quot;, &quot;lightpink&quot;)) +
+  scale_edge_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightpink&quot;)) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>But it is not a global gatekeeper because C and B can also be connected through node A.</p>
+<pre class="r"><code>V(g2)$global &lt;- c(0,0,1,1,2,1)
+E(g2)$global &lt;- c(0,0,0,1,0,0,1,0)
+
+ggraph(g2, layout = &quot;kk&quot;) + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$global))) + 
+  geom_node_point(aes(colour = as.factor(V(g2)$global)), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightblue&quot;, &quot;lightpink&quot;)) +
+  scale_edge_color_manual(values = c(&quot;lightgrey&quot;, &quot;lightblue&quot;)) +
+  theme_graph() +
+  theme(legend.position=&quot;none&quot;)</code></pre>
+<p><img src="/post/2019-06-12-intro-to-networks/index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>

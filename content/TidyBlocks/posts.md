@@ -23,10 +23,10 @@ subtitle = "Documenting my summer internship with RStudio building a blocks base
   # Page order. Descending (desc) or ascending (asc) date.
   order = "desc"
 
-  # Filter posts by a taxonomy term.
-  [content.filters]
+#Filter posts by a taxonomy term.
+[content.filters]
     tag = ""
-    category = ""
+  category = "TidyBlocks"
     publication_type = ""
     exclude_featured = false
   

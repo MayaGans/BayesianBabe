@@ -1,0 +1,380 @@
+---
+title: Intro to Networks
+author: Maya Gans
+date: '2019-06-12'
+slug: []
+categories:
+  - Tutorial
+tags:
+  - Network Science
+  - iGraph
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-12T15:02:13-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+---
+title: Intro to Networks
+author: Maya Gans
+date: '2019-06-12'
+slug: []
+categories:
+  - Tutorial
+tags:
+  - Networks
+  - iGraph
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-12T14:42:18-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+There's a lot we can glean from looking at an individual node's location within a network and a lot of jargon surrounding node attributes. Here I explore some core concepts of node attributes. 
+
+# PIVOTAL NODE
+
+```{r, include=FALSE}
+library(igraph)
+library(ggraph)
+library(gridExtra)
+```
+
+Create a simple, cyclic graph
+```{r}
+g1 <- graph( c("E", "A", "A", "B", "B", "D", "D", "C", "C", "F", "F", "E", "B", "C"), directed = FALSE)
+```
+
+When the edge list has vertex names, the number of nodes is not needed
+
+```{r}
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+### Node **B** is pivotal for the pair consisting of A and C and A and D. 
+```{r}
+# add edge data for pivotal nodes
+E(g1)$pivotalB <- c("No", "Yes", "Yes", "No","No", "No", "Yes")
+V(g1)$pivotalB <- c("No","No","Yes","No","No","No")
+
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(aes(colour = E(g1)$pivotalB)) + 
+  geom_node_point(aes(colour = V(g1)$pivotalB), size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_edge_color_manual(values = c("lightgrey", "lightpink")) +
+  scale_color_manual(values = c("grey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+B is NOT pivotal for the pair consisting of D and E because because there is another shortest path which does not contain B (B is not on every shortest path between D and E). 
+```{r}
+# add edge data for NOT pivotal nodes
+E(g1)$pivotalB <- c("Yes", "Yes", "Yes", "No","No", "No", "NotPath")
+
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(aes(colour = E(g1)$pivotalB)) + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_edge_color_manual(values = c("gold", "lightgrey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+Also note D is not pivatol for *any* pairs. 
+```{r}
+# D is NOT pivotal
+V(g1)$pivotalD <- c("No","No","No","Yes","No","No")
+
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(aes(colour = V(g1)$pivotalD), size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_color_manual(values = c("grey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+# GATEKEEPER
+
+```{r}
+g2 <- graph( c("E", "F", "F", "A", "A", "E", "A", "B", "B", "D", "D", "C", "C", "A", "D", "A"), directed = FALSE)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+A node is a gatekeeper if in order to connect two neighboring nodes the edges must pass through that node. For example: node A below is a gatekeeper because it lies on every path from B to E. 
+
+```{r}
+V(g2)$globalA <- c(1,0,1,1,0,0)
+E(g2)$globalA <- c(0,0,1,1,0,0,0,0)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$globalA))) + 
+  geom_node_point(aes(colour = as.factor(V(g2)$globalA)), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+The gatekeeper role can be relative to the scale at which you're looking at the graph. For instance node D is a *local* gatekeeper because it connects nodes C and B
+
+```{r}
+V(g2)$local <- c("A", "A", "A", "B", "C", "B")
+E(g2)$local <- c(0,0,0,0,1,1,0,0)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$local))) + 
+  geom_node_point(aes(colour = V(g2)$local), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue", "lightpink")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+But it is not a global gatekeeper because C and B can also be connected through node A. 
+
+```{r}
+V(g2)$global <- c(0,0,1,1,2,1)
+E(g2)$global <- c(0,0,0,1,0,0,1,0)
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$global))) + 
+  geom_node_point(aes(colour = as.factor(V(g2)$global)), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue", "lightpink")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+# Length, Distance, and Diameter
+
+```{r}
+library(igraph)
+library(ggraph)
+
+g3 <- graph( c("A", "B", "B", "C", "C", "F", "G", "E", "E", "D", "E", "A", "A", "C", "F", "E", "F", "A"), directed = FALSE)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+The length of a graph is the number of edges within the entire graph 
+
+```{r, warning = FALSE}
+
+E(g3)$count <- c(1,2,3,4,5,6,7,8,9)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey", aes(label = E(g3)$count),
+                 angle_calc = 'along',
+                   label_dodge = unit(2.5, 'mm'),
+                 label_colour = c("lightblue","lightblue","lightblue","lightblue",
+                                  "lightblue","lightblue","lightblue","lightblue", "steelblue")) + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+The distance between two vertices in a graph is the number of edges in their shortest path. By looking at a shortest path matrix we see the minimum distance between every node. 
+
+```{r}
+shortest.paths(g3)
+```
+
+Let's take a look at Node A, the first row in our Matrix. 
+
+```{r, warning=FALSE}
+# A
+E(g3)$A <- c(1,0,0,2,2,1,1,0,1)
+V(g3)$A <- c(1,0,0,0,0,0,0)
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(aes(color = as.factor(E(g3)$A), label = E(g3)$A),
+                  angle_calc = 'along',
+                   label_dodge = unit(2.5, 'mm'),
+                 label_colour = c("lightblue","white","white","steelblue", "steelblue",
+                                  "lightblue","lightblue","white", "lightblue")) + 
+  geom_node_point(aes(colour = as.factor(V(g3)$A)), size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  theme_graph() +
+  theme(legend.position="none") +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue", "steelblue")) +
+  scale_color_manual(values = c("lightgrey", "lightpink"))
+```
+
+```{r}
+head(shortest.paths(g3), 1)
+```
+
+The path from A to BCFE is 1, and to GD is 2. The highest shortest path length for a node is called it's eccentricity. In the case of A, it's eccentricity is 2.
+
+SIDENOTE: More than one shortest path between two vertices can exist!
+
+```{r}
+library(igraph)
+library(ggraph)
+
+E(g3)$distance <- c(0,1,1,0,0,0,0,0,0)
+V(g3)$distance <- c(0,1,0,1,0,0,0)
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g3)$distance))) + 
+  geom_node_point(aes(colour = as.factor(V(g3)$distance)), size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+
+E(g3)$distance <- c(1,0,0,0,0,0,0,0,1)
+V(g3)$distance <- c(0,1,0,1,0,0,0)
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g3)$distance))) + 
+  geom_node_point(aes(colour = as.factor(V(g3)$distance)), size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+There are three rules when thinking about distance:
+  
+* d(u,v) $\geq$ 0 and d(u,v) = 0 iff u = v
+* d(u,v) = d(v,u)
+* d(u,v) + d(u,w) $\geq$ d(u,w)
+
+# Diameter
+
+While eccentricity is a metric we can apply to every node, the graph's diameter is the MAXIMUM overall distance of every pair of nodes in the graph.
+
+```{r, warning = FALSE}
+# using the shortest.paths matrix from earlier
+# we can find each node's eccentricity 
+apply(shortest.paths(g3)[, 1:7], 1, max)
+# now we can look for the biggest number overall
+max(apply(shortest.paths(g3)[, 1:7], 1, max))
+
+# this is exactly what igraphs `diameter` function is doing!
+diameter(g3)
+```
+
+Here we plotted B -- D but as we see above we have 4 other nodes whose longest path is 3, and three nodes with a longest path of 2 (A, F, & E - We know A's longest path is 2 from the figure above).
+
+```{r}
+library(igraph)
+library(ggraph)
+
+E(g3)$distance <- c(1,0,0,0,1,1,0,0,0)
+V(g3)$distance <- c(0,0,0,0,0,0,0)
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g3)$distance))) + 
+  geom_node_point(aes(colour = as.factor(V(g3)$distance)), size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+# Radius 
+
+While the diameter is the largest eccentricity of the graph, the radius is the minimum. Using the same method as we did to find each nodes eccentricity, we can then look for the smallest number.
+
+```{r}
+# find the maximum value of each row to calculate its eccentricity
+min(apply(shortest.paths(g3)[, 1:7], 1, max))
+
+# this is confirmed with igraphs radius function:
+radius(g3)
+```
+
+Any vertex whose eccentricity == the graphs diameter is called PERIPHERAL 
+```{r}
+# which(apply(df[, 1:7], 1, max) == diameter(g3))
+```
+
+```{r}
+
+V(g3)$periphery <- c(0,1,1,0,1,0,1)
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(aes(colour = "lightgrey")) + 
+  geom_node_point(aes(colour = as.factor(V(g3)$periphery)), size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+If the eccentricity of a node is equal to the graphs radius then it is a CENTRAL vertex
+
+```{r}
+# which(apply(df[, 1:7], 1, max) == radius(g3))
+```
+
+```{r}
+
+V(g3)$center <- c(1,0,0,1,0,1,0)
+
+ggraph(g3, layout = "kk") + 
+  geom_edge_link(aes(colour = "lightgrey")) + 
+  geom_node_point(aes(colour = as.factor(V(g3)$center)), size = 7) +
+  geom_node_text(label = V(g3)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+As we can see here, the radius of a graph is always less than the diameter which always less than 2 times the diameter of the graph.
+
+$$\text{rad}(G) \leq \text{diam}(G) \leq 2 \text{ rad}(G) $$
+
+The first inequality, that the minimum eccentricities (2) is smaller than the maximum eccentricities (3) is logical. We can prove the second inequality by looking at 2 peripheral nodes, G and B, and one central node, A. We know the diameter is the distance from G to B. We also know that distance is bounded by the distance from G to A (at most A's accentricity = 2) and A to B (at most A's accentricity = 2). We also know A's accentricity is the radius because it is a central node. Therefore: d(u,v) $\leq$ 2*rad(G).
+

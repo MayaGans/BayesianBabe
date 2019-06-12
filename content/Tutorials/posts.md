@@ -26,7 +26,7 @@ subtitle = "Statistical and Bioinformatic Posts"
   # Filter posts by a taxonomy term.
   [content.filters]
     tag = ""
-    category = ""
+    category = "Tutorial"
     publication_type = ""
     exclude_featured = false
   

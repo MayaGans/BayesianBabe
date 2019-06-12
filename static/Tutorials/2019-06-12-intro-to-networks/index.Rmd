@@ -1,0 +1,159 @@
+---
+title: Intro to Networks
+author: Maya Gans
+date: '2019-06-12'
+slug: []
+categories:
+  - Network Science
+tags:
+  - Networks
+  - iGraph
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-12T14:42:18-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+## Chapter 2 
+
+# PIVOTAL NODE
+
+```{r, include=FALSE}
+library(igraph)
+library(ggraph)
+library(gridExtra)
+```
+
+Create a simple, cyclic graph
+```{r}
+g1 <- graph( c("E", "A", "A", "B", "B", "D", "D", "C", "C", "F", "F", "E", "B", "C"), directed = FALSE)
+```
+
+When the edge list has vertex names, the number of nodes is not needed
+
+```{r}
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+### Node **B** is pivotal for the pair consisting of A and C and A and D. 
+```{r}
+# add edge data for pivotal nodes
+E(g1)$pivotalB <- c("No", "Yes", "Yes", "No","No", "No", "Yes")
+V(g1)$pivotalB <- c("No","No","Yes","No","No","No")
+
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(aes(colour = E(g1)$pivotalB)) + 
+  geom_node_point(aes(colour = V(g1)$pivotalB), size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_edge_color_manual(values = c("lightgrey", "lightpink")) +
+  scale_color_manual(values = c("grey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+B is NOT pivotal for the pair consisting of D and E because because there is another shortest path which does not contain B (B is not on every shortest path between D and E). 
+```{r}
+# add edge data for NOT pivotal nodes
+E(g1)$pivotalB <- c("Yes", "Yes", "Yes", "No","No", "No", "NotPath")
+
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(aes(colour = E(g1)$pivotalB)) + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_edge_color_manual(values = c("gold", "lightgrey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+Also note D is not pivatol for *any* pairs. 
+```{r}
+# D is NOT pivotal
+V(g1)$pivotalD <- c("No","No","No","Yes","No","No")
+
+ggraph(g1, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(aes(colour = V(g1)$pivotalD), size = 7) +
+  geom_node_text(label = V(g1)$name) +
+  scale_color_manual(values = c("grey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+# GATEKEEPER
+
+```{r}
+g2 <- graph( c("E", "F", "F", "A", "A", "E", "A", "B", "B", "D", "D", "C", "C", "A", "D", "A"), directed = FALSE)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(colour = "lightgrey") + 
+  geom_node_point(colour = "grey", size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+A node is a gatekeeper if in order to connect two neighboring nodes the edges must pass through that node. For example: node A below is a gatekeeper because it lies on every path from B to E. 
+
+```{r}
+V(g2)$globalA <- c(1,0,1,1,0,0)
+E(g2)$globalA <- c(0,0,1,1,0,0,0,0)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$globalA))) + 
+  geom_node_point(aes(colour = as.factor(V(g2)$globalA)), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+The gatekeeper role can be relative to the scale at which you're looking at the graph. For instance node D is a *local* gatekeeper because it connects nodes C and B
+
+```{r}
+V(g2)$local <- c("A", "A", "A", "B", "C", "B")
+E(g2)$local <- c(0,0,0,0,1,1,0,0)
+
+# When the edge list has vertex names, the number of nodes is not needed
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$local))) + 
+  geom_node_point(aes(colour = V(g2)$local), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue", "lightpink")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightpink")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+
+But it is not a global gatekeeper because C and B can also be connected through node A. 
+
+```{r}
+V(g2)$global <- c(0,0,1,1,2,1)
+E(g2)$global <- c(0,0,0,1,0,0,1,0)
+
+ggraph(g2, layout = "kk") + 
+  geom_edge_link(aes(colour = as.factor(E(g2)$global))) + 
+  geom_node_point(aes(colour = as.factor(V(g2)$global)), size = 7) +
+  geom_node_text(label = V(g2)$name) +
+  scale_color_manual(values = c("lightgrey", "lightblue", "lightpink")) +
+  scale_edge_color_manual(values = c("lightgrey", "lightblue")) +
+  theme_graph() +
+  theme(legend.position="none")
+```
+

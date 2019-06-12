@@ -64,3 +64,7 @@ ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
+  
+[permalinks]
+# for realists who know that you won't have multiple posts per day (or maybe even month)
+  post = "/post/:year/:slug/" 

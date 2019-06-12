@@ -7,12 +7,12 @@
 [[main]]
   name = "TidyBlocks"
   url = "tidyblocks"
-  weight = 60
+  weight = 20
   
 [[main]]
   name = "Tutorials"
   url = "tutorials"
-  weight = 60
+  weight = 30
 
 [[main]]
   name = "Publications"
@@ -27,11 +27,6 @@
 [[main]]
   name = "Contact"
   url = "contact/"
-  weight = 60
-  
-[[main]]
-  name = "Gallery"
-  url = "gallery/"
   weight = 60
   
 # Link to a PDF of your resume/CV from the menu.

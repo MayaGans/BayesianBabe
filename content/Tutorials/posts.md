@@ -7,8 +7,8 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 60  # Order that this section will appear.
 
-title = "TidyBlocks"
-subtitle = "Documenting my summer internship with RStudio building a blocks based visual coding progam"
+title = "Tutorials"
+subtitle = "Statistical and Bioinformatic Posts"
 
 [content]
   # Page type to display. E.g. post, talk, or publication.

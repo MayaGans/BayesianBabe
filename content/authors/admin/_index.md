@@ -25,10 +25,10 @@ role: Student
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'
+  link: 'contact/'
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/home
+  link: https://twitter.com/mayacelium
 - icon: github
   icon_pack: fab
   link: https://github.com/mayagans

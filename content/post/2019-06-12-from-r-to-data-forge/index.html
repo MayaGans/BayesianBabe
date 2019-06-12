@@ -1,0 +1,92 @@
+---
+title: From R to Data-Forge
+author: Maya Gans
+date: '2019-05-31'
+slug: []
+categories:
+  - TidyBlocks
+tags:
+  - Blockly
+  - Data-Forge
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-12T13:33:03-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>Before I officially begin my internship with RStudio, I’m familiarizing myself with <a href="http://www.data-forge-js.com/">data-forge.js</a> the package. Created by <a href="https://www.linkedin.com/in/ashleydavis75/">Ashley Davis</a>, <i>data-forge</i> transforms dataframes by stringing together functions like you would in R with pipes. I’ll be keeping a table here (and creating a third column with blocks!) as my internship progresses</p>
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
+
+
+<table>
+<colgroup>
+    <col span="1" style="background-color:#75AADB">
+    <col span="1" style="background-color:grey">
+  </colgroup>
+  
+<tr>
+    <th>tidyverse</th>
+    <th>Data-Forge</th>
+</tr>
+
+<tr>
+    <td>select</td>
+    
+    <td>
+    	<pre class="prettyprint"> 
+function transformData (inputDataFrame) {
+	return inputDataFrame.dropSeries("unwantedColumnNames");
+}
+    	</pre></td>
+    
+</tr>
+  
+<tr>
+    <td>filter</td>
+    <td><pre class="prettyprint">.where(row => row.colName === "someValue")</pre></td>
+</tr>
+
+<tr>
+    <td>mdy</td>
+    <td><pre class="prettyprint">.parseDates("dateColumn")</pre></td>
+</tr>
+
+<tr>
+    <td>group_by</td>
+    <td><pre class="prettyprint">.groupBy(inputRow => inputRow.groupingColumn)</pre></td>
+</tr>
+
+<tr>
+    <td>summarize</td>
+    
+    <td>
+    <pre class="prettyprint">
+dataFrame.select(group => ) ({
+	groupingColumn: group.first().groupingColumn,
+	aggColumn: group
+		.select(row => row.aggColumn)
+		.average [any transformation function here]
+
+})
+    </pre>
+    </td>
+  
+</tr>
+ 
+<tr>
+    <td>distinct</td>
+    <td><pre class="prettyprint">dataFrame.distinct()</pre></td>
+</tr>
+</table>
+
+Of note is that R's select function acts on the columns you want to keep and it looks like in data-forge you choose the columns you'd like to drop? Clearly there's more exploration of the package in my future!

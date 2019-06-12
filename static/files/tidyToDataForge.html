@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+h1 {
+  text-align: center !important;
+  font-family: "Lucida Console" !important;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-family: "Lucida Console"
+}
+
+
+
+</style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
+
+
+<h1>tidyverse vs data-forge vs block.ly</h1>
+
+<table>
+<colgroup>
+    <col span="1" style="background-color:#75AADB">
+    <col span="1" style="background-color:grey">
+    <col span="1" style="background-color:#5467AB">
+  </colgroup>
+  
+  <tr>
+    <th>tidyverse</th>
+    <th>Data-Forge</th>
+    <th>BLOCKS!</th>
+  </tr>
+  <tr>
+    <td>select</td>
+    
+    <td>
+    	<pre class="prettyprint"> 
+function transformData (inputDataFrame) {
+	return inputDataFrame.dropSeries("unwantedColumnNames");
+}
+    	</pre>
+    
+    </td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td>filter</td>
+    <td><pre class="prettyprint">.where(row => row.colName === "someValue")</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>mdy</td>
+    <td><pre class="prettyprint">.parseDates("dateColumn")</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>group_by</td>
+    <td><pre class="prettyprint">.groupBy(inputRow => inputRow.groupingColumn)</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>summarize</td>
+    <td>
+    <pre class="prettyprint">
+dataFrame.select(group => ) ({
+	groupingColumn: group.first().groupingColumn,
+	aggColumn: group
+		.select(row => row.aggColumn)
+		.average [any transformation function here]
+
+})
+    </pre>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>distinct</td>
+    
+    <td><pre class="prettyprint">dataFrame.distinct()</pre></td>
+    <td></td>
+  </tr>
+</table>
+
+</body>
+</html>

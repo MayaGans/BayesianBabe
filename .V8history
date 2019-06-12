@@ -1,0 +1,4 @@
+C
+ct$source(system.file("/Users/mayagans/Documents/test/node_modules/leaflet/src/Leaflet.js", package = "V8"))
+ct$source()
+ct$source(system.file("/Users/mayagans/Documents/test/node_modules/leaflet/src/Leaflet.js", package = "V8"))

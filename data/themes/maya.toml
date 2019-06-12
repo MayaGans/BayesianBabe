@@ -1,0 +1,25 @@
+# Theme metadata
+name = "desiree"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary ="#fadadd"
+primary_light = "#ee5863"
+primary_dark = "#ee5863"
+
+# Links
+link = "#EE5863"
+link_hover = "#FF0080"
+
+# Menu
+menu_primary = "#014421"
+menu_text = "#fff"
+menu_text_active = "#84d6d3"
+menu_title = "#fff"
+
+# Backgrounds
+background = "#fadadd"
+home_section_odd = "#fadadd"
+home_section_even = "#fadadd"

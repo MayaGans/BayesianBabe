@@ -10,12 +10,12 @@
 
 [[main]]
   name = "Posts"
-  url = "#posts"
+  url = "content/post/index.md"
   weight = 20
   
 [[main]]
   name = "TidyBlocks"
-  url = "#tidyblocks
+  url = "tidyblocks"
   weight = 60
 
 [[main]]

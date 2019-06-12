@@ -2,43 +2,24 @@
 title: My First Week at RStudio
 author: Maya Gans
 date: '2019-06-12'
-slug: my-first-week-at-rstudio
+slug: []
 categories:
   - TidyBlocks
 tags:
   - TidyBlocks
   - JavaScript
+  - Blockly
+  - Academic
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2019-06-12T12:18:41-06:00'
+lastmod: '2019-06-12T12:35:18-06:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
 projects: []
----
-
----
-title: "My First Week at RStudio"
-author: "Maya Gans"
-date: '2019-06-12'
-categories: TidyBlocks
-featured: no
-image:
-  caption: ''
-  focal_point: ''
-  preview_only: no
-lastmod: '2019-06-12T12:00:59-06:00'
-projects: []
-slug: my-first-week-at-rstudio
-subtitle: ''
-summary: ''
-tags:
-- JavaScript
-- TidyBlocks
-authors: []
 ---
 
 This past week was my first as an intern at RStudio where I’m designing a prototype for a visual programming language: a block-based version of the Tidyverse. Prior to my official start date with R Studio, I spent my summer familiarizing myself with JavaScript and design considerations when building a user interface.

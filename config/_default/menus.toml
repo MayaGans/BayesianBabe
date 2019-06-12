@@ -9,10 +9,10 @@
   url = "tidyblocks"
   weight = 20
   
-[[main]]
-  name = "Tutorials"
-  url = "tutorials"
-  weight = 30
+# [[main]]
+#  name = "Tutorials"
+#  url = "tutorials"
+#  weight = 30
 
 [[main]]
   name = "Publications"

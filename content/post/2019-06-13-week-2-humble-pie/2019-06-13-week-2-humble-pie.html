@@ -1,0 +1,77 @@
+---
+title: 'Week 2: Humble Pie'
+author: Maya Gans
+date: '2019-06-13'
+slug: week-2-humble-pie
+categories:
+  - TidyBlocks
+tags:
+  - Blockly
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-13T07:26:40-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>I spent the beginning of the week pouring over the Blockly documentation which is sparse, at best. The Google team does a great job of explaining how to create a single block, but I struggled to create a big picture of how blocks interact.</p>
+<p>After arranging a call with whom I thought was a developer of Blockly, <a href="https://www.linkedin.com/in/beka-westberg-88b777157/">Beka</a> turned out to be an incredibly knowledgeable and driven high school student!!! [#goals] and clarified my misconceptions.</p>
+<p>Blocks are designed using the <code>Blockly.Block</code> function for javascript or <code>Blockly.defineBlocksWithJsonArray</code> using JSON. This is where you specify the block shape, inputs, and outputs.</p>
+<pre class="javascript"><code>Blockly.defineBlocksWithJsonArray([
+ {
+   // block type, using the prefix data_ we can create lots of different data blocks
+   // and keep code organized by giving them all the same prefix
+   // this must be a unique identifier! 
+   // Here I&#39;m using the iris dataset. Unique, I know.
+  &quot;type&quot;: &quot;data_iris&quot;,
+   // this is what will be printed on the block
+  &quot;message0&quot;: &quot;load iris dataset&quot;,
+  // nextStatement creates a point at the bottom of the block for the next 
+  // block to click onto
+  &quot;nextStatement&quot;: null,
+  // specify the color based on how you group blocks
+  // all our supplied data frame blocks will be the same color
+  &quot;colour&quot;: 65,
+  // this block has a hat because no block can proceed it
+  &quot;style&quot;: {&quot;hat&quot;:&quot;cap&quot;},
+}
+]);</code></pre>
+<div class="figure">
+<img src="/post/2019-06-13-week-2-humble-pie/img1.png" />
+
+</div>
+<p>With a pretty good looking block it was time to work on the <strong>generator code</strong>. By using the same unique ID, when the user hits <code>run</code> this is what the block actually does under the hood. I spent A LOT of time trying to bake my dataframe into this code. I mean, it seemed logical the data live inside the block because that’s what the block does…</p>
+<p>Turns out this mental model was oh so incredibly WRONG. When you click blocks together, you’re creating a script as a string which you can then <code>eval</code> [WARNING: This is a security big programming no-no but I’m an Ecologist by training so it’s fine for now].</p>
+<p>Here’s an example: the data-forge code <code>iris.where(row =&gt; (row.SepalLength = 5))</code> is the same as <code>iris %&gt;% filter(SepalLength = 5)</code> I was trying to include the entire iris dataset within my generator code when all I needed to do was have a SEPERATE js file with all our desired datasets then have the following generator code:</p>
+<pre class="javascript"><code>Blockly.JavaScript[&#39;data_iris&#39;] = function(block) {
+    return &#39;iris&#39;
+}</code></pre>
+<p>This block literally just returns the word iris. That’s it. Day’s of stress and imposter syndrome resulting in ONE WORD.</p>
+<p>The filter block is a tiny bit more complicated, but with a drop down to change the column, a drop down for your operators, and an empty box to put a number of text (all specified in the <code>Blockly.Block</code> world) it results in the string <code>.where(row =&gt; row.SepalLength = 5)</code>.</p>
+<div class="figure">
+<img src="/post/2019-06-13-week-2-humble-pie/img2.png" />
+
+</div>
+<p>Back in html world we use the function <code>workspaceToCode</code> to concatenate all the strings our blocks made</p>
+<pre class="js"><code>var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);</code></pre>
+<script type="text/javascript">
+var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+</script>
+<p>This is essentially the same as:</p>
+<pre class="r"><code>code = paste(&quot;iris&quot;, &quot;.filter(SepalLength = 5)&quot;, sep=&quot;&quot;)
+code</code></pre>
+<pre><code>## [1] &quot;iris.filter(SepalLength = 5)&quot;</code></pre>
+<p>Now we use the javascript <code>eval</code> function on the concatenated string to actually run the script. <code>document.getElementById(&quot;whereIWantMyOutput&quot;).innerHTML</code> is html laungage for specifying where you want this evaluated code to be displayed on your page [within a div I called “whereIWantMyOutput”]</p>
+<pre class="js"><code>document.getElementById(&quot;whereIWantMyOutput&quot;).innerHTML = eval(code);</code></pre>
+<script type="text/javascript">
+document.getElementById("whereIWantMyOutput").innerHTML = eval(code);
+</script>
+<p>Creating the generator code is easy! Now that I’m just making strings I feel pretty optimistic about including blocks for any data transformation needs. My second week success is I now have a correct Blockly mental model which is a pretty big one. However, in true coder (read perpetual student) fashion, this leaves me with another challenge: if the block code cannot access the javascript how do I make my drop down menus dynamic? I don’t want to have a filter block that ONLY applies to the iris dataset, and another that applies for mtcars? That wouldn’t scale to users inputting their own data at all. More to come!</p>

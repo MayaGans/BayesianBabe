@@ -15,7 +15,7 @@ font = "classic"
 description = "Maya Gans' personal website"
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
-sharing_image = "binomialcats.png"
+sharing_image = "BinomialCats.png"
 
 # Twitter username (without @). Used when a vistor shares your site on Twitter.
 twitter = "mayacelium"

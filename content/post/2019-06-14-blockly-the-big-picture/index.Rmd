@@ -20,3 +20,9 @@ image:
   preview_only: no
 projects: []
 ---
+
+Driven by my Aha moment [from week two](/post/2019-06-13-week-2-humble-pie) (and Greg's suggestion) I wanted to outline a mental model of blockly using a simple example. Here we will create 3 blocks:
+
+* *CreateDataSet* a dataset block that contains data (the number 0)
+* *IncrementDataSet* an intermediate transformation block (a step function to increase the data by one)
+* *DisplayDataSet* a display block (a pop up alert of our new value).

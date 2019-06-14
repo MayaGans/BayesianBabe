@@ -21,8 +21,6 @@ image:
 projects: []
 ---
 
-<iframe id="playground-iframe" src="blockly/demos/example/index.html"></iframe>
-
 Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) (and Greg's suggestion) I wanted to outline a mental model of blockly using a simple example. Here we will create 3 "blocks":
 
 * *CreateDataSet* a dataset block that contains data (the number 0)

@@ -21,8 +21,16 @@ image:
 projects: []
 ---
 
-Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) (and Greg's suggestion) I wanted to outline a mental model of blockly using a simple example. Here we will create 3 blocks:
+<iframe id="playground-iframe" src="blockly/demos/example/index.html"></iframe>
+
+Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) (and Greg's suggestion) I wanted to outline a mental model of blockly using a simple example. Here we will create 3 "blocks":
 
 * *CreateDataSet* a dataset block that contains data (the number 0)
 * *IncrementDataSet* an intermediate transformation block (a step function to increase the data by one)
 * *DisplayDataSet* a display block (a pop up alert of our new value).
+
+Before we even touch blockly we can create an object that   are strung together we will recieve the output: 1.
+
+```{js}
+```
+

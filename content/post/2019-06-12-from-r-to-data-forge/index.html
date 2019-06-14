@@ -44,9 +44,7 @@ projects: []
     
     <td>
     	<pre class="prettyprint"> 
-function transformData (inputDataFrame) {
-	return inputDataFrame.dropSeries("unwantedColumnNames");
-}
+const subset = df.subset(["Some-Column", "Some-Other-Column"]);
     	</pre></td>
     
 </tr>

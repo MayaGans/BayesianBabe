@@ -21,7 +21,11 @@ image:
 projects: []
 ---
 
-Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) (and Greg's suggestion) I wanted to outline a mental model of blockly using a simple example. Here we will create 3 "blocks":
+Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) (and Greg's suggestion) I wanted to outline a mental model of blockly using a simple example visualized below:
+
+<iframe id="demoblock-iframe" height="300" width="700" src="example/index.html"></iframe>
+
+Here we will create 3 "blocks": 
 
 * *CreateDataSet* a dataset block that contains data (the number 0)
 * *IncrementDataSet* an intermediate transformation block (a step function to increase the data by one)

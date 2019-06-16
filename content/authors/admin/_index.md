@@ -1,7 +1,9 @@
 ---
 authors:
 - admin
-bio: I am PhD student at CU Boulder studying quantitative biology and currently I am an intern at RStudio designing a visual block based programming language. I love live music and create music related inforgraphics for JamBase.com
+
+bio: Maya is a PhD student at CU Boulder studying quantitative biology. She loves computer science, statistics, and data visualization 
+
 education:
   courses:
   - course: Master in Botany
@@ -21,7 +23,7 @@ name: Maya Gans
 organizations:
 - name: CU Boulder
   url: ""
-role: Student
+role: PhD Student, Quantitative Biology
 social:
 - icon: envelope
   icon_pack: fas
@@ -38,4 +40,4 @@ user_groups:
 - Visitors
 ---
 
-I am PhD student at CU Boulder studying quantitative biology. I am currently an intern at RStudio designing a visual block based programming language. I demonstrate my love for live music creating inforgraphics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive)
+I am PhD student at CU Boulder studying quantitative biology. I am currently an intern at RStudio designing a visual block based programming language. I create music related inforgraphics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing.

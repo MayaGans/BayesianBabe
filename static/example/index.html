@@ -31,7 +31,7 @@
     <button onclick="runCode()">Run JavaScript</button>
   </p>
 
-  <div id="blocklyDiv" style="height: 200px; width: 500px; display: inline-block; vertical-align: top"></div>
+  <div id="blocklyDiv" style="height: 200px; width: 650px; display: inline-block; vertical-align: top"></div>
 
  <!-- within the toolbox we use the type id to display the blocks we want --> 
  <xml id="toolbox" style="display: none">
@@ -50,7 +50,9 @@
 // access media for the toolbox 
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: 'media/',
-         toolbox: document.getElementById('toolbox')});
+         toolbox: document.getElementById('toolbox'),
+          trashcan: true
+        });
         
 
     function showCode() {

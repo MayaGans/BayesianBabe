@@ -44,7 +44,7 @@ projects: []
     
     <td>
     	<pre class="prettyprint"> 
-const subset = df.subset(["Some-Column", "Some-Other-Column"]);
+.subset(["Some-Column", "Some-Other-Column"]);
     	</pre></td>
     
 </tr>
@@ -69,7 +69,7 @@ const subset = df.subset(["Some-Column", "Some-Other-Column"]);
     
     <td>
     <pre class="prettyprint">
-dataFrame.select(group => ) ({
+.select(group => ) ({
 	groupingColumn: group.first().groupingColumn,
 	aggColumn: group
 		.select(row => row.aggColumn)
@@ -83,8 +83,6 @@ dataFrame.select(group => ) ({
  
 <tr>
     <td>distinct</td>
-    <td><pre class="prettyprint">dataFrame.distinct()</pre></td>
+    <td><pre class="prettyprint">.distinct()</pre></td>
 </tr>
 </table>
-
-Of note is that R's select function acts on the columns you want to keep and it looks like in data-forge you choose the columns you'd like to drop? Clearly there's more exploration of the package in my future!

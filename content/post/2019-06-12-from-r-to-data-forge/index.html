@@ -44,6 +44,7 @@ projects: []
     
     <td>
     	<pre class="prettyprint"> 
+.subset(["Some-Column", "Some-Other-Column"]);
        .subset(["Some-Column", "Some-Other-Column"]);
     	</pre></td>
     
@@ -69,7 +70,7 @@ projects: []
     
     <td>
     <pre class="prettyprint">
-dataFrame.select(group => ) ({
+.select(group => ) ({
 	groupingColumn: group.first().groupingColumn,
 	aggColumn: group
 		.select(row => row.aggColumn)
@@ -83,7 +84,6 @@ dataFrame.select(group => ) ({
  
 <tr>
     <td>distinct</td>
-    <td><pre class="prettyprint">dataFrame.distinct()</pre></td>
+    <td><pre class="prettyprint">.distinct()</pre></td>
 </tr>
 </table>
-

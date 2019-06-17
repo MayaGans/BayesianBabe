@@ -8,7 +8,7 @@ active = true  # Activate this widget? true/false
 weight = 60  # Order that this section will appear.
 
 title = "Tutorials"
-subtitle = "Statistical and Bioinformatic Posts"
+subtitle = "Networks and Statistics in R"
 
 [content]
   # Page type to display. E.g. post, talk, or publication.

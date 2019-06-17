@@ -4,7 +4,7 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly');
 
 Blockly.JavaScript['example_CreateDataSet'] = function(block) {
-    return "class Analysis {\nconstructor () { this.value = 0 }\nincrement () { this.value += 1; return this }\ndisplay () { console.log(this.value) }\n}\nnew Analysis()"
+    return "class Analysis {\nconstructor () { this.value = 0 }\nincrement () { this.value += 1; return this }\ndisplay () { return this.value }\n}\nnew Analysis()"
 }
 
 Blockly.JavaScript['example_IncrementDataSet'] = function(block) {

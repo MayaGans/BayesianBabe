@@ -23,22 +23,20 @@ projects: []
 
 
 
-<p>Driven by my Aha moment <a href="/post/2019/week-2-humble-pie/">from week two</a> that the code behind blockly blocks is entirely separate from the javascript code that they run, I wanted to outline a mental model of blockly using a simple example visualized below:</p>
+<p>Driven by my Aha moment <a href="/post/2019/week-2-humble-pie/">from week two</a> that the code behind blockly blocks is entirely separate from the javascript code that the blocks run, I wanted to outline a mental model of blockly using a simple example visualized below:</p>
 <div id="where-were-heading" class="section level1">
-  
 <h1>Where We’re Heading</h1>
 <iframe id="demo block-iframe" height="300" width="700" src="../../../example/index.html" scrolling="false">
 </iframe>
-
 </div>
 <div id="simulating-blocks" class="section level1">
 <h1>Simulating Blocks</h1>
 <div id="our-mission" class="section level3">
 <h3>OUR MISSION</h3>
-<p>We’re going to simulate the 3 blocks</p>
+<p>We’re going to simulate 3 blocks:</p>
 <ul>
 <li><strong>CreateDataSet</strong> a dataset block that contains data (the number 0)</li>
-<li><strong>IncrementDataSet</strong> an intermediate transformation block (a step function to increase the data by one)</li>
+<li><strong>IncrementDataSet</strong> an intermediate transformation block (a step function to increase the data by 1)</li>
 <li><strong>DisplayDataSet</strong> a display block (a pop up alert of our new value).</li>
 </ul>
 <p>But before we simulate three blocks, we need to create a javascript class with three methods corresponding to what we want each of these blocks to do. We’ll call this class ‘Analysis’</p>
@@ -47,58 +45,58 @@ projects: []
 <div id="objects-and-classes" class="section level1">
 <h1>Objects and Classes</h1>
 <p><em>A javascript <strong>OBJECT</strong> is a set of key:value pairs where the value is a function, and a <strong>CLASS</strong> is a user defined blueprint from which objects are created. Classes are essentially object factories that specify the types of variables that can exist in the object. A class can be thought of as a type and the objects the variables of that type <a href="https://software-tools-in-javascript.github.io/js-vs-ds/en/oop.html">a class could be shape, and objects circle, square, and triangle</a></em></p>
-<pre class="js"><code># first we&#39;ll create the class Analysis with three methods
+<pre class="js"><code>// first we&#39;ll create the class Analysis with three methods
 const PREFIX = class Analysis {
 
-  # Create a new container.
-  # constructors initialize new objects (this is a special type of method)
+  // Create a new container.
+  // constructors initialize new objects (this is a special type of method)
   constructor () {
     
-    # this refers to the owner of the function 
-    # this.value is the value of the owner (ie: maya.age = 28)
+    // this refers to the owner of the function 
+    // this.value is the value of the owner (ie: maya.age = 28)
     
-    # since we want the initial value to be zero:
+    // since we want the initial value to be zero:
     this.value = 0
   }
 
-  # Our second method will add one to this.value
+  // Our second method will add one to this.value
   increment () {
     this.value += 1
     return this
   }
 
-  # Our third method will display this.value 
-  # after the increment function is applied
+  // Our third method will display this.value 
+  // after the increment function is applied
   display () {
-    # show us the current value in the console 
+    // show us the current value in the console 
     console.log(this.value)
   }
 }</code></pre>
 <script type="text/javascript">
-# first we'll create the class Analysis with three methods
+// first we'll create the class Analysis with three methods
 const PREFIX = class Analysis {
 
-  # Create a new container.
-  # constructors initialize new objects (this is a special type of method)
+  // Create a new container.
+  // constructors initialize new objects (this is a special type of method)
   constructor () {
     
-    # this refers to the owner of the function 
-    # this.value is the value of the owner (ie: maya.age = 28)
+    // this refers to the owner of the function 
+    // this.value is the value of the owner (ie: maya.age = 28)
     
-    # since we want the initial value to be zero:
+    // since we want the initial value to be zero:
     this.value = 0
   }
 
-  # Our second method will add one to this.value
+  // Our second method will add one to this.value
   increment () {
     this.value += 1
     return this
   }
 
-  # Our third method will display this.value 
-  # after the increment function is applied
+  // Our third method will display this.value 
+  // after the increment function is applied
   display () {
-    # show us the current value in the console 
+    // show us the current value in the console 
     console.log(this.value)
   }
 }
@@ -106,8 +104,8 @@ const PREFIX = class Analysis {
 </div>
 <div id="blocks" class="section level1">
 <h1>“Blocks”</h1>
-<p>With our analysis code in place we can now create our three ‘blocks’. To simulate blocks we’ll create three more classes whose single function is to just return a string. These blocks help to show us what exactly blockly is doing behind the scenes. Blocks create strings of code, not the code itself. By clicking blocks together, you are concatenating more code. By hitting ‘run’ you are essentially saying take this string and evaluate it.</p>
-<pre class="js"><code># The kind of block we might put at the top of a stack.
+<p>With our analysis code in place we can now create our three ‘blocks’. To simulate blocks we’ll create three more classes whose single function is to just return a string. These blocks help to show us what exactly blockly is doing behind the scenes. Blocks create strings of code, NOT the code itself. By clicking blocks together, you are concatenating more code. By hitting ‘run’ you are essentially saying take this string and evaluate it.</p>
+<pre class="js"><code>// The kind of block we might put at the top of a stack.
 class CreateDataSetBlock {
   constructor () {}
   generate_code () {
@@ -115,7 +113,7 @@ class CreateDataSetBlock {
   }
 }
 
-# The kind of block we might put in the middle of the stack.
+// The kind of block we might put in the middle of the stack.
 class IncrementDataSetBlock {
   constructor () {}
   generate_code () {
@@ -123,7 +121,7 @@ class IncrementDataSetBlock {
   }
 }
 
-# The kind of block we might put at the bottom of the stack.
+// The kind of block we might put at the bottom of the stack.
 class DisplayDataSetBlock {
   constructor () {}
   generate_code () {
@@ -131,7 +129,7 @@ class DisplayDataSetBlock {
   }
 }</code></pre>
 <script type="text/javascript">
-# The kind of block we might put at the top of a stack.
+// The kind of block we might put at the top of a stack.
 class CreateDataSetBlock {
   constructor () {}
   generate_code () {
@@ -139,7 +137,7 @@ class CreateDataSetBlock {
   }
 }
 
-# The kind of block we might put in the middle of the stack.
+// The kind of block we might put in the middle of the stack.
 class IncrementDataSetBlock {
   constructor () {}
   generate_code () {
@@ -147,7 +145,7 @@ class IncrementDataSetBlock {
   }
 }
 
-# The kind of block we might put at the bottom of the stack.
+// The kind of block we might put at the bottom of the stack.
 class DisplayDataSetBlock {
   constructor () {}
   generate_code () {
@@ -166,25 +164,25 @@ class DisplayDataSetBlock {
 <div id="concatenate-blocks" class="section level1">
 <h1>Concatenate Blocks</h1>
 <p>In order to simulate the user clicking run, we’ll create a for loop that takes each block and concatenates their outputs.</p>
-<pre class="js"><code># create a function called write_the_program with a single argument, blocks
+<pre class="js"><code>// create a function called write_the_program with a single argument, blocks
 const write_the_program = (blocks) =&gt; {
- # create a result variable
+ // create a result variable
   let result = &#39;&#39;
-  # iterate through the blocks
+  // iterate through the blocks
   for (let b of blocks) {
-    # extract the generate_code function from each block
+    // extract the generate_code function from each block
     result += b.generate_code()
   }
   return result
 }</code></pre>
 <script type="text/javascript">
-# create a function called write_the_program with a single argument, blocks
+// create a function called write_the_program with a single argument, blocks
 const write_the_program = (blocks) => {
- # create a result variable
+ // create a result variable
   let result = ''
-  # iterate through the blocks
+  // iterate through the blocks
   for (let b of blocks) {
-    # extract the generate_code function from each block
+    // extract the generate_code function from each block
     result += b.generate_code()
   }
   return result
@@ -211,11 +209,11 @@ const stack = [
 <h1>Blocks Produce a String</h1>
 <p>By hitting the <code>run code</code> button the user is initiating this next line:</p>
 <pre class="js"><code>const my_program = PREFIX + write_the_program(stack)
-# Let&#39;s see what it looks like
+// Let&#39;s see what it looks like
 console.log(my_program)</code></pre>
 <script type="text/javascript">
 const my_program = PREFIX + write_the_program(stack)
-# Let's see what it looks like
+// Let's see what it looks like
 console.log(my_program)
 </script>
 <pre class="js"><code>&quot;class Analysis {
@@ -258,9 +256,9 @@ eval(my_program)
 <script type="text/javascript">
 1
 </script>
-<p>By strings together our prefix along with our three blocks <code>new Analysis().increment().display()</code> and evaluating, we have created a new Analysis class, incremented it by 1, then displayed the new output.</p>
+<p>By stringing together our prefix along with our three blocks <code>new Analysis().increment().display()</code> then evaluating the string, we have created a new Analysis class, incremented it by 1, then displayed the new output.</p>
 <p>The blocks we created are simple in that the <code>generate_code</code> function only returns a word, but we can easily build upon this by applying logic and drop down menus and text inputs to our blocks.</p>
-<p>For instance, we can build on our increment block and let the user decide how much they want to increase <code>this.value</code> by. Blockly has built in functions to extract the text that user selects, but when the user is creating their stack of blocks the pipeline of code is a string to later be evaluated - BLOCKS ARE NOT RUNNING CODE THEMSELVES!</p>
+<p>For instance, we can build on our increment block and let the user decide how much they want to increase <code>this.value</code> by. Blockly has built in functions to extract the text that user selects, but when the user is creating their stack of blocks, the pipeline of code is a string to later be evaluated - BLOCKS ARE NOT RUNNING CODE THEMSELVES!</p>
 <p><strong>Blockly.js provides a framework to create blocks of different shapes and colors but the block script itself is entirely separate from the javascript code that is initiated by the user when they hit <code>run</code>. Blocks allow users to create a pipeline that is evaluated serially (first create new Analysis, then .increment() then .display().</strong></p>
 </div>
 <div id="implementing-in-blockly" class="section level1">
@@ -361,9 +359,9 @@ Blockly.Blocks['example_DisplayDataSet'] = {
         } 
   
       display () { 
-        console.log(this.value) 
+        retun this.value
       }
-    } new Analysis&quot;
+    } new Analysis()&quot;
 }
 
 Blockly.JavaScript[&#39;example_IncrementDataSet&#39;] = function(block) {
@@ -386,9 +384,9 @@ Blockly.JavaScript['example_CreateDataSet'] = function(block) {
         } 
   
       display () { 
-        console.log(this.value) 
+        retun this.value
       }
-    } new Analysis"
+    } new Analysis()"
 }
 
 Blockly.JavaScript['example_IncrementDataSet'] = function(block) {
@@ -399,7 +397,14 @@ Blockly.JavaScript['example_DisplayDataSet'] = function(block) {
     return '.display()'
 }
 </script>
-<p>Just as with our simulated blocks, all these do is return the string associated with the function we’d like that block to return when we evaluate it. [The hack here is that we included <code>PREFIX</code> within the dataset block (as opposed to <code>const my_program = PREFIX + write_the_program(stack)</code>) ] in order to include it within the code to be evaluated.</p>
+<p>Just as with our simulated blocks, all these do is return the string associated with the function we’d like that block to return when we evaluate it.</p>
+<div id="two-small-hacks-here" class="section level3">
+<h3>Two small hacks here:</h3>
+<ul>
+<li>We include <code>PREFIX</code> within the dataset block (as opposed to <code>const my_program = PREFIX + write_the_program(stack)</code>) ] in order to include it within the code to be evaluated.</li>
+<li>I changed the display code to return <code>this.value</code> rather than display it in the console so I can use the returned value in the UI.</li>
+</ul>
+</div>
 </div>
 <div id="from-string-to-functions" class="section level1">
 <h1>From String to Functions</h1>
@@ -416,15 +421,16 @@ var demoWorkspace = Blockly.inject('blocklyDiv',
 </script>
 <p>We use <code>Blockly.JavaScript.workspaceToCode</code> to extract all the blocks the user placed within the predefined workspace, then use the eval function to turn the block string into code.</p>
 <pre class="js"><code>var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-eval(code);</code></pre>
+alert(eval(code));</code></pre>
 <script type="text/javascript">
 var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-eval(code);
+alert(eval(code));
 </script>
+<p>Because I tweaked the display code, here I evaluate the code then return the result as an alert rather than generate the result in the console behind the scenes.</p>
 <pre class="js"><code>1</code></pre>
 <script type="text/javascript">
 1
 </script>
-<p>In Wizard of Oz parlance, blocks are just a hologram creating strings. <code>Blockly.JavaScript.workspaceToCode(workspace)</code> is the man behind the curtain. This takes the blocks within the workspace, concatenates their generator functions, then finally evaluates the string produced.</p>
+<p>In Wizard of Oz parlance, blocks are just a hologram creating strings. <code>Blockly.JavaScript.workspaceToCode(workspace)</code> is the man behind the curtain. This takes the blocks within the workspace, concatenates their generator functions, then finally evaluates the string produced. I encourage you to play with the block demo - just as we could remove the increment block from our simulated stack, check out the code output after clicking <code>CreateDataSet</code> and <code>DisplayDataSet</code>.</p>
 <p>My mental model does raise some questions to be explored in the following weeks as an RStudio intern: how do we address wanting to transform TWO dataframes, then combining them? I have some ideas but that is for posts to follow, stay tuned!</p>
 </div>

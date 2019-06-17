@@ -21,7 +21,7 @@ image:
 projects: []
 ---
 
-Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) that the code behind blockly blocks is entirely separate from the javascript code that they run, I wanted to outline a mental model of blockly using a simple example visualized below:
+Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) that the code behind blockly blocks is entirely separate from the javascript code that the blocks run, I wanted to outline a mental model of blockly using a simple example visualized below:
 
 # Where We're Heading
 
@@ -31,10 +31,10 @@ Driven by my Aha moment [from week two](/post/2019/week-2-humble-pie/) that the 
 
 ### OUR MISSION
 
-We're going to simulate the 3 blocks
+We're going to simulate 3 blocks:
 
 * **CreateDataSet** a dataset block that contains data (the number 0)
-* **IncrementDataSet** an intermediate transformation block (a step function to increase the data by one)
+* **IncrementDataSet** an intermediate transformation block (a step function to increase the data by 1)
 * **DisplayDataSet** a display block (a pop up alert of our new value).
 
 But before we simulate three blocks, we need to create a javascript class with three methods corresponding to what we want each of these blocks to do. We'll call this class 'Analysis'
@@ -44,30 +44,30 @@ But before we simulate three blocks, we need to create a javascript class with t
 *A javascript **OBJECT** is a set of key:value pairs where the value is a function, and a **CLASS** is a user defined blueprint from which objects are created. Classes are essentially object factories that specify the types of variables that can exist in the object. A class can be thought of as a type and the objects the variables of that type [a class could be shape, and objects circle, square, and triangle](https://software-tools-in-javascript.github.io/js-vs-ds/en/oop.html)*
 
 ```{js} 
-# first we'll create the class Analysis with three methods
+// first we'll create the class Analysis with three methods
 const PREFIX = class Analysis {
 
-  # Create a new container.
-  # constructors initialize new objects (this is a special type of method)
+  // Create a new container.
+  // constructors initialize new objects (this is a special type of method)
   constructor () {
     
-    # this refers to the owner of the function 
-    # this.value is the value of the owner (ie: maya.age = 28)
+    // this refers to the owner of the function 
+    // this.value is the value of the owner (ie: maya.age = 28)
     
-    # since we want the initial value to be zero:
+    // since we want the initial value to be zero:
     this.value = 0
   }
 
-  # Our second method will add one to this.value
+  // Our second method will add one to this.value
   increment () {
     this.value += 1
     return this
   }
 
-  # Our third method will display this.value 
-  # after the increment function is applied
+  // Our third method will display this.value 
+  // after the increment function is applied
   display () {
-    # show us the current value in the console 
+    // show us the current value in the console 
     console.log(this.value)
   }
 }
@@ -75,10 +75,10 @@ const PREFIX = class Analysis {
 
 # "Blocks"
 
-With our analysis code in place we can now create our three 'blocks'. To simulate blocks we'll create three more classes whose single function is to just return a string. These blocks help to show us what exactly blockly is doing behind the scenes. Blocks create strings of code, not the code itself. By clicking blocks together, you are concatenating more code. By hitting 'run' you are essentially saying take this string and evaluate it.
+With our analysis code in place we can now create our three 'blocks'. To simulate blocks we'll create three more classes whose single function is to just return a string. These blocks help to show us what exactly blockly is doing behind the scenes. Blocks create strings of code, NOT the code itself. By clicking blocks together, you are concatenating more code. By hitting 'run' you are essentially saying take this string and evaluate it.
 
 ```{js}
-# The kind of block we might put at the top of a stack.
+// The kind of block we might put at the top of a stack.
 class CreateDataSetBlock {
   constructor () {}
   generate_code () {
@@ -86,7 +86,7 @@ class CreateDataSetBlock {
   }
 }
 
-# The kind of block we might put in the middle of the stack.
+// The kind of block we might put in the middle of the stack.
 class IncrementDataSetBlock {
   constructor () {}
   generate_code () {
@@ -94,7 +94,7 @@ class IncrementDataSetBlock {
   }
 }
 
-# The kind of block we might put at the bottom of the stack.
+// The kind of block we might put at the bottom of the stack.
 class DisplayDataSetBlock {
   constructor () {}
   generate_code () {
@@ -116,13 +116,13 @@ The javascript code and our block code don't 'know' about each other, and to dev
 In order to simulate the user clicking run, we'll create a for loop that takes each block and concatenates their outputs.
 
 ```{js}
-# create a function called write_the_program with a single argument, blocks
+// create a function called write_the_program with a single argument, blocks
 const write_the_program = (blocks) => {
- # create a result variable
+ // create a result variable
   let result = ''
-  # iterate through the blocks
+  // iterate through the blocks
   for (let b of blocks) {
-    # extract the generate_code function from each block
+    // extract the generate_code function from each block
     result += b.generate_code()
   }
   return result
@@ -146,7 +146,7 @@ const stack = [
 By hitting the `run code` button the user is initiating this next line:
 ```{js}
 const my_program = PREFIX + write_the_program(stack)
-# Let's see what it looks like
+// Let's see what it looks like
 console.log(my_program)
 ```
 
@@ -179,11 +179,11 @@ eval(my_program)
 ```
 
 
-By strings together our prefix along with our three blocks `new Analysis().increment().display()` and evaluating, we have created a new Analysis class, incremented it by 1, then displayed the new output. 
+By stringing together our prefix along with our three blocks `new Analysis().increment().display()` then evaluating the string, we have created a new Analysis class, incremented it by 1, then displayed the new output. 
 
 The blocks we created are simple in that the `generate_code` function only returns a word, but we can easily build upon this by applying logic and drop down menus and text inputs to our blocks. 
 
-For instance, we can build on our increment block and let the user decide how much they want to increase `this.value` by. Blockly has built in functions to extract the text that user selects, but when the user is creating their stack of blocks the pipeline of code is a string to later be evaluated - BLOCKS ARE NOT RUNNING CODE THEMSELVES!
+For instance, we can build on our increment block and let the user decide how much they want to increase `this.value` by. Blockly has built in functions to extract the text that user selects, but when the user is creating their stack of blocks, the pipeline of code is a string to later be evaluated - BLOCKS ARE NOT RUNNING CODE THEMSELVES!
 
 **Blockly.js provides a framework to create blocks of different shapes and colors but the block script itself is entirely separate from the javascript code that is initiated by the user when they hit `run`. Blocks allow users to create a pipeline that is evaluated serially (first create new Analysis, then .increment() then .display().**
 
@@ -253,9 +253,9 @@ Blockly.JavaScript['example_CreateDataSet'] = function(block) {
         } 
   
       display () { 
-        console.log(this.value) 
+        retun this.value
       }
-    } new Analysis"
+    } new Analysis()"
 }
 
 Blockly.JavaScript['example_IncrementDataSet'] = function(block) {
@@ -267,7 +267,12 @@ Blockly.JavaScript['example_DisplayDataSet'] = function(block) {
 }
 ```
 
-Just as with our simulated blocks, all these do is return the string associated with the function we'd like that block to return when we evaluate it. [The hack here is that we included `PREFIX` within the dataset block (as opposed to `const my_program = PREFIX + write_the_program(stack)`) ] in order to include it within the code to be evaluated.
+Just as with our simulated blocks, all these do is return the string associated with the function we'd like that block to return when we evaluate it. 
+
+### Two small hacks here: 
+  
+* We include `PREFIX` within the dataset block (as opposed to `const my_program = PREFIX + write_the_program(stack)`) ] in order to include it within the code to be evaluated.
+* I changed the display code to return `this.value` rather than display it in the console so I can use the returned value in the UI.
 
 # From String to Functions
 
@@ -284,14 +289,16 @@ We use `Blockly.JavaScript.workspaceToCode` to extract all the blocks the user p
 
 ```{js}
 var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-eval(code);
+alert(eval(code));
 ```
+
+Because I tweaked the display code, here I evaluate the code then return the result as an alert rather than generate the result in the console behind the scenes.
 
 ```{js}
 1
 ```
 
-In Wizard of Oz parlance, blocks are just a hologram creating strings. `Blockly.JavaScript.workspaceToCode(workspace)` is the man behind the curtain. This takes the blocks within the workspace, concatenates their generator functions, then finally evaluates the string produced.
+In Wizard of Oz parlance, blocks are just a hologram creating strings. `Blockly.JavaScript.workspaceToCode(workspace)` is the man behind the curtain. This takes the blocks within the workspace, concatenates their generator functions, then finally evaluates the string produced. I encourage you to play with the block demo - just as we could remove the increment block from our simulated stack, check out the code output after clicking `CreateDataSet` and `DisplayDataSet`.
 
 My mental model does raise some questions to be explored in the following weeks as an RStudio intern: how do we address wanting to transform TWO dataframes, then combining them? I have some ideas but that is for posts to follow, stay tuned!
 

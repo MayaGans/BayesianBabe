@@ -1,0 +1,72 @@
+---
+title: Baby’s First Module
+author: Maya Gans
+date: '2019-06-18'
+slug: babys-first-module
+categories:
+  - TidyBlocks
+tags:
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-18T08:57:57-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+Modules are self contained and each have distinct functionality. This allows for the addition or removal of modules as neccessary.
+
+## A book is organized into chapters, a good program is divided into modules.
+In my [blockly big picture post](https://maya.rbind.io/post/2019/blockly-the-big-picture/) I used an inelegant hack within the `CreateDataSet` block to include the stringified class code into the block itself. This is the perfect use case for a module!
+
+# Our Goal:
+Rather than include the class script inside the CreateDataSet block, create a seperate module
+
+ 
+# Workflow
+* Create the Analysis class in a file called myModule.js and export it
+* Import Analysis within our index.html file
+* Change the `CreateDataSet` block to only contain the string `new Analysis()`
+* Cross fingers, see if it works??
+
+# myModule.js
+I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that's changed here from the code in the prior post is the first line
+
+```{js}
+
+// rather than const PREFIX = 
+// we will export Analysis as a module
+export default class Analysis {
+    constructor () { 
+        this.value = 0 
+    }
+    increment () { 
+        this.value += 1; 
+        return this 
+    }
+    display () {
+    return this.value 
+    }
+}
+```
+
+# Import
+Back inside our html file we add
+```{js}
+import Analysis from "myModule.js";
+```
+
+# example_blocks.js
+Now we get elegant. Rather than include the Analysis class defintion within our block, we can simply point to our newly created module
+```{js}
+Blockly.JavaScript['example_CreateDataSet'] = function(block) {
+    return "new Analysis.Analysis()"
+}
+```
+
+Whew! Successfully loaded my first module! It’s easy to see now that having multiple modules each contained within their own script tags in our index.html (and thus individually loading) could get cumbersome. Up next, exploring module bundling [read concatenation] and minification [read: removal of unnecessary characters]

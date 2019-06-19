@@ -1,6 +1,6 @@
 'use strict';
 
-export default class Analysis {
+export class Analysis {
 	constructor () { 
 		this.value = 0 
 	}

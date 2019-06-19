@@ -9,7 +9,10 @@
   
   <script src="../blockly_compressed.js"></script>
   <script src="../javascript_compressed.js"></script>
-  <script type="module" src="myModule.js"></script>
+  
+  <script type="module">
+  import Analysis from './myModule.js'
+  </script>
 
   
   <style>
@@ -49,8 +52,7 @@
   <script>
   	
   	//import Analysis class module
-  	'use strict';
-  	import Analysis from './myModule';
+
 
 // create workspace for blocks using inject
 // access media for the toolbox 

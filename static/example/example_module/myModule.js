@@ -1,3 +1,5 @@
+'use strict';
+
 export default class Analysis {
 	constructor () { 
 		this.value = 0 

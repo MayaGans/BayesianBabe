@@ -1,5 +1,7 @@
-export default class Analysis {
+class Analysis {
 	constructor () { this.value = 0 }
 	increment () { this.value += 1; return this }
 	display () { return this.value }
 }
+
+module.export = Analysis

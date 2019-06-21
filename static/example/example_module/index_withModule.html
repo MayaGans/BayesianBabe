@@ -6,13 +6,11 @@
   
   <!-- require the compressed blockly and JS scripts -->
   <!-- still need to dig into these to see what exactly is required -->
+  <script src="./importModule.js" type="module"></script>
   
   <script src="../blockly_compressed.js"></script>
   <script src="../javascript_compressed.js"></script>
-  
-  <script src="./myModule.js" type="module">
-  import Analysis from 'myModule.js'
-  </script>
+
 
   
   <style>
@@ -56,6 +54,8 @@
 
 // create workspace for blocks using inject
 // access media for the toolbox 
+
+
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: '../media/',
          toolbox: document.getElementById('toolbox'),

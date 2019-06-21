@@ -9,10 +9,7 @@
   
   <script src="blockly_compressed.js"></script>
   <script src="javascript_compressed.js"></script>
-  
-  <script type="module">
-  import Analysis from './myModule.js'
-  </script>
+  <script type="module" src="myModule.js"></script>
   
   <style>
     body {
@@ -52,6 +49,10 @@
 
 // create workspace for blocks using inject
 // access media for the toolbox 
+  import Analysis from 'myModule.js';
+  var t = new Analysis()
+  console.log(t)
+  
 
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: 'media/',

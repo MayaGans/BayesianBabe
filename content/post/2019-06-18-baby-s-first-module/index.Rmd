@@ -39,7 +39,6 @@ Rather than include the class script inside the CreateDataSet block, create a 
 I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that's changed here from the code in the prior post is the first line
 
 ```{js}
-
 // rather than const PREFIX = 
 // we will export Analysis as a module
 export default class Analysis {

@@ -6,14 +6,13 @@
   
   <!-- require the compressed blockly and JS scripts -->
   <!-- still need to dig into these to see what exactly is required -->
-  <script nomodule src="https://unpkg.com/browser-es-module-loader/dist/babel-browser-build.js"></script>
-  <script nomodule src="https://unpkg.com/browser-es-module-loader"></script>
-  <script type="module" src="./myModule.js"></script>
   
   <script src="blockly_compressed.js"></script>
   <script src="javascript_compressed.js"></script>
-
-
+  
+  <script type="module">
+  import { Analysis } from './myModule.js'
+  </script>
   
   <style>
     body {
@@ -47,16 +46,12 @@
   
    <!-- AFTER the toolbox is declared we run the script for those blocks --> 
 <script src="example_blocks.js"></script>
-  <script src="example_withModule.js"></script>
+  <script src="example.js"></script>
 
   <script>
-  	
-  	//import Analysis class module
-
 
 // create workspace for blocks using inject
 // access media for the toolbox 
-
 
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: 'media/',

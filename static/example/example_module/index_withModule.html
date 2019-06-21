@@ -6,7 +6,9 @@
   
   <!-- require the compressed blockly and JS scripts -->
   <!-- still need to dig into these to see what exactly is required -->
-  <script type="module" src="myModule.js"></script>
+  <script nomodule src="https://unpkg.com/browser-es-module-loader/dist/babel-browser-build.js"></script>
+  <script nomodule src="https://unpkg.com/browser-es-module-loader"></script>
+  <script type="module" src="/myModule.js"></script>
   
   <script src="../blockly_compressed.js"></script>
   <script src="../javascript_compressed.js"></script>
@@ -54,6 +56,9 @@
 
 // create workspace for blocks using inject
 // access media for the toolbox 
+	import Analysis from "./myModule.js"
+	const t = new Analysis()
+	console.log(t)
 
 
     var demoWorkspace = Blockly.inject('blocklyDiv',

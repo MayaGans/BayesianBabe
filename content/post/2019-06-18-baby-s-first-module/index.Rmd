@@ -27,6 +27,7 @@ In my [blockly big picture post](https://maya.rbind.io/post/2019/blockly-the-big
 # Our Goal:
 Rather than include the class script inside the CreateDataSet block, create a seperate module
 
+<iframe id="demo block-iframe" height="300" width="700" src="../../../example/example_module/index_withModule.html" scrolling = "false"></iframe>
  
 # Workflow
 * Create the Analysis class in a file called myModule.js and export it

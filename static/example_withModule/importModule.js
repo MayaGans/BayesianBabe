@@ -1,3 +1,3 @@
-import Analysis from "./myModule.js";
+import * as module from "./myModule.js";
 const t = new Analysis()
 console.log(t)

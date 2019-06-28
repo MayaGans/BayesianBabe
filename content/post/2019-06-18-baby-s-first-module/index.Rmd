@@ -25,7 +25,7 @@ Modules are self contained and each have distinct functionality. This allows for
 In my [blockly big picture post](https://maya.rbind.io/post/2019/blockly-the-big-picture/) I used an inelegant hack within the `CreateDataSet` block to include the stringified class code into the block itself. This is the perfect use case for a module!
 
 # Our Goal:
-Rather than include the class script inside the CreateDataSet block, create a seperate module
+Rather than include the class script inside the `CreateDataSet` block, create a seperate module
 
 <iframe id="demo block-iframe" height="300" width="700" src="../../../example_withModule/index.html" scrolling = "false"></iframe>
  
@@ -36,7 +36,7 @@ Rather than include the class script inside the CreateDataSet block, create a 
 * Cross fingers, see if it works??
 
 # myModule.js
-I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that's changed here from the code in the prior post is the first line
+I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that's changed here from the code in the prior post is the first line, be sure to export this as `default`
 
 ```{js}
 // rather than const PREFIX = 
@@ -60,13 +60,38 @@ Back inside our html file we add
 ```{js}
 import Analysis from "myModule.js";
 ```
+This was the trickiest part. This script needs to be contained within a `type=module` script tag, but in order for the blockly code to access the module we have to make Analysis a global class using `window.Analysis`
+
+```{js}
+<script type="module">
+import Analysis from "myModule.js";
+window.Analysis = Analysis
+</script>
+```
 
 # example_blocks.js
 Now we get elegant. Rather than include the Analysis class defintion within our block, we can simply point to our newly created module
 ```{js}
 Blockly.JavaScript['example_CreateDataSet'] = function(block) {
-    return "new Analysis.Analysis()"
+    return "new Analysis()"
 }
 ```
 
-Whew! Successfully loaded my first module! It’s easy to see now that having multiple modules each contained within their own script tags in our index.html (and thus individually loading) could get cumbersome. Up next, exploring module bundling [read concatenation] and minification [read: removal of unnecessary characters]
+Whew! With A LOT of help from [Evan Schultz](https://ca.linkedin.com/in/evanschultz1), I successfully loaded my first module! It’s easy to see now that having multiple modules each contained within their own script tags in our index.html (and thus individually loading) could get cumbersome. Up next, exploring module bundling [read concatenation] and minification [read: removal of unnecessary characters]
+
+# BONUS
+I had to include `window.Analysis = Analysis` because in my current framework I created two buttons with event handlers ABOVE the module. If I just create buttons with id's then assign the event handlers BELOW the module script tag then the buttons `show JavaScript` and `run JavaScript` will work without needing to specify Analysis at the global scope. 
+
+### Rather than
+```{js}
+<button onclick="runCode()"> Show JavaScript </button>
+```
+### Use
+```{js}
+<button id="runCode">Show JavaScript</button>
+```
+
+Now, BELOW our loaded module we can assign the function `runCode` [which evaluates the JavaScript within our blocks] to the button with the id above
+```{js}
+document.getElementById("runCode").onclick = runCode
+```

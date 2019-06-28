@@ -61,7 +61,7 @@ Okay. NOW I successfully navigates to File > Run SQL script and the new data_bas
 
 ![](img5.png)
 
-I read 5 tutorials that all quickly glance over giving the function `dbConnect` your credentials. The first issue was with `user='root'` - **this is a security issue and my Mac would not connect!** Under users and privlages I created a new account called `mayagans` and I gave myself all the permissions. Up next: the password. When you initialize the database you **MUST USE LEGACY PASSWORD ENCRYPTION**, then it should be the same password. Under **server status I located my host name and port**
+I read 5 tutorials that all quickly glance over giving the function `dbConnect` your credentials. The first issue was with `user='root'` - **this is a security issue and my Mac would not connect!** Under users and privileges I created a new account called `mayagans` and I gave myself all the permissions. Up next: the password. When you initialize the database you **MUST USE LEGACY PASSWORD ENCRYPTION**, then it should be the same password. Under **server status I located my host name and port**
 
 ```{r}
 library(RMySQL)

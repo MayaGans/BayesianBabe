@@ -24,7 +24,7 @@ I had an idea for a personal project using the data from a [friend's website](st
 
 I have about a month's worth of knowledge of SQL, but even that is limited to using SQL on my university's computer inside a GUI. And now I have a 60 MB file. 
 
-In this post I'm going to outline my workflow: from downloading the software to install a local database, to accessing the data in R. Here we go!
+In this post I'm going to outline my workflow: from downloading the software to installing a local database, to accessing the data in R. Here we go!
 
 # Step 1: Download MySQL
 I downloaded the MySQL community (read: free) version [from their website](https://dev.mysql.com/downloads/file/?id=486026) clicking the series of links within the image below. Click on the Community (GPL) Download, then DOWNLOAD the first option, the MySQL Community Server. From there choose your operating system and the DMG archive. There are flashy buttons for a pay account but make sure to click "no thanks, just start my download"
@@ -37,12 +37,12 @@ Next I opened the DMG, mindlessly clicked through the defaults (including settin
 ![](img2.png)
 
 # Step 2: MySQL Workbench
-Following the same protocol as above, instead of choosing the community server we download Workbench, a GUI for MySQL. Once you open the DMG, drag the icon into the applications, then click on the little dolphin. 
+Following the same protocol as above, instead of choosing the community server, I downloaded Workbench, a GUI for MySQL. Once I opened the DMG, dragged the icon into the applications, then clicked on the little dolphin I was up and running! 
 
 ![](img3.png)
 
 
-Because we are running an instance, you should be able to click on the local instance connection. That brings up the GUI!
+Because I am running an instance, I'm now able to click on the local instance connection. That brings up the GUI.
 
 ![](img4.png)
 
@@ -55,7 +55,7 @@ CREATE DATABASE database_name;
 USE database_name;
 ```
 
-Okay. NOW you can navigate to File > Run SQL script and the new data_base will import (you might have to refresh first!)
+Okay. NOW I successfully navigates to File > Run SQL script and the new data_base imported (you might have to refresh first!)
 
 # Open this Puppy up in R!
 

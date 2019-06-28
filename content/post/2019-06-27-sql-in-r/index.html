@@ -24,7 +24,7 @@ projects: []
 
 <p>I had an idea for a personal project using the data from a <a href="stats.thephish.fm">friend’s website</a> and asked if I could get the data to run some stats on it. “Sure, let me send you a .sql datadump real quick”. Oh boy. “Thanks!” <em>WTF is a datadump?</em></p>
 <p>I have about a month’s worth of knowledge of SQL, but even that is limited to using SQL on my university’s computer inside a GUI. And now I have a 60 MB file.</p>
-<p>In this post I’m going to outline my workflow: from downloading the software to install a local database, to accessing the data in R. Here we go!</p>
+<p>In this post I’m going to outline my workflow: from downloading the software to installing a local database, to accessing the data in R. Here we go!</p>
 <div id="step-1-download-mysql" class="section level1">
 <h1>Step 1: Download MySQL</h1>
 <p>I downloaded the MySQL community (read: free) version <a href="https://dev.mysql.com/downloads/file/?id=486026">from their website</a> clicking the series of links within the image below. Click on the Community (GPL) Download, then DOWNLOAD the first option, the MySQL Community Server. From there choose your operating system and the DMG archive. There are flashy buttons for a pay account but make sure to click “no thanks, just start my download”</p>
@@ -40,12 +40,12 @@ projects: []
 </div>
 <div id="step-2-mysql-workbench" class="section level1">
 <h1>Step 2: MySQL Workbench</h1>
-<p>Following the same protocol as above, instead of choosing the community server we download Workbench, a GUI for MySQL. Once you open the DMG, drag the icon into the applications, then click on the little dolphin.</p>
+<p>Following the same protocol as above, instead of choosing the community server, I downloaded Workbench, a GUI for MySQL. Once I opened the DMG, dragged the icon into the applications, then clicked on the little dolphin I was up and running!</p>
 <div class="figure">
 <img src="img3.png" />
 
 </div>
-<p>Because we are running an instance, you should be able to click on the local instance connection. That brings up the GUI!</p>
+<p>Because I am running an instance, I’m now able to click on the local instance connection. That brings up the GUI.</p>
 <div class="figure">
 <img src="img4.png" />
 
@@ -60,7 +60,7 @@ USE database_name;</code></pre>
 CREATE DATABASE database_name;
 USE database_name;
 </script>
-<p>Okay. NOW you can navigate to File &gt; Run SQL script and the new data_base will import (you might have to refresh first!)</p>
+<p>Okay. NOW I successfully navigates to File &gt; Run SQL script and the new data_base imported (you might have to refresh first!)</p>
 </div>
 <div id="open-this-puppy-up-in-r" class="section level1">
 <h1>Open this Puppy up in R!</h1>
@@ -76,7 +76,7 @@ USE database_name;
 
 db_con &lt;- dbConnect(MySQL(), 
                     user=&#39;mayagans&#39;, 
-                    password=&#39;XXXXXXX&#39;, 
+                    password=&#39;XXXXX&#39;, 
                     dbname=&#39;thephish_stats&#39;, 
                     host=&#39;Mayas-MacBook-Pro.local&#39;,
                     port = 3306)</code></pre>

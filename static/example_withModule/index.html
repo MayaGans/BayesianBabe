@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo</title>
+  
+  <!-- require the compressed blockly and JS scripts -->
+  <!-- still need to dig into these to see what exactly is required -->
+  
+  <script src="blockly_compressed.js"></script>
+  <script src="javascript_compressed.js"></script>
+  
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+
+
+<h1>Simple Blockly Demo</h1>
+  
+  <!--
+The below used to be:
+
+      <button onclick="showCode()">Show JavaScript</button>
+      
+      <button onclick="runCode()">Run JavaScript</button>
+      
+However, when we added the <script type="module"> and got rid of the script tags between loading the Analysis module and the
+rest of the code - the showCode and runCode got put into a scope that the HTML could not acccess. 
+To get around this - we added ID's to the button - and then attached the event handlers later on
+-->
+
+	<p>
+		<button id="showCode">Show JavaScript</button>
+		<button id="runCode">Run JavaScript</button>
+	</p>
+
+  <div 
+  	id="blocklyDiv" 
+  	style="height: 200px; width: 650px; display: inline-block; vertical-align: top"
+  ></div>
+
+ <!-- within the toolbox we use the type id to display the blocks we want --> 
+ <xml id="toolbox" style="display: none">
+    <block type="example_CreateDataSet"></block>
+    <block type="example_IncrementDataSet"></block>
+    <block type="example_DisplayDataSet"></block>
+  </xml>
+  
+   <!-- AFTER the toolbox is declared we run the script for those blocks --> 
+<script src="example_blocks.js"></script>
+ <script src="example.js"></script>
+
+
+  <script type="module">
+	import Analysis from './myModule.js'
+	// window.Analysis = Analysis
+	
+/*
+there used to be a closing script tag here, and then another opening one for the runCode/etc.
+we need the 'type=module' to use the import syntax in browsers. 
+However, that created a scope that while it did load the Analysis module - it was not available to the rest of the page.
+We temporarily fixed that by doing window.Analysis = Analysis; - that worked, but was good for a temp fix.
+In the end we removed the closing/opening script tag - and instead used event handlers to attach the runCode/showCode
+*/
+
+    var demoWorkspace = Blockly.inject('blocklyDiv',
+        {media: 'media/',
+         toolbox: document.getElementById('toolbox'),
+          trashcan: true
+        });
+        
+
+    function showCode() {
+      // Generate JavaScript code and display it.
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      alert(code);
+    }
+
+        function runCode() {
+      // Generate JavaScript code and run it.
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+        alert(eval(code));
+      } catch (e) {
+        alert(e);
+      }
+    }
+    
+ /*
+ We changed:
+  <button onclick="showCode()">Show JavaScript</button>
+  <button onclick="runCode()">Run JavaScript</button>
+      
+      to
+      
+   <button id="showCode">Show JavaScript</button>
+   <button id="runCode">Run JavaScript</button>
+   
+   This lets us look for the button in the UI - and then attach a click event to it.
+   
+   We ended up doing it this way:
+   
+   document.getElementById("runCode").onclick = runCode;
+   document.getElementById("showCode").onclick = showCode;
+   
+   but a slightly better way would be to use addEventListener like below
+      
+  */
+      document.getElementById("runCode").addEventListener('click', runCode)
+      document.getElementById("showCode").addEventListener('click', showCode)
+  
+  /*
+  
+   While in this case it may not make much of a difference - this allows you to attach multipule handlers to a single element. Could do
+  function message() { 
+        console.log('they really did run the code!')
+  }
+  document.getElementById("runCode").addEventListener('click', message);
+  
+  and both of the functions should fire.
+  
+  It also lets you remove a specific function
+  
+  document.getElementById("runCode").removeEventListener('click', message);
+  
+  but for now - using onclick will work fine, can talk more about event handling later on if you'd like.
+  
+  */
+  
+    </script>
+  </body>
+</html>

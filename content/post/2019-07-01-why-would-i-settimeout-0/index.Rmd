@@ -97,4 +97,4 @@ document.getElementById('do_ok').addEventListener("click", function(){
 **In the code chunk above the button text "Not calculating yet" will change to "Calculating...." and THEN "Done!"**
 
 # CONCLUSION 
-JavaScript runtimes contain a message queue to store the list of messages to be processed (here "calculating..."). Because JavaScript is non-blocking, the messages can be queued in response to events (here: the long calculation). Using a simple **event loop** within our button, JavaScript enables the collection of ascynchronous callbacks freeing the runtime to handle concurrent operations.
+JavaScript runtimes contain a message queue to store the list of messages to be processed (here "calculating..."). Because JavaScript is non-blocking, the messages can be queued in response to events (here: the long calculation). Using a simple **event loop** within our button, JavaScript enables the collection of asynchronous callbacks freeing the runtime to handle concurrent operations.

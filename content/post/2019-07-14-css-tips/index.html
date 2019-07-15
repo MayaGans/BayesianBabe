@@ -1,0 +1,123 @@
+---
+title: CSS Tips - Notes from CSS Grids
+author: Maya Gans
+date: '2019-07-14'
+slug: css-tips
+categories:
+  - Tutorial
+tags:
+  - CSS
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-07-14T10:30:09-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>Rather than work through a specific question, this post is a collection of cool CSS tips and tricks I’ve learned through Wes Bos’s free <a href="https://courses.wesbos.com">CSS Grids course</a></p>
+<div id="colors" class="section level1">
+<h1>COLORS</h1>
+<p>I spend a lot of time thoughtfully choosing color palletes, then spend an embarassing amount of time figuring out what those HEX codes I picked out actually are. The first tip that blew my mind was that we can assign HEX codes to default color names that we want to use repeatedly in our main.css under <code>:root</code>, then access those colors by name in our html!</p>
+<p>For instance we can specify hex codes for yellow and black</p>
+<pre class="css"><code>:root {
+  --yellow: #ffc600;
+  --black: #272727;
+}</code></pre>
+<style type="text/css">
+:root {
+  --yellow: #ffc600;
+  --black: #272727;
+}
+</style>
+<p>Then specify those hex codes within our html using <code>var(--&lt;color&gt;)</code></p>
+<pre class="html"><code>&lt;style&gt;
+p {
+    color: var(--black);
+}
+&lt;/style&gt;</code></pre>
+<p>With this nifty trick we don’t have to memorize or track down HEX codes, using familiar color names instead.</p>
+</div>
+<div id="border-box" class="section level1">
+<h1>Border Box</h1>
+<p>When setting a div’s border, if that div is inside a container you’ll want the border to scale to its container’s size. By using <code>border-box</code>, rather than adding a border to a div, you’re telling the browser to account for the border and padding within the div’s total size.</p>
+<div class="figure">
+<img src="img1.png" />
+
+</div>
+</div>
+<div id="inherit" class="section level1">
+<h1>INHERIT</h1>
+<p>You can use border-boxes as above, but best practices add this inheritance snippet:</p>
+<pre class="css"><code>*, *:before, *:after {
+  box-sizing: inherit;
+}</code></pre>
+<style type="text/css">
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+</style>
+<p><strong>WHY?</strong> &gt; Because this allows for universal box resetting without worrying about the browser’s universal selector overriding your CSS. <em>[Taking the internet’s word for it on that one…]</em></p>
+</div>
+<div id="griddyup" class="section level1">
+<h1>GRIDDYUP</h1>
+<p>We can use grids to dice an element into columns and rows (“tracks”), then use those tracks to position our items.</p>
+<div class="figure">
+<img src="img2.png" />
+
+</div>
+<p>By using grids, we make take the direct children of a container (items), and lay them out on a grid.</p>
+<p>Let’s create a container with 10 child divs inside</p>
+<pre class="html"><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;item&quot;&gt;1&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;2&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;3&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;4&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;5&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;6&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;7&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;8&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;9&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;10&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<div class="figure">
+<img src="img3.png" />
+
+</div>
+<p>We can specify a grid display on the container then slice it into columns by defining the column size. Here we create three columns all of equal size using <code>grid-template-columns</code> (100px), for a total div width of 300px. We can also define the space between our grid tracks using <code>grid-gap</code></p>
+<pre class="html"><code>&lt;style&gt;
+  .container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px
+    grid-gap: 20px
+  }
+&lt;/style&gt;</code></pre>
+<div class="figure">
+<img src="img4.png" />
+
+</div>
+<p>We can specify row width using <code>grid-template-rows</code> which defaults to a single column. Specifying both <code>grid-template-rows</code> and <code>grid-template-columns</code> is what gives us a grid.</p>
+<pre class="html"><code>&lt;style&gt;
+  .container {
+    display: grid
+    grid-template-columns: 200px 500px
+    grid-template-rows: 200px 500px 50px
+    grid-gap: 20px
+  }
+&lt;/style&gt;</code></pre>
+<div class="figure">
+<img src="img5.png" />
+
+</div>
+<p>If you specify <code>auto</code> rather than a number, then the track will scale with the browser size. I used this within the second column below</p>
+<div class="figure">
+<img src="gif1.gif" />
+
+</div>
+</div>

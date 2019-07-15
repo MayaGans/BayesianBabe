@@ -23,7 +23,7 @@ Rather than work through a specific question, this post is a collection of cool 
 
 # COLORS
 
-I spend a lot of time thoughtfully choosing color palletes, then spend an embarassing amount of time figuring out what those HEX codes I picked out actually are. The first tip that blew my mind was that we can assign HEX codes to default color names that we want to use repeatedly in our main.css under `:root`, then access those colors by name in our html!
+I spend a lot of time thoughtfully choosing color pallets, then spend an embarrassing amount of time figuring out what those HEX codes I picked out actually are. The first tip that blew my mind was that we can assign HEX codes to default color names that we want to use repeatedly in our main.css under `:root`, then access those colors by name in our html!
 
 For instance we can specify hex codes for yellow and black
 ```{css}
@@ -117,6 +117,6 @@ We can specify row width using `grid-template-rows` which defaults to a single c
 
 ![](img5.png)
 
-If you specify `auto` rather than a number, then the track will scale with the browser size. I used this within the second column below
+If you want to keep some columns locks and allow others to rescale, you can specify `auto` rather than a number -- I used this sweet feature within the second column below:
 
 ![](gif1.gif)

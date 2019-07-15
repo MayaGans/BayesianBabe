@@ -2,7 +2,7 @@
 authors:
 - admin
 
-bio: Maya is a PhD student at CU Boulder studying quantitative biology. She loves computer science, statistics, and data visualization 
+bio: Maya's work as a Master's student was focused in quantitative biology, but she's become extremely passionate about data science and visualization, as well as both front and backend web development. 
 
 education:
   courses:
@@ -40,4 +40,4 @@ user_groups:
 - Visitors
 ---
 
-I am PhD student at CU Boulder studying quantitative biology. I am currently an intern at RStudio designing a visual block based programming language. I create music related inforgraphics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing.
+I am a mycologist turned data scientist. I love of statistics, data visualization, and all things JavaScript. I am currently an intern at RStudio designing a visual block based programming language. I create music related inforgraphics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing tall mountains.

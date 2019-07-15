@@ -14,16 +14,16 @@ education:
     year: 2016
 email: "jaffe.maya@gmail.com"
 interests:
-- d3.js
+- JavaScript
 - statistics
-- computational biology
+- d3.js
 - network science
 - climbing
 name: Maya Gans
 organizations:
-- name: CU Boulder
+- name: ""
   url: ""
-role: PhD Student, Quantitative Biology
+role: Data Scientist
 social:
 - icon: envelope
   icon_pack: fas

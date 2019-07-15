@@ -60,8 +60,10 @@ You can use border-boxes as above, but best practices add this inheritance snipp
 
 
 **WHY?** 
+  
 > Because this allows for universal box resetting without worrying about the browser's universal selector overriding your CSS. 
-*[Taking the internet's word for it on that one...]*
+  
+*[Taking the internet's word for it on that one...](https://css-tricks.com/box-sizing/)*
 
 # GRIDDYUP
 We can use grids to dice an element into columns and rows ("tracks"), then use those tracks to position our items. 

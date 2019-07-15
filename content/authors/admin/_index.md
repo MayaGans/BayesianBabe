@@ -2,7 +2,7 @@
 authors:
 - admin
 
-bio: Maya's work as a Master's student was focused in quantitative biology, but she's become extremely passionate about data science and visualization, as well as both front and backend web development. 
+bio: Maya's work as a Master's student was focused in quantitative biology. She loves coding and is extremely passionate about data science and data visualization.
 
 education:
   courses:

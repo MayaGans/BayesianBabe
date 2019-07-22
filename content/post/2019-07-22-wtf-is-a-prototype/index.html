@@ -1,0 +1,174 @@
+---
+title: WTF is a Prototype
+author: Maya Gans
+date: '2019-07-22'
+slug: wtf-is-a-prototype
+categories:
+  - Tutorial
+tags:
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-07-22T09:11:49-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div class="figure">
+<img src="img1.png" />
+
+</div>
+<div id="from-functions-to-object-constructors" class="section level1">
+<h1>From Functions to Object Constructors</h1>
+<p>Let’s start with a function called <code>Person</code>. This function is a <strong>class</strong>, also called an <em>object constructor</em> because it provides a blueprint to create new objects. It is the conveyor belt on which are objects are made.</p>
+<pre class="js"><code>function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}</code></pre>
+<script type="text/javascript">
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+</script>
+<p>Every object of class <code>Person</code> will accept two arguments, a string for first name and string for last name.</p>
+<pre class="js"><code>let maya = new Person(&#39;Maya&#39;,&#39;Gans&#39;);</code></pre>
+<script type="text/javascript">
+let maya = new Person('Maya','Gans');
+</script>
+</div>
+<div id="prototypes" class="section level1">
+<h1>Prototypes</h1>
+<p>So now we have a whole bunch of people with first and last names. What if we want each person to be able to access a function that prints their first and last name with a greeting? This is where <code>prototypes</code> come in.</p>
+<p>Our original class has two properties, and both are strings. But an object can have properties that are functions too! Here we create a function called <code>sayHello</code> which every person can access.</p>
+<pre class="js"><code>Person.prototype.sayHello = function() {
+  console.log(`Hello ${this.firstName} ${this.lastName}`)
+}</code></pre>
+<script type="text/javascript">
+Person.prototype.sayHello = function() {
+  console.log(`Hello ${this.firstName} ${this.lastName}`)
+}
+</script>
+<pre class="js"><code>maya.SayHello()</code></pre>
+<script type="text/javascript">
+maya.SayHello()
+</script>
+<pre class="js"><code>Hello Maya Gans</code></pre>
+<script type="text/javascript">
+Hello Maya Gans
+</script>
+<iframe height="400px" width="100%" src="https://repl.it/@MayaJaffe/Prototypes?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
+</iframe>
+<p>Since a prototype is an object, every <code>new Person</code> object now has access to this reference function. This is NOT the same as <strong>instance values</strong> like <code>this.firstName</code> which are not shared amoung objects.</p>
+</div>
+<div id="prototype-inheritance" class="section level1">
+<h1>Prototype Inheritance</h1>
+<p>If it turns out we want to be more formal with our greeting, prototypes can be modified! We can modify or add new properties to all <code>Person</code> objects:</p>
+<pre class="js"><code>Person.prototype.sayHello = function() {
+  console.log(`Greetings ${this.firstName} ${this.lastName}`)
+}</code></pre>
+<script type="text/javascript">
+Person.prototype.sayHello = function() {
+  console.log(`Greetings ${this.firstName} ${this.lastName}`)
+}
+</script>
+<p>Not only can we create new objects to apply our updated function on, but even if we were to call this function on old objects the new definition of <code>sayHello</code> will be applied:</p>
+<pre class="js"><code>const jane = new Person(&#39;Jane&#39;, &#39;Doe&#39;);
+jane.sayHello()
+maya.sayHello()</code></pre>
+<script type="text/javascript">
+const jane = new Person('Jane', 'Doe');
+jane.sayHello()
+maya.sayHello()
+</script>
+<pre class="js"><code>Greetings Jane Doe
+Greetings Maya Gans</code></pre>
+<script type="text/javascript">
+Greetings Jane Doe
+Greetings Maya Gans
+</script>
+<p>We can see through this example the utility of being able to update prototypes. This doesn’t need to only be applied to objects you create, but you can import packages and modify them by creating new functions that objects can access.</p>
+<p><strong>However a danger to be weary of is writing over an already existing function</strong>. For instance, what if we want a new object to be less formal but we’ve already written over <code>sayHello</code>? For this reason, rather than overwrite functions I reccomend adding functions, calling our new function <code>greetFormal</code>.</p>
+</div>
+<div id="giving-our-prototype-a-method" class="section level1">
+<h1>Giving our Prototype a Method</h1>
+<p>Another approach is to add a method to our greeting with a default value (but it can also take on their own instance properties). This can get tricky because the instance property has the same name as the prototype property.</p>
+<pre class="js"><code>function Person(firstName, lastName, greeting) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+
+  if(greeting !== undefined) {
+    this.greeting = greeting
+  }
+}
+Person.prototype.sayHello = function() {
+  console.log(`${this.greeting} ${this.firstName} ${this.lastName}`)
+}
+Person.prototype.greeting = &#39;Hello&#39;;</code></pre>
+<script type="text/javascript">
+function Person(firstName, lastName, greeting) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+
+  if(greeting !== undefined) {
+    this.greeting = greeting
+  }
+}
+Person.prototype.sayHello = function() {
+  console.log(`${this.greeting} ${this.firstName} ${this.lastName}`)
+}
+Person.prototype.greeting = 'Hello';
+</script>
+<p>Now when we call <code>sayHello</code> it looks for an instance property called greeting. If greeting is supplied it will be used, otherwise the function will use its default value, the prototype property greeting: ‘Hello’.</p>
+<pre class="js"><code>let maya = new Person(&#39;Maya&#39;,&#39;Gans&#39;);
+let jane = new Person(&#39;Jane&#39;, &#39;Doe&#39;, &#39;Howdy&#39;);
+maya.SayHello()
+jane.SayHello()</code></pre>
+<script type="text/javascript">
+let maya = new Person('Maya','Gans');
+let jane = new Person('Jane', 'Doe', 'Howdy');
+maya.SayHello()
+jane.SayHello()
+</script>
+<pre class="js"><code>Hello Maya Gans
+Howdy Jane Doe</code></pre>
+<script type="text/javascript">
+Hello Maya Gans
+Howdy Jane Doe
+</script>
+<p>We can delete an instance value for a single person so that they retrun the default by writing <code>delete jane.greeting</code></p>
+<pre class="js"><code>delete jane.greeting;
+jane.sayHello()</code></pre>
+<script type="text/javascript">
+delete jane.greeting;
+jane.sayHello()
+</script>
+<pre class="js"><code>Hello Jane Doe</code></pre>
+<script type="text/javascript">
+Hello Jane Doe
+</script>
+</div>
+<div id="in-conclusion" class="section level1">
+<h1>In conclusion</h1>
+<p>Most things in JavaScript have a prototype [including functions, objects, classes, numbers, and boolians]. A prototype is an object which has properties and values, and the value of that property will also have a prototype (see: <code>Person.prototype.sayHello.prototype</code>)</p>
+</div>
+<div id="this-post-covers" class="section level1">
+<h1>This Post Covers</h1>
+<ul>
+<li><strong>Instance properties</strong> <code>firstName, lastName</code></li>
+<li><strong>Prototype properties</strong> <code>sayHello, greeting</code></li>
+<li>the value of these properties can be anything: object, function, string, so on</li>
+<li>Prototype inheritance <code>sayHello</code>
+<ul>
+<li>How that impacts objects created before/after that change</li>
+</ul></li>
+<li>What happens when an instance property has the same name as something on the prototype (greeting)</li>
+</ul>
+</div>

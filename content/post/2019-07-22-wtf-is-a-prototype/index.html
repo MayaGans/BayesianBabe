@@ -66,7 +66,7 @@ Hello Maya Gans
 </script>
 <iframe height="400px" width="100%" src="https://repl.it/@MayaJaffe/Prototypes?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
 </iframe>
-<p>Since a prototype is an object, every <code>new Person</code> object now has access to this reference function. This is NOT the same as <strong>instance values</strong> like <code>this.firstName</code> which are not shared amoung objects.</p>
+<p>Since a prototype is an object, every <code>new Person</code> object now has access to this reference function. This is NOT the same as <strong>instance values</strong> like <code>this.firstName</code> which are not shared among objects.</p>
 </div>
 <div id="prototype-inheritance" class="section level1">
 <h1>Prototype Inheritance</h1>
@@ -95,7 +95,7 @@ Greetings Jane Doe
 Greetings Maya Gans
 </script>
 <p>We can see through this example the utility of being able to update prototypes. This doesn’t need to only be applied to objects you create, but you can import packages and modify them by creating new functions that objects can access.</p>
-<p><strong>However a danger to be weary of is writing over an already existing function</strong>. For instance, what if we want a new object to be less formal but we’ve already written over <code>sayHello</code>? For this reason, rather than overwrite functions I reccomend adding functions, calling our new function <code>greetFormal</code>.</p>
+<p><strong>However a danger to be weary of is writing over an already existing function</strong>. For instance, what if we want a new object to be less formal but we’ve already written over <code>sayHello</code>? For this reason, rather than overwrite functions I recommend adding functions, calling our new function <code>greetFormal</code>.</p>
 </div>
 <div id="giving-our-prototype-a-method" class="section level1">
 <h1>Giving our Prototype a Method</h1>
@@ -143,7 +143,7 @@ Howdy Jane Doe</code></pre>
 Hello Maya Gans
 Howdy Jane Doe
 </script>
-<p>We can delete an instance value for a single person so that they retrun the default by writing <code>delete jane.greeting</code></p>
+<p>We can delete an instance value for a single person so that they return the default by writing <code>delete jane.greeting</code></p>
 <pre class="js"><code>delete jane.greeting;
 jane.sayHello()</code></pre>
 <script type="text/javascript">

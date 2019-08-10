@@ -25,7 +25,7 @@ Computers are awesome for their ability to execute instructions. I mean, do you 
 
 We can use the `if` statement to run a function when an argument is true
 
-```{js}
+```
 var happy = TRUE
 var knowIt = TRUE
 
@@ -36,7 +36,7 @@ if (happy == TRUE && knowIt == TRUE) {
 console.log(clapYourHands)
 ```
 
-```{js}
+```
 TRUE
 ```
 
@@ -51,7 +51,7 @@ In the code block above the curly brackets could be understood as `then`. Transl
 
 But what if I want to set clapYourHands to `false` if you're not happy? `else` gives us the ability to assign a different argument to `clapYourHands` if it fails the `then` test [here `(happy == TRUE && knowIt == TRUE)`]
 
-```{js}
+```
 var happy = false
 var knowIt = true
 
@@ -64,7 +64,7 @@ if (happy === true && knowIt === true) {
 console.log(clapYourHands)
 ```
 
-```{js}
+```
 TRUE
 ```
 
@@ -72,7 +72,7 @@ TRUE
 
 In the example above `happy` and `knowIt` are binary, but the human gamut of emotions is far more complex than happy or not. This is where `switch` comes in. Rather than writing a long chain of {`if` this `else if` this other thing `else if` even more stuff `else` the default} we can just invoke a `switch` statement with multiple `cases`!
 
-```{js}
+```
 var emotion = "disinterested"
 var clapYourHands = []
 
@@ -91,7 +91,7 @@ switch(emotion) {
 console.log(clapYourHands)
 ```
 
-```{js}
+```
 "Can't be sure"
 ```
 
@@ -104,7 +104,7 @@ I also snuck in the `break` keyword because this is what gets us out of the `swi
 No one ever wanted to be that solitary person clapping. Instead of using `switch` to evaluate a single `emotion`, we can use a `for` loop to assess all the emotions of our friends in the room, then gauge how many people are clapping.
 
 
-```{js}
+```
 // create an array to capture the emotions in the room
 var emotions = ["disinterested", "happy", "sad", "happy", "dispondent", "happy"]
 
@@ -132,8 +132,8 @@ console.log(whosClapping)
 console.log(whosClapping == true)
 ```
 
-```{js}
-[ 'Can\'t be sure', true, false, true, 'Can\'t be sure', true ]
+```
+[ 'Can't be sure', true, false, true, 'Can't be sure', true ]
 ```
 
 a `for` loop begins with a counter, we're calling it `i` and setting it to zero. The next argument is how many times you want the computer to run through the loop. Rather than count up the number of elements in our array in our heads and provide `6`, we make the computer do the work for us! `array.length` gives back the number of elements in an array. `i++` is shorthand to increment `i` by 1 as we progress through the loop.
@@ -148,7 +148,7 @@ If your friends aren't responding when you ask them if you're happy, we can make
 
 Like the `for` loop, a `while` loop also repeats until a condition changes. Unlike a `for` loop, we set a condition and loop through until the condition is no longer met [the opposite is true of a `for` loop where each time it runs the condition is looked for.]
 
-```{js}
+```
 var happy = 0
 
 while(happy < 6) {
@@ -157,7 +157,7 @@ while(happy < 6) {
 }
 ```
 
-```{js}
+```
 clap your hands
 clap your hands
 clap your hands
@@ -172,7 +172,7 @@ We set our iterator to zero outside of the loop, then use the condition `happy <
 
 The `do` loop is like the `while` loop but backwards. First the loop is executed, and the condition comes after the body
 
-```{js}
+```
 var happy = 0
 
 do { 
@@ -181,7 +181,7 @@ do {
 } while(happy < 6);
 ```
 
-```{js}
+```
 clap your hands
 clap your hands
 clap your hands
@@ -196,7 +196,7 @@ Within our `do` statement which gets everyone to clap, we also increment happy. 
 
 When you write a function, `return` stops the function execution and returns the value 
 
-```{js}
+```
 function clapping(name) {
   return name + " is happy, and knows it";
 }
@@ -205,7 +205,7 @@ var maya = clapping("Maya")
 console.log(maya)
 ```
 
-```{js}
+```
 Maya is happy, and knows it
 ```
 
@@ -215,7 +215,7 @@ We save the results of the function `clapping('Maya')` within a new variable, `m
 
 The `throw` statement looks at an input and if it is wrong, creates a custom error message.
 
-```{js}
+```
 function getClappers(i) {
 
   if (i > 0) {
@@ -228,7 +228,7 @@ function getClappers(i) {
 console.log(getClappers(0))
 ```
 
-```{js}
+```
 No one is happy
 ```
 
@@ -236,7 +236,7 @@ No one is happy
 
 `try...catch` statements are used to catch errors, an inevitable part of programming that should be embraced early. We'll demonstrate this using our `getClappers` function where rather than have the code stop running because no one is clapping, we'll use `catch` to create a string stored in the variable `happy`.
 
-```{js}
+```
 var happy = []
 try {
   happy = getClappers(0)
@@ -248,7 +248,7 @@ try {
 console.log(happy)
 ```
 
-```{js}
+```
 No one is clapping
 ```
 

@@ -45,7 +45,7 @@ If you're Happy AND you know it, clapYourHands == TRUE.
 
 # Then
 
-In the code block above the curly brackets could be understood as `then`. Translating the block above into plain english: if `happy` and `knowIt` are both true `then` set clapYourHands to true.
+In the code block above the curly brackets could be understood as `then`. Translating the block above into plain English: if `happy` and `knowIt` are both true `then` set clapYourHands to true.
 
 # Else
 

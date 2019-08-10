@@ -1,0 +1,289 @@
+---
+title: JavaScript Statements
+author: Maya Gans
+date: '2019-08-02'
+slug: javascript-statements
+categories:
+  - Tutorial
+tags:
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-08-02T09:11:54-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>Computers are awesome for their ability to execute instructions. I mean, do you want to perform repetitive, error prone, menial tasks? Personally, I don’t want to spend time processing data, I just want to analyze it and eventually make pretty graphs. To do this though, the computer needs instructions, and these instructions come in the form of a list of <strong>statements</strong>. In this post I want to go over the grammar of JavaScript statements. Only by familiarizing ourselves with the entire toolbox of statement options can we efficiently boss the computer around exactly how we intend to.</p>
+<div id="if" class="section level1">
+<h1>If</h1>
+<p>We can use the <code>if</code> statement to run a function when an argument is true</p>
+<pre class="js"><code>var happy = TRUE
+var knowIt = TRUE
+
+if (happy == TRUE &amp;&amp; knowIt == TRUE) {
+  clapYourHands = TRUE
+}
+
+console.log(clapYourHands)</code></pre>
+<script type="text/javascript">
+var happy = TRUE
+var knowIt = TRUE
+
+if (happy == TRUE && knowIt == TRUE) {
+  clapYourHands = TRUE
+}
+
+console.log(clapYourHands)
+</script>
+<pre class="js"><code>TRUE</code></pre>
+<script type="text/javascript">
+TRUE
+</script>
+<p>If you’re Happy AND you know it, clapYourHands == TRUE.</p>
+</div>
+<div id="then" class="section level1">
+<h1>Then</h1>
+<p>In the code block above the curly brackets could be understood as <code>then</code>. Translating the block above into plain english: if <code>happy</code> and <code>knowIt</code> are both true <code>then</code> set clapYourHands to true.</p>
+</div>
+<div id="else" class="section level1">
+<h1>Else</h1>
+<p>But what if I want to set clapYourHands to <code>false</code> if you’re not happy? <code>else</code> gives us the ability to assign a different argument to <code>clapYourHands</code> if it fails the <code>then</code> test [here <code>(happy == TRUE &amp;&amp; knowIt == TRUE)</code>]</p>
+<pre class="js"><code>var happy = false
+var knowIt = true
+
+if (happy === true &amp;&amp; knowIt === true) {
+  clapYourHands = true
+} else {
+  clapYourHands = false
+}
+
+console.log(clapYourHands)</code></pre>
+<script type="text/javascript">
+var happy = false
+var knowIt = true
+
+if (happy === true && knowIt === true) {
+  clapYourHands = true
+} else {
+  clapYourHands = false
+}
+
+console.log(clapYourHands)
+</script>
+<pre class="js"><code>TRUE</code></pre>
+<script type="text/javascript">
+TRUE
+</script>
+</div>
+<div id="switch---case---break" class="section level1">
+<h1>Switch - Case - Break</h1>
+<p>In the example above <code>happy</code> and <code>knowIt</code> are binary, but the human gamut of emotions is far more complex than happy or not. This is where <code>switch</code> comes in. Rather than writing a long chain of {<code>if</code> this <code>else if</code> this other thing <code>else if</code> even more stuff <code>else</code> the default} we can just invoke a <code>switch</code> statement with multiple <code>cases</code>!</p>
+<pre class="js"><code>var emotion = &quot;disinterested&quot;
+var clapYourHands = []
+
+switch(emotion) {
+  case &#39;happy&#39;:
+    clapYourHands = true
+    break;
+  case &#39;sad&#39;:
+    clapYourHands = false
+    break;
+    // default = what to do when no cases match
+  default:
+    clapYourHands = &quot;Can&#39;t be sure&quot;
+}
+
+console.log(clapYourHands)</code></pre>
+<script type="text/javascript">
+var emotion = "disinterested"
+var clapYourHands = []
+
+switch(emotion) {
+  case 'happy':
+    clapYourHands = true
+    break;
+  case 'sad':
+    clapYourHands = false
+    break;
+    // default = what to do when no cases match
+  default:
+    clapYourHands = "Can't be sure"
+}
+
+console.log(clapYourHands)
+</script>
+<pre class="js"><code>&quot;Can&#39;t be sure&quot;</code></pre>
+<script type="text/javascript">
+"Can't be sure"
+</script>
+<p>The <code>switch</code> statement goes through all the cases, trying to find a match for <code>emotion</code>. Once it finds a matching <code>case</code>, it applies the associated argument [here <code>case = default</code>;<code>clapYourHands = &quot;Can't be sure&quot;</code>].</p>
+<p>I also snuck in the <code>break</code> keyword because this is what gets us out of the <code>switch</code> block. By using <code>break</code> we’re saying - <em>if this <code>case</code> is a match just use it, be done with the <code>switch</code> and move on with your life</em>. Note that we don’t need to <code>break</code> the last statement in a <code>switch</code>, the computer knows it’s exhausted all options at that point.</p>
+</div>
+<div id="for" class="section level1">
+<h1>For</h1>
+<p>No one ever wanted to be that solitary person clapping. Instead of using <code>switch</code> to evaluate a single <code>emotion</code>, we can use a <code>for</code> loop to assess all the emotions of our friends in the room, then gauge how many people are clapping.</p>
+<pre class="js"><code>// create an array to capture the emotions in the room
+var emotions = [&quot;disinterested&quot;, &quot;happy&quot;, &quot;sad&quot;, &quot;happy&quot;, &quot;dispondent&quot;, &quot;happy&quot;]
+
+// this empty array will store the loop values
+var whosClapping = []
+
+for (i = 0; i &lt; emotions.length; i++) { 
+
+  switch(emotions[i]) {
+    case &#39;happy&#39;:
+      var clapYourHands = true
+      break;
+    case &#39;sad&#39;:
+      clapYourHands = false
+      break;
+    default:
+      clapYourHands = &quot;Can&#39;t be sure&quot;
+    }
+
+  whosClapping[i] = clapYourHands
+
+}
+
+console.log(whosClapping)
+console.log(whosClapping == true)</code></pre>
+<script type="text/javascript">
+// create an array to capture the emotions in the room
+var emotions = ["disinterested", "happy", "sad", "happy", "dispondent", "happy"]
+
+// this empty array will store the loop values
+var whosClapping = []
+
+for (i = 0; i < emotions.length; i++) { 
+
+  switch(emotions[i]) {
+    case 'happy':
+      var clapYourHands = true
+      break;
+    case 'sad':
+      clapYourHands = false
+      break;
+    default:
+      clapYourHands = "Can't be sure"
+    }
+
+  whosClapping[i] = clapYourHands
+
+}
+
+console.log(whosClapping)
+console.log(whosClapping == true)
+</script>
+<pre class="js"><code>[ &#39;Can\&#39;t be sure&#39;, true, false, true, &#39;Can\&#39;t be sure&#39;, true ]</code></pre>
+<script type="text/javascript">
+[ 'Can\'t be sure', true, false, true, 'Can\'t be sure', true ]
+</script>
+<p>a <code>for</code> loop begins with a counter, we’re calling it <code>i</code> and setting it to zero. The next argument is how many times you want the computer to run through the loop. Rather than count up the number of elements in our array in our heads and provide <code>6</code>, we make the computer do the work for us! <code>array.length</code> gives back the number of elements in an array. <code>i++</code> is shorthand to increment <code>i</code> by 1 as we progress through the loop.</p>
+<p>The only difference in our switch within the loop is rather than reference <code>emotion</code>, we reference <code>emotions[i]</code>. For each turn through the loop the computer will evaluate the switch on the <code>i</code>th value within <code>emotions</code></p>
+<p>Before we let the computer move onto the next loop, we store the current iteration’s value for <code>clapYourHands</code> within the <code>whosClapping</code> array. <code>whosClapping[0]</code> will be the <code>clapYourHands</code> value for <code>emotions[0]</code> until the computer makes it through all 6 values within <code>emotion</code>.</p>
+</div>
+<div id="while" class="section level1">
+<h1>While</h1>
+<p>If your friends aren’t responding when you ask them if you’re happy, we can make all 6 of them clap using a <code>while</code> loop.</p>
+<p>Like the <code>for</code> loop, a <code>while</code> loop also repeats until a condition changes. Unlike a <code>for</code> loop, we set a condition and loop through until the condition is no longer met [the opposite is true of a <code>for</code> loop where each time it runs the condition is looked for.]</p>
+<pre class="js"><code>var happy = 0
+
+while(happy &lt; 6) {
+  console.log(&quot;clap your hands&quot;)
+  i++
+}</code></pre>
+<script type="text/javascript">
+var happy = 0
+
+while(happy < 6) {
+  console.log("clap your hands")
+  i++
+}
+</script>
+<pre class="js"><code>clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands</code></pre>
+<script type="text/javascript">
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+</script>
+<p>We set our iterator to zero outside of the loop, then use the condition <code>happy &lt; 6</code> to run our loop 6 times.</p>
+</div>
+<div id="do" class="section level1">
+<h1>Do</h1>
+<p>The <code>do</code> loop is like the <code>while</code> loop but backwards. First the loop is executed, and the condition comes after the body</p>
+<pre class="js"><code>var happy = 0
+
+do { 
+  console.log(&quot;clap your hands&quot;)
+  happy ++
+} while(happy &lt; 6);</code></pre>
+<script type="text/javascript">
+var happy = 0
+
+do { 
+  console.log("clap your hands")
+  happy ++
+} while(happy < 6);
+</script>
+<pre class="js"><code>clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands</code></pre>
+<script type="text/javascript">
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+clap your hands
+</script>
+<p>Within our <code>do</code> statement which gets everyone to clap, we also increment happy. The loop is executed until we reach happy == 6</p>
+</div>
+<div id="try---catch" class="section level1">
+<h1>Try - Catch</h1>
+<p><code>try...catch</code> statements are used to catch errors, an inevitable part of programming that should be embraced early. We’ll demonstrate this by creating a function that prints clap your hands if you’re happy</p>
+<pre class="js"><code>findClappers = (emotion) =&gt; {
+  if (emotion == &quot;happy&quot;) {
+    console.log(&quot;clap your hands&quot;);
+  } else {
+    console.log(Error(&#39;Nobodys clapping&#39;))
+  }
+}
+
+findClappers(&#39;sad&#39;)</code></pre>
+<script type="text/javascript">
+findClappers = (emotion) => {
+  if (emotion == "happy") {
+    console.log("clap your hands");
+  } else {
+    console.log(Error('Nobodys clapping'))
+  }
+}
+
+findClappers('sad')
+</script>
+</div>
+<div id="throw" class="section level1">
+<h1>Throw</h1>
+</div>
+<div id="return" class="section level1">
+<h1>Return</h1>
+</div>

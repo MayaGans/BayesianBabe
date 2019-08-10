@@ -205,7 +205,7 @@ var maya = clapping("Maya")
 console.log(maya)
 ```
 
-```{text}
+```{js}
 Maya is happy, and knows it
 ```
 
@@ -228,7 +228,7 @@ function getClappers(i) {
 console.log(getClappers(0))
 ```
 
-```{text}
+```{js}
 No one is happy
 ```
 
@@ -248,7 +248,7 @@ try {
 console.log(happy)
 ```
 
-```{text}
+```{js}
 No one is clapping
 ```
 

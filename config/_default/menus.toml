@@ -29,9 +29,20 @@
   url = "gallery"
   weight = 60
   
+
+[[main]]
+  name = "Shiny"
+  url = "shiny/"
+  weight = 70
+  
+[[main]]
+  name = "JS4DS"
+  url = "http://js4ds.org/"
+  weight = 80
+
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 [[main]]
   name = "CV"
   url = "files/Resume_MG.pdf"
-  weight = 70
+  weight = 90

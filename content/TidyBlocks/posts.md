@@ -8,7 +8,7 @@ active = true  # Activate this widget? true/false
 weight = 60  # Order that this section will appear.
 
 title = "TidyBlocks"
-subtitle = "Documenting my summer internship with RStudio building a blocks based visual coding progam"
+subtitle = "Documenting my summer internship with RStudio building a blocks based visual coding progam (http://tidyblocks.tech/)"
 
 [content]
   # Page type to display. E.g. post, talk, or publication.

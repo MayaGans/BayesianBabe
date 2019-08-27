@@ -26,16 +26,16 @@ projects: []
 <p>I’m fairly certain I won’t get the job. But I’m also certain it was an experience to learn and grow. The interview was so intense that it was pretty easy to recall the questions almost verbatim. I wanted to explore the questions again on my own with no pressure. And I’d love input on how to answer these more elegantly!</p>
 <div id="question-1" class="section level1">
 <h1>Question 1</h1>
-<p>Create a for loop for n iterations where every third iteration prints “buzz” and every fifth iteration prints “feed”. Every combination prints “buzz-feed”. Print the iterator for all other values.</p>
+<p>Create a for loop for n iterations where every third iteration prints “buzz” and every fifth iteration prints “fizz”. Every combination prints “buzz-fizz”. Print the iterator for all other values.</p>
 <pre class="r"><code>n = 30
 
 for (i in 1:n) {
   if (i %% 15 == 0) {
-    print(paste(i,&quot;buzz-feed&quot;))
+    print(paste(i,&quot;buzz-fizz&quot;))
       } else if (i %% 3 == 0) {
         print(paste(i, &quot;buzz&quot;))
       } else if (i %% 5 == 0) {
-        print(paste(i, &quot;feed&quot;))
+        print(paste(i, &quot;fizz&quot;))
       }
   print(i)
 }</code></pre>
@@ -44,7 +44,7 @@ for (i in 1:n) {
 ## [1] &quot;3 buzz&quot;
 ## [1] 3
 ## [1] 4
-## [1] &quot;5 feed&quot;
+## [1] &quot;5 fizz&quot;
 ## [1] 5
 ## [1] &quot;6 buzz&quot;
 ## [1] 6
@@ -52,21 +52,21 @@ for (i in 1:n) {
 ## [1] 8
 ## [1] &quot;9 buzz&quot;
 ## [1] 9
-## [1] &quot;10 feed&quot;
+## [1] &quot;10 fizz&quot;
 ## [1] 10
 ## [1] 11
 ## [1] &quot;12 buzz&quot;
 ## [1] 12
 ## [1] 13
 ## [1] 14
-## [1] &quot;15 buzz-feed&quot;
+## [1] &quot;15 buzz-fizz&quot;
 ## [1] 15
 ## [1] 16
 ## [1] 17
 ## [1] &quot;18 buzz&quot;
 ## [1] 18
 ## [1] 19
-## [1] &quot;20 feed&quot;
+## [1] &quot;20 fizz&quot;
 ## [1] 20
 ## [1] &quot;21 buzz&quot;
 ## [1] 21
@@ -74,14 +74,14 @@ for (i in 1:n) {
 ## [1] 23
 ## [1] &quot;24 buzz&quot;
 ## [1] 24
-## [1] &quot;25 feed&quot;
+## [1] &quot;25 fizz&quot;
 ## [1] 25
 ## [1] 26
 ## [1] &quot;27 buzz&quot;
 ## [1] 27
 ## [1] 28
 ## [1] 29
-## [1] &quot;30 buzz-feed&quot;
+## [1] &quot;30 buzz-fizz&quot;
 ## [1] 30</code></pre>
 <p>My first attempt answering the question revealed a gap in my mental model. I first attempted to construct the loop using an if statement with logical arguments in the same order as the question: <code>(i %% 3 == 0)</code>, then <code>(i %% 5 == 0)</code> and lastly <code>(i %% 15 == 0)</code>. I was operating under the idea that the arguments within a loop are circular. However, these arguments are inside an <code>if</code> statement, not the loop itself, so of course order matters! By putting <code>(i %% 15 == 0)</code> first you ensure the numbers divisible by both 3 and 5 are assigned to <code>buzz-feed</code> prior to <code>buzz</code> or <code>feed</code> assignment.</p>
 </div>
@@ -201,12 +201,12 @@ seperated &lt;- function(input) {
 
 seperated(my_list)</code></pre>
 <pre><code>## [[1]]
-##  [1] 26 40 58 35 55 66 16 13 67 19  2  8 12 77 95 56 50  9 41 61 80 79 36
-## [24] 11 87 68 46 34
+##  [1]  87  42  46  49  57  37  45  76   5  69  83  91  54  24 100   3  79
+## [18]  33  32  19  62  18  34  10   6   7
 ## 
 ## [[2]]
-##  [1] 65 73  5 17 14 44 33 70 86 18 93  6 74 75 43 21 31 48 83 89 39 38 62
-## [24] 99 60 30 84 90 49 59 42 10 97</code></pre>
+##  [1] 71 75 56 53 16 47 35 96 29 84 52 99 11 98 64 85 26 40 44 38 31 70 41
+## [24] 15 22  9 59 14 78 17  8 21 43 88  2 50 58 67 55 20 27 80 25</code></pre>
 <p>To get there, I made a dummy data set to play with, a list with 6 numbers, only one of which is a duplicate. This helped to highlight the workflow (1) find the duplicates for the first list, then (2) find the unique values, but remove the duplicates</p>
 <pre class="r"><code>test &lt;- list(c(1,2,3,4,5,3))
 

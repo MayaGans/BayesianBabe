@@ -34,18 +34,18 @@ I'm fairly certain I won't get the job. But I'm also certain it was an experienc
 
 # Question 1
 
-Create a for loop for n iterations where every third iteration prints "buzz" and every fifth iteration prints "feed". Every combination prints "buzz-feed". Print the iterator for all other values.
+Create a for loop for n iterations where every third iteration prints "buzz" and every fifth iteration prints "fizz". Every combination prints "buzz-fizz". Print the iterator for all other values.
 
 ```{r}
 n = 30
 
 for (i in 1:n) {
   if (i %% 15 == 0) {
-    print(paste(i,"buzz-feed"))
+    print(paste(i,"buzz-fizz"))
       } else if (i %% 3 == 0) {
         print(paste(i, "buzz"))
       } else if (i %% 5 == 0) {
-        print(paste(i, "feed"))
+        print(paste(i, "fizz"))
       }
   print(i)
 }

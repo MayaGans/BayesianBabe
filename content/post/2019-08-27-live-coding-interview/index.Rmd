@@ -32,6 +32,8 @@ That said, the data scientist position usually includes a live coding portion. I
 
 I'm fairly certain I won't get the job. But I'm also certain it was an experience to learn and grow. The interview was so intense that it was pretty easy to recall the questions almost verbatim. I wanted to explore the questions again on my own with no pressure. And I'd love input on how to answer these more elegantly!
 
+Before we begin, I've updated this post to include asides provided from the wonderful world of `#rstats` twitter. If you have any suggestions on tidying the code feel free to contact me or [submit a PR to my blog repo!](https://github.com/MayaGans/BayesianBabe/tree/master/content/post/2019-08-27-live-coding-interview)
+
 # Question 1
 
 Create a for loop for n iterations where every third iteration prints "buzz" and every fifth iteration prints "fizz". Every combination prints "buzz-fizz". Print the iterator for all other values.
@@ -52,6 +54,22 @@ for (i in 1:n) {
 ```
 
 My first attempt answering the question revealed a gap in my mental model. I first attempted to construct the loop using an if statement with logical arguments in the same order as the question: `(i %% 3 == 0)`, then `(i %% 5 == 0)` and lastly `(i %% 15 == 0)`. I was operating under the idea that the arguments within a loop are circular. However, these arguments are inside an `if` statement, not the loop itself, so of course order matters! By putting `(i %% 15 == 0)` first you ensure the numbers divisible by both 3 and 5 are assigned to `buzz-feed` prior to `buzz` or `feed` assignment.
+
+# The R Way
+R's stregnth is in dealing with vectors, so leverage that in the approach! [Jon Harmon](https://twitter.com/JonTheGeek) suggested a better approach for this problem.
+```{r}
+    n = 15
+    dplyr::tibble(
+    iteration = seq_len(n),
+    output = dplyr::case_when(
+    iteration %% 15 == 0 ~ "buzz-fizz", 
+    iteration %% 3 == 0 ~ "buzz",
+    iteration %% 5 == 0 ~ "fizz",
+    TRUE ~ as.character(iteration)
+  )
+)
+```
+In fact, this same question is the first example within the `dplyr::case_when` documentation!
 
 # Question 2
 
@@ -112,6 +130,7 @@ I'm taking the time here to break the output of the model summary down line for 
 Create a function that separates a list into two lists, one of unique values and the second containing the duplicates
 
 ```{r}
+set.seed(42)
 my_list <- list(round(runif(100, min=0, max=100)), 1)
 
 seperated <- function(input) {
@@ -141,6 +160,7 @@ test[[1]][!test[[1]] %in% test[[1]][duplicated(test[[1]])]]
 ```
 
 Obtaining the data from inside a list, especially nested lists, is a skill I know I need to build. This answer does not look elegent to me but it gets the job done? I'm going to play with "better", cleaner solutions.
+
 
 # Summary
 

@@ -20,10 +20,15 @@ projects: []
 ---
 
 
-
 <p>Yesterday I interviewed for a position maintaining and creating ShinyApps. To call that a JOB is crazy to me. I love developing reactive web applications, the fact that you can get paid to do that is still mind blowing. I’m realizing that having fun at work is actually a possibility!</p>
 <p>That said, the data scientist position usually includes a live coding portion. I went into it trying to treat my first one as practice, but every second I didn’t spend typing spanned an eternity. It was horrifying… but thinking about how to solve these questions was also kind of really fun?</p>
 <p>I’m fairly certain I won’t get the job. But I’m also certain it was an experience to learn and grow. The interview was so intense that it was pretty easy to recall the questions almost verbatim. I wanted to explore the questions again on my own with no pressure. And I’d love input on how to answer these more elegantly!</p>
+
+<div style="background-color:#AAF0D1" class="R">
+<h1>The R Way</h1>
+<p>Before we begin, I’ve updated this post to include asides provided from the wonderful world of <code>#rstats</code> twitter. If you have any suggestions on tidying the code feel free to contact me or <a href="https://github.com/MayaGans/BayesianBabe/tree/master/content/post/2019-08-27-live-coding-interview">submit a PR to my blog repo!</a></p>
+</div>
+
 <div id="question-1" class="section level1">
 <h1>Question 1</h1>
 <p>Create a for loop for n iterations where every third iteration prints “buzz” and every fifth iteration prints “fizz”. Every combination prints “buzz-fizz”. Print the iterator for all other values.</p>
@@ -85,6 +90,44 @@ for (i in 1:n) {
 ## [1] 30</code></pre>
 <p>My first attempt answering the question revealed a gap in my mental model. I first attempted to construct the loop using an if statement with logical arguments in the same order as the question: <code>(i %% 3 == 0)</code>, then <code>(i %% 5 == 0)</code> and lastly <code>(i %% 15 == 0)</code>. I was operating under the idea that the arguments within a loop are circular. However, these arguments are inside an <code>if</code> statement, not the loop itself, so of course order matters! By putting <code>(i %% 15 == 0)</code> first you ensure the numbers divisible by both 3 and 5 are assigned to <code>buzz-feed</code> prior to <code>buzz</code> or <code>feed</code> assignment.</p>
 </div>
+  
+<div id="the-r-way" class="R" style="background-color:#AAF0D1">
+<h1>The R Way</h1>
+<p>R’s stregnth is in dealing with vectors, so leverage that in the approach! <a href="https://twitter.com/JonTheGeek">Jon Harmon</a> suggested a better approach for this problem.</p>
+<pre class="r"><code>    n = 15
+    dplyr::tibble(
+    iteration = seq_len(n),
+    output = dplyr::case_when(
+    iteration %% 15 == 0 ~ &quot;buzz-fizz&quot;, 
+    iteration %% 3 == 0 ~ &quot;buzz&quot;,
+    iteration %% 5 == 0 ~ &quot;fizz&quot;,
+    TRUE ~ as.character(iteration)
+  )
+)</code></pre>
+<pre><code>## Warning: `list_len()` is deprecated as of rlang 0.2.0.
+## Please use `new_list()` instead.
+## This warning is displayed once per session.</code></pre>
+<pre><code>## # A tibble: 15 x 2
+##    iteration output   
+##        &lt;int&gt; &lt;chr&gt;    
+##  1         1 1        
+##  2         2 2        
+##  3         3 buzz     
+##  4         4 4        
+##  5         5 fizz     
+##  6         6 buzz     
+##  7         7 7        
+##  8         8 8        
+##  9         9 buzz     
+## 10        10 fizz     
+## 11        11 11       
+## 12        12 buzz     
+## 13        13 13       
+## 14        14 14       
+## 15        15 buzz-fizz</code></pre>
+<p>In fact, this same question is the first example within the <code>dplyr::case_when</code> documentation!</p>
+</div>
+
 <div id="question-2" class="section level1">
 <h1>Question 2</h1>
 <div id="summarise-the-diamonds-data-set" class="section level2">
@@ -191,7 +234,8 @@ summary(m.1)</code></pre>
 <div id="question-4" class="section level1">
 <h1>Question 4</h1>
 <p>Create a function that separates a list into two lists, one of unique values and the second containing the duplicates</p>
-<pre class="r"><code>my_list &lt;- list(round(runif(100, min=0, max=100)), 1)
+<pre class="r"><code>set.seed(42)
+my_list &lt;- list(round(runif(100, min=0, max=100)), 1)
 
 seperated &lt;- function(input) {
   dup &lt;- unique(input[[1]][duplicated(input[[1]])])
@@ -201,12 +245,12 @@ seperated &lt;- function(input) {
 
 seperated(my_list)</code></pre>
 <pre><code>## [[1]]
-##  [1]  87  42  46  49  57  37  45  76   5  69  83  91  54  24 100   3  79
-## [18]  33  32  19  62  18  34  10   6   7
+##  [1] 46 94 91 74 39 83 64 97  4 26 51 68 98 69 14 72  1 38  0 78 56  9 21
+## [24] 93 33 52 62
 ## 
 ## [[2]]
-##  [1] 71 75 56 53 16 47 35 96 29 84 52 99 11 98 64 85 26 40 44 38 31 70 41
-## [24] 15 22  9 59 14 78 17  8 21 43 88  2 50 58 67 55 20 27 80 25</code></pre>
+##  [1] 29 13 66 71 12 47 90 99 95  8 45 84 81 61 44 43 96 89 35 40 75 17 76
+## [24] 57 85 19 27 24 22 48 20 58 16 36 65 23 31 67 73</code></pre>
 <p>To get there, I made a dummy data set to play with, a list with 6 numbers, only one of which is a duplicate. This helped to highlight the workflow (1) find the duplicates for the first list, then (2) find the unique values, but remove the duplicates</p>
 <pre class="r"><code>test &lt;- list(c(1,2,3,4,5,3))
 

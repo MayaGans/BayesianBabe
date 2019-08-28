@@ -190,7 +190,7 @@ for (i in 1:n) {
 <div id="question-3" class="section level1">
 <h1>Question 3</h1>
 <p>Using the MTCars data set, create a linear model to see the affect of mpg on disp and explain the output of the model</p>
-<pre class="r"><code>m.1 &lt;- lm(mtcars$mpg ~ mtcars$disp)
+<pre class="r"><code>m.1 &lt;- lm(mpg ~ disp, data = mtcars)
 summary(m.1)</code></pre>
 <pre><code>## 
 ## Call:

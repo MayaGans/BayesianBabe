@@ -1,0 +1,119 @@
+---
+title: Creating a TidyBlocks Block
+author: Maya Gans
+date: '2019-08-28'
+slug: creating-a-tidyblocks-block
+categories:
+  - TidyBlocks
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-08-28T12:07:08-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div class="figure">
+<img src="figure5.png" />
+
+</div>
+<p>The TidyBlocks project is open source - meaning I’d love for people to contribute! I’ve posted in abstractions in order to solidify a mental model of how blockly works, but I want to make this more concrete with an example. In this post I will outline the architecture of the <a href="https://github.com/tidyblocks/tidyblocks">TidyBlocks repository</a> by walking you through all the files needed to:</p>
+<ol style="list-style-type: decimal">
+<li>Create the shape of the text block</li>
+<li>Create the JavaScript code to be executed when the text block runs</li>
+<li>Have that block show up in the GUI’s toolbox</li>
+</ol>
+<div id="blocks" class="section level1">
+<h1>blocks</h1>
+<p>The blocks folder contains a single script for each block’s shape. The file is given the same name as the block itself. Each block has the prefix according to its category. I’ve called the block that you can input a string <code>variable_text</code>; the <code>variable</code> prefix denotes that the block should be a part of that category’s library of blocks, and <code>text</code> refers to the blocks function.</p>
+<pre class="js"><code>//
+// Visuals for text field block.
+//
+Blockly.defineBlocksWithJsonArray([
+  {
+    type: &#39;variable_text&#39;,
+    message0: &#39;%1&#39;,
+    args0: [
+      {
+        type: &#39;field_input&#39;,
+        name: &#39;TEXT&#39;,
+        text: &#39;text&#39;
+      }
+    ],
+    output: &#39;String&#39;,
+    style: &#39;variable_blocks&#39;,
+    helpUrl: &#39;&#39;,
+    tooltip: &#39;&#39;
+  }
+])</code></pre>
+<script type="text/javascript">
+//
+// Visuals for text field block.
+//
+Blockly.defineBlocksWithJsonArray([
+  {
+    type: 'variable_text',
+    message0: '%1',
+    args0: [
+      {
+        type: 'field_input',
+        name: 'TEXT',
+        text: 'text'
+      }
+    ],
+    output: 'String',
+    style: 'variable_blocks',
+    helpUrl: '',
+    tooltip: ''
+  }
+])
+</script>
+<p>This block is defined in JSON. Its <strong>type</strong> is the unique identifier we give to each block, here <code>variable_text</code>. The block’s arguments are a <code>field_input</code> which we’ve given the ID <code>TEXT</code> and set the string <code>text</code> as its default. We’ve limited the output type to <code>String</code> and set the style of the block according the <code>variable_blocks</code>. Each category has its own colors which can be found in <code>tidyblocks/utilities/tb_themes.js</code>. The tool-tip is currently empty, but if we were to add <code>type string here</code> this would show up when the user hovers over the <code>variable_text</code> block. For those interested, adding useful tool-tips would be a great first pull request!</p>
+<div class="figure">
+<img src="figure1.png" />
+
+</div>
+</div>
+<div id="generatorjs" class="section level1">
+<h1>generator/js</h1>
+<p>Just as we called our file <code>variable_text.js</code> in the block folder, we give it the same name in the <code>generator/js</code> folder; the folder containing scripts for the code the text block will generate.</p>
+<pre class="js"><code>Blockly.JavaScript[&#39;variable_text&#39;] = (block) =&gt; {
+  const code = Blockly.JavaScript.quote_(block.getFieldValue(&#39;TEXT&#39;))
+  return [code, Blockly.JavaScript.ORDER_ATOMIC]
+}</code></pre>
+<script type="text/javascript">
+Blockly.JavaScript['variable_text'] = (block) => {
+  const code = Blockly.JavaScript.quote_(block.getFieldValue('TEXT'))
+  return [code, Blockly.JavaScript.ORDER_ATOMIC]
+}
+</script>
+<p><code>Blockly.JavaScript</code> is how we tell our program that if the user imports the text block then hits run, if we want the block to run <code>JavaScript</code>, this code will be executed. If you want the program to run PHP or Python you’d need to specify that you’re creating the code for that language. You’d also need to back up a folder and put those scripts in their own language specific folder. Need an example? Check out some of the generator files in the R folder to see how they differ from their JavaScript sibling.</p>
+<p>There are a couple of functions to grab what the user input inside a block. Here we use <code>block.getFieldValue('TEXT')</code> to access the string that was typed inside the blocks field with the ID <code>TEXT</code>. And that’s pretty much all we need the text block to do!</p>
+</div>
+<div id="index.html" class="section level1">
+<h1>Index.html</h1>
+<p>So I have these two scripts - how do I add this block to my workspace? The two scripts need to be placed within the index.html in the root of the repo. If you navigate to the bottom of the page, you’ll see I’ve been importing the two files associated with each block within script tags. I’ve used spaces to clearly define the scripts associated with each block.</p>
+<div class="figure">
+<img src="figure3.png" />
+
+</div>
+<p>Now we can scroll up.</p>
+<div class="figure">
+<img src="figure2.png" />
+
+</div>
+<p>Find the div that contains the blockly workspace: <code>blockDisplay</code>. Within the display we have an XML tree containing each category, then the blocks we want to place in that category. We put the code <code>&lt;block type=&quot;variable_text&quot;&gt;&lt;/block&gt;</code> within the variable category. Now blockly knows to go look for the generator and block shape files to make that block.</p>
+<p>And there she is! Right in our toolbox where we want her.</p>
+<div class="figure">
+<img src="figure4.png" />
+
+</div>
+<p>Up next, actually running the code to see if our generator is doing what we want it to do, and making sure the code we run is executed inside the proper div, not just in the console.</p>
+</div>

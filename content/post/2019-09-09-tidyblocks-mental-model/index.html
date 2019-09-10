@@ -1,0 +1,254 @@
+---
+title: TidyBlocks Framework
+author: Maya Gans
+date: '2019-09-09'
+slug: tidyblocks-framework
+categories:
+  - TidyBlocks
+tags:
+  - JavaScript
+  - TidyBlocks
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-09-09T11:33:23-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>Dragging the colors dataset block into the workspace and hitting run produces a table in the bottom right corner. This only requires three user movements: a click, a drag and drop, and another click. We can leverage these three movements to understand the basic architecture of how a pipeline of blocks within TidyBlocks runs.</p>
+<div class="figure">
+<img src="img1.png" />
+
+</div>
+<p>In my post laying out <a href="https://maya.rbind.io/post/2019/blockly-the-big-picture/">how blockly works</a>, you have block code to design a block (the data block is yellow and doesn’t accept inputs, for example) and behind the scenes you have the block’s generator code. When the user clicks the <code>run</code> button, they evaluate the generator code string. But what if you wanted to create a data frame that is the combination of <strong>two</strong> other data frames?</p>
+<p>To do this required rethinking the entire framework we use to evaluate blocks. Instead of using the <code>run</code> button to evaluate a string, we need to add a layer of abstraction.</p>
+<p>What <code>run</code> does now is register all the block pipelines within the workspace, giving each one a name and a queue of functions. These names can be used for more complex operations like combining pipeline <code>left</code> with pipeline <code>right</code> only once all the transformations in each pipeline queue (<code>import colors data</code> and <code>filter</code>) is complete.</p>
+<p>We do all of this using the <code>TidyBlocksManagerClass</code> within <code>tidyblocks/tidyblocks.js</code>. The <code>TidyBlocksManagerClass</code> is the air traffic controller of all our pipelines. This class makes sure all the pipelines are complete (with names when there’s more than one pipeline in the workspace) and runs each pipeline’s functions in order. The <code>TidyBlockManagerClass</code> also keeps track if one pipeline depends on another, waiting for the first one to finish before running the second.</p>
+<div class="figure">
+<img src="img2.png" />
+
+</div>
+<div id="function-bookends" class="section level1">
+<h1>Function Bookends</h1>
+<p>Now we can discuss the mechanics of how and what the <code>TidyBlocksManager</code> is actually checking for. In simpler times, the colors dataset block held the instructions to create the actual colors dataset. Now it does that, but is also wrapped within the manager class to make sure it runs when it’s supposed to.</p>
+<div class="figure">
+<img src="img3.png" />
+
+</div>
+<p>We accomplish this by starting the guts of any hat block (a block that initiates a data transformation/visualization pipeline) within a variable called <code>prefix</code>. Prefix uses the function <code>registerPrefix</code> which can be found within <code>tidyblocks/tidyblocks.js</code>. Located in the same file, <code>registerPrefix</code> uses the function <code>register</code> which has three arguments: the name of the pipeline, the functions inside the pipeline, and any other pipeline it depends on). When running a single pipeline it doesn’t need a name and it isn’t contingent on any other pipeline so the arguments we feed to <code>register</code> via <code>registerPrefix</code> are simply <code>&quot;&quot;</code>.</p>
+<div id="colors-dataset-generator-code" class="section level2">
+<h2>Colors Dataset Generator Code</h2>
+<pre class="js"><code>Blockly.JavaScript[&#39;data_colors&#39;] = (block) =&gt; {
+  const prefix = registerPrefix(&#39;&#39;)
+  return `${prefix} new TidyBlocksDataFrame([
+  {&#39;name&#39;: &#39;black&#39;,   &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;red&#39;,     &#39;red&#39;: 255, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;maroon&#39;,  &#39;red&#39;: 128, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;lime&#39;,    &#39;red&#39;:   0, &#39;green&#39;: 255, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;green&#39;,   &#39;red&#39;:   0, &#39;green&#39;: 128, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;blue&#39;,    &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;navy&#39;,    &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;: 128},
+  {&#39;name&#39;: &#39;yellow&#39;,  &#39;red&#39;: 255, &#39;green&#39;: 255, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;fuchsia&#39;, &#39;red&#39;: 255, &#39;green&#39;:   0, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;aqua&#39;,    &#39;red&#39;:   0, &#39;green&#39;: 255, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;white&#39;,   &#39;red&#39;: 255, &#39;green&#39;: 255, &#39;blue&#39;: 255}
+])`
+}</code></pre>
+<script type="text/javascript">
+Blockly.JavaScript['data_colors'] = (block) => {
+  const prefix = registerPrefix('')
+  return `${prefix} new TidyBlocksDataFrame([
+  {'name': 'black',   'red':   0, 'green':   0, 'blue':   0},
+  {'name': 'red',     'red': 255, 'green':   0, 'blue':   0},
+  {'name': 'maroon',  'red': 128, 'green':   0, 'blue':   0},
+  {'name': 'lime',    'red':   0, 'green': 255, 'blue':   0},
+  {'name': 'green',   'red':   0, 'green': 128, 'blue':   0},
+  {'name': 'blue',    'red':   0, 'green':   0, 'blue': 255},
+  {'name': 'navy',    'red':   0, 'green':   0, 'blue': 128},
+  {'name': 'yellow',  'red': 255, 'green': 255, 'blue':   0},
+  {'name': 'fuchsia', 'red': 255, 'green':   0, 'blue': 255},
+  {'name': 'aqua',    'red':   0, 'green': 255, 'blue': 255},
+  {'name': 'white',   'red': 255, 'green': 255, 'blue': 255}
+])`
+}
+</script>
+</div>
+</div>
+<div id="the-built-in-prefix" class="section level1">
+<h1>The built in Prefix</h1>
+<pre class="js"><code>// defined at the top of tidyblocks/tidyblocks.js
+TIDYBLOCKS_START = &#39;/* tidyblocks start */&#39;
+
+// add the prefix book end to begining of the blocks javascript string
+const registerPrefix = (fill) =&gt; {
+  return `${TIDYBLOCKS_START} TidyBlocksManager.register([${fill}], () =&gt; {`
+}
+
+// check for other pipeline dependencies and their outputs if they&#39;re needed
+register (depends, func, produces) {
+  if (depends.length == 0) {
+    this.queue.push(func)
+  }
+  else {
+    this.waiting.set(func, new Set(depends))
+ }
+}</code></pre>
+<script type="text/javascript">
+// defined at the top of tidyblocks/tidyblocks.js
+TIDYBLOCKS_START = '/* tidyblocks start */'
+
+// add the prefix book end to begining of the blocks javascript string
+const registerPrefix = (fill) => {
+  return `${TIDYBLOCKS_START} TidyBlocksManager.register([${fill}], () => {`
+}
+
+// check for other pipeline dependencies and their outputs if they're needed
+register (depends, func, produces) {
+  if (depends.length == 0) {
+    this.queue.push(func)
+  }
+  else {
+    this.waiting.set(func, new Set(depends))
+ }
+}
+</script>
+</div>
+<div id="suffix" class="section level1">
+<h1>Suffix</h1>
+<p>Note that the prefix ends in an open brace <code>{</code>. Right now we have a slice of bread and a single filling, the color dataset. We can’t add the other slice of bread directly into the color block generator code because we might want to add a slice of tomato (a filter block) or lettuce (a plotting block) to our sandwich. That’s why only blocks that don’t accept outputs can include a suffix, and we need to dynamically add a suffix to pipelines that don’t end with one of these blocks.</p>
+<div class="figure">
+<img src="img4.png" />
+
+</div>
+<p>When the user clicks run, they’re really firing off the pictured method of the manager:</p>
+<ul>
+<li>clear existing errors in console</li>
+<li>check for a prefix</li>
+<li><code>fixcode</code> looks for a suffix, and adds one if not included</li>
+<li>The code is evaluated</li>
+<li>This registers our pipeline</li>
+<li>The functions of the pipeline are queued in order</li>
+<li>AND NOW we can run the queue, the actual sandwich fillings</li>
+<li>Any issues with running the blocks should raise an error</li>
+</ul>
+<p>The function takes on the variables within the environment: the code to be run, a table to display, a plot (if any), and error messages (if any). The <code>environement</code> class can be found in <code>test/utils.js</code>. Adding the various components we’d like to display within the webpage inside their own class instead of calling them directly allows for neat and concise testing - a topic for another blog post.</p>
+<p>Wrapping our pipeline within a function introduces a ton more functions, passing data around into the manager before using any of it within the GUI. But it’s worth it as it allows for optimal sandwich customization, and who doesn’t want to add their own fillings?</p>
+</div>
+<div id="the-join-block" class="section level1">
+<h1>The Join Block</h1>
+<p>Adding an empty prefix and suffix to a single pipeline is as interesting as, well, white bread. In the picture at the top of the post there are two datasets named <code>left</code> and <code>right</code>. Join combines these datasets which requires (1) the generator code to actually perform an <code>inner_join</code> but on a higher level also requires the finished products of both <code>left</code> AND <code>right</code>. Printing the variable <code>code</code> to the console from the <code>run</code> function helps to trace the manager’s workflow:</p>
+<pre class="js"><code>/* tidyblocks start */ 
+TidyBlocksManager.register([], () =&gt; { 
+  new TidyBlocksDataFrame ([
+  {&#39;name&#39;: &#39;black&#39;,   &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;red&#39;,     &#39;red&#39;: 255, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;maroon&#39;,  &#39;red&#39;: 128, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;lime&#39;,    &#39;red&#39;:   0, &#39;green&#39;: 255, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;green&#39;,   &#39;red&#39;:   0, &#39;green&#39;: 128, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;blue&#39;,    &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;navy&#39;,    &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;: 128},
+  {&#39;name&#39;: &#39;yellow&#39;,  &#39;red&#39;: 255, &#39;green&#39;: 255, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;fuchsia&#39;, &#39;red&#39;: 255, &#39;green&#39;:   0, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;aqua&#39;,    &#39;red&#39;:   0, &#39;green&#39;: 255, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;white&#39;,   &#39;red&#39;: 255, &#39;green&#39;: 255, &#39;blue&#39;: 255}
+  ])
+  .filter(1, (row) =&gt; tbGt(2, row, (row) =&gt; tbGet(3, row, &#39;red&#39;), (row) =&gt; (0)))
+  .notify((name, frame) =&gt; TidyBlocksManager.notify(name, frame), &#39;left&#39;) 
+}, 
+[&#39;left&#39;]) 
+/* tidyblocks end */
+
+/* tidyblocks start */ 
+TidyBlocksManager.register([], () =&gt; { 
+  new TidyBlocksDataFrame([
+  {&#39;name&#39;: &#39;black&#39;,   &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;red&#39;,     &#39;red&#39;: 255, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;maroon&#39;,  &#39;red&#39;: 128, &#39;green&#39;:   0, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;lime&#39;,    &#39;red&#39;:   0, &#39;green&#39;: 255, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;green&#39;,   &#39;red&#39;:   0, &#39;green&#39;: 128, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;blue&#39;,    &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;navy&#39;,    &#39;red&#39;:   0, &#39;green&#39;:   0, &#39;blue&#39;: 128},
+  {&#39;name&#39;: &#39;yellow&#39;,  &#39;red&#39;: 255, &#39;green&#39;: 255, &#39;blue&#39;:   0},
+  {&#39;name&#39;: &#39;fuchsia&#39;, &#39;red&#39;: 255, &#39;green&#39;:   0, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;aqua&#39;,    &#39;red&#39;:   0, &#39;green&#39;: 255, &#39;blue&#39;: 255},
+  {&#39;name&#39;: &#39;white&#39;,   &#39;red&#39;: 255, &#39;green&#39;: 255, &#39;blue&#39;: 255}
+])
+  .filter(6, (row) =&gt; tbGt(undefined, row, (row) =&gt; tbGet(undefined, row, &#39;green&#39;), (row) =&gt; (0)))
+  .notify((name, frame) =&gt; TidyBlocksManager.notify(name, frame), &#39;right&#39;) 
+}, 
+[&#39;right&#39;]) 
+/* tidyblocks end */
+  
+/* tidyblocks start */ 
+TidyBlocksManager.register([&#39;left&#39;, &#39;right&#39;], () =&gt; { 
+    new TidyBlocksDataFrame([])
+    .join((name) =&gt; TidyBlocksManager.getResult(name), &#39;left&#39;, &#39;red&#39;, &#39;right&#39;, &#39;green&#39;)
+    .plot(environment, {}) 
+}, []) 
+/* tidyblocks end */</code></pre>
+<script type="text/javascript">
+/* tidyblocks start */ 
+TidyBlocksManager.register([], () => { 
+  new TidyBlocksDataFrame ([
+  {'name': 'black',   'red':   0, 'green':   0, 'blue':   0},
+  {'name': 'red',     'red': 255, 'green':   0, 'blue':   0},
+  {'name': 'maroon',  'red': 128, 'green':   0, 'blue':   0},
+  {'name': 'lime',    'red':   0, 'green': 255, 'blue':   0},
+  {'name': 'green',   'red':   0, 'green': 128, 'blue':   0},
+  {'name': 'blue',    'red':   0, 'green':   0, 'blue': 255},
+  {'name': 'navy',    'red':   0, 'green':   0, 'blue': 128},
+  {'name': 'yellow',  'red': 255, 'green': 255, 'blue':   0},
+  {'name': 'fuchsia', 'red': 255, 'green':   0, 'blue': 255},
+  {'name': 'aqua',    'red':   0, 'green': 255, 'blue': 255},
+  {'name': 'white',   'red': 255, 'green': 255, 'blue': 255}
+  ])
+  .filter(1, (row) => tbGt(2, row, (row) => tbGet(3, row, 'red'), (row) => (0)))
+  .notify((name, frame) => TidyBlocksManager.notify(name, frame), 'left') 
+}, 
+['left']) 
+/* tidyblocks end */
+
+/* tidyblocks start */ 
+TidyBlocksManager.register([], () => { 
+  new TidyBlocksDataFrame([
+  {'name': 'black',   'red':   0, 'green':   0, 'blue':   0},
+  {'name': 'red',     'red': 255, 'green':   0, 'blue':   0},
+  {'name': 'maroon',  'red': 128, 'green':   0, 'blue':   0},
+  {'name': 'lime',    'red':   0, 'green': 255, 'blue':   0},
+  {'name': 'green',   'red':   0, 'green': 128, 'blue':   0},
+  {'name': 'blue',    'red':   0, 'green':   0, 'blue': 255},
+  {'name': 'navy',    'red':   0, 'green':   0, 'blue': 128},
+  {'name': 'yellow',  'red': 255, 'green': 255, 'blue':   0},
+  {'name': 'fuchsia', 'red': 255, 'green':   0, 'blue': 255},
+  {'name': 'aqua',    'red':   0, 'green': 255, 'blue': 255},
+  {'name': 'white',   'red': 255, 'green': 255, 'blue': 255}
+])
+  .filter(6, (row) => tbGt(undefined, row, (row) => tbGet(undefined, row, 'green'), (row) => (0)))
+  .notify((name, frame) => TidyBlocksManager.notify(name, frame), 'right') 
+}, 
+['right']) 
+/* tidyblocks end */
+  
+/* tidyblocks start */ 
+TidyBlocksManager.register(['left', 'right'], () => { 
+    new TidyBlocksDataFrame([])
+    .join((name) => TidyBlocksManager.getResult(name), 'left', 'red', 'right', 'green')
+    .plot(environment, {}) 
+}, []) 
+/* tidyblocks end */
+</script>
+<p>Each pipeline is wrapped in its own bread, <code>/* tidyblocks start */</code> and <code>/* tidyblocks end */</code>. <code>left</code> has an <strong>empty array in its prefix</strong> since it doesn’t need any pipeline to run, but it is called <code>left</code> within its suffix [we use the <code>notify</code> block to give this pipeline its name]. We repeat this for the pipeline we named <code>right</code>.</p>
+<p>Conversely, the join pipeline has <code>left</code> and <code>right</code> included in its <strong>prefix</strong>; it needs to wait for both of those pipelines before it can run and uses the function <code>getResult</code> to grab these two newly created datasets. The suffix of the join block is an empty array because we’re done here, it will not be the input of another pipeline.</p>
+<div class="figure">
+<img src="img0.png" />
+
+</div>
+<p>Understanding that there is a layer of functions on top of the actual functions each block is named after isn’t just a fun exercise in code complexity, it is the first line of defense in debugging. Up next - writing unit tests to make sure your code produces kosher sandwiches.</p>
+</div>

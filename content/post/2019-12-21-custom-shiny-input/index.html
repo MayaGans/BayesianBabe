@@ -1,0 +1,75 @@
+---
+title: Custom Shiny Input
+author: Maya Gans
+date: '2019-12-21'
+slug: custom-shiny-input
+categories:
+  - Tutorial
+tags:
+  - ShinyApp
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-12-21T14:50:00-08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<iframe src="https://maya-gans.shinyapps.io/clickable_svg/" height="150px" width="100%">
+</iframe>
+<p>With a little bit of JQuery, the JavaScript function <code>Shiny.setInputValue</code> lets you take any HTML element and make it a Shiny <code>input</code> which I’ll display here using a div called <code>all_circles</code> which contains three circles. Think of <code>all_circles</code> as a widget like <code>selectInput</code>, the circles themselves would then be the same as setting <code>choices</code>.</p>
+<pre id="r"><code>selectInput(&quot;inputID&quot;, &quot;Name to Display&quot;, choices = c(&quot;Red Circle&quot;, &quot;Yellow Circle&quot;, &quot;Blue Circle&quot;))</code></pre>
+<p>Because we can envision use cases to be beyond clicking on simple shapes, I wanted to use <code>SVGs</code>, which was my first learning curve.</p>
+<pre class="html"><code>&lt;svg class=&quot;circ&quot; height=&quot;100&quot; width=&quot;100&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+  &lt;circle id =&#39;circ_red&#39; cx=&#39;50&#39; cy=&#39;50&#39; r=&#39;40&#39; stroke=&#39;black&#39; stroke-width=&#39;3&#39; fill=&#39;red&#39;/&gt;
+&lt;/svg&gt;</code></pre>
+<p>Note that the svg class is <code>circ</code> and the circle has the unique id <code>circ_red</code>. Repeating this code two more times but changing the fill to <code>blue</code> and <code>yellow</code> and the circle ids to <code>circ_blue</code> and <code>circ_yellow</code> yeilds three circles, all of the same class but with their own unique ids:</p>
+<div class="text-center">
+<svg class="circ" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+<circle id ='circ_red' cx='50' cy='50' r='40' stroke='black' stroke-width='3' fill='red'/>
+</svg>
+<svg id="circ_blue" class="circ" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+<circle id ='circ_blue' cx='50' cy='50' r='40' stroke='black' stroke-width='3' fill='blue' />
+</svg>
+<svg id="circ_yellow" class="circ" height="100" width="100" xmlns="http://www.w3.org/2000/svg">
+<circle id ='circ_yellow' cx='50' cy='50' r='40' stroke='black' stroke-width='3' fill='yellow'/>
+</svg>
+</div>
+<p>Shiny can take on a lot of HTML tags, but I found to properly render SVGs I needed to add a <code>uiOutput</code> to the UI portion of the app</p>
+<pre><code>div(id=&quot;all_circles&quot;, uiOutput(&quot;svgout&quot;)),</code></pre>
+<p>And put the SVG code in a reactive within the server:</p>
+<pre><code> output$svgout &lt;- renderUI({
+    HTML(
+      &quot;&lt;svg class=&#39;circ&#39; height=&#39;100&#39; width=&#39;100&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;&gt;
+        &lt;circle id =&#39;circ_red&#39; cx=&#39;50&#39; cy=&#39;50&#39; r=&#39;40&#39; stroke=&#39;black&#39; stroke-width=&#39;3&#39; fill=&#39;red&#39;/&gt;
+      &lt;/svg&gt;
+      &lt;svg id =&#39;circ_blue&#39; class=&#39;circ&#39; height=&#39;100&#39; width=&#39;100&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;&gt;
+        &lt;circle id =&#39;circ_blue&#39; cx=&#39;50&#39; cy=&#39;50&#39; r=&#39;40&#39; stroke=&#39;black&#39; stroke-width=&#39;3&#39; fill=&#39;blue&#39; /&gt;
+      &lt;/svg&gt;
+      &lt;svg id =&#39;circ_yellow&#39;class=&#39;circ&#39; height=&#39;100&#39; width=&#39;100&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;&gt;
+        &lt;circle id =&#39;circ_yellow&#39; cx=&#39;50&#39; cy=&#39;50&#39; r=&#39;40&#39; stroke=&#39;black&#39; stroke-width=&#39;3&#39; fill=&#39;yellow&#39;/&gt;
+      &lt;/svg&gt;&quot;
+    )
+  })
+}</code></pre>
+<p>Note that I wrapped the SVG within a div called <code>all_circles</code> - this is the div that will act as our <code>selectInput</code>.</p>
+<div id="javascript-time" class="section level1">
+<h1>JavaScript Time!</h1>
+<p>In the next little chunk of code we use JQuery to go into the div of class <code>all_circles</code> and find the id of the <code>circ</code> class that was clicked on. We can then take that id and assign it as the value of the shiny input <code>all_circles</code>.</p>
+<pre><code>  tags$script(HTML(
+    &quot;$(&#39;#all_circles&#39;).on(&#39;click&#39;, &#39;.circ&#39;, (ev) =&gt; {
+        Shiny.setInputValue(&#39;all_circles&#39;, ev.target.id)
+        })
+        &quot;
+  ))</code></pre>
+<p>And there you have it! The <code>#</code> denotes that we’re looking for an id and the <code>.</code> a class name. We’re using a callback function to get the id of the clicked svg, which you can learn more about in some of my prior blog posts. By adding <code>verbatimTextOutput(&quot;debug&quot;)</code> and in the server <code>input$debug &lt;- renderText(input$all_circles)</code> you’ll see that the input changes from red to yellow to blue on click!</p>
+<p>My revelation to set custom Shiny inputs was an incredibly powerful one that I needed to share, as it enables assigning whatever you want as an input with only a little bit of JQuery to find the elements you want to set as your <code>choices</code>. For instance, I used <a href="https://github.com/volcanioo/Human-Body-Rendering-HTML">This opensource library of a human body made fully with CSS and SVGs</a> to create a <code>div</code> called <code>human_body</code>, then made the “choices” each of the body part SVGs. I hope this opens up new ways of exploring and interacting with data as it did for me!!</p>
+<iframe src="https://maya-gans.shinyapps.io/human_body_app/" height="700px" width="400px">
+</iframe>
+</div>

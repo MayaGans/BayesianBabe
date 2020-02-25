@@ -1,5 +1,5 @@
 ---
-title: 'No More Blockly.js: Drag and Drop SVGs'
+title: 'No More Blockly.js? Drag and Drop SVGs Pt. 1'
 author: Maya Gans
 date: '2020-02-24'
 slug: no-more-blockly-js-drag-and-drop-svgs
@@ -36,8 +36,10 @@ svg {
 
 
 
-<p>The Blockly.js library was a great starting point, but after working extensively with it there are some major limitiations, a major one being the lack of accessbility to the source code and the inablity to properly bundle the code if you don’t want to use google’s bundler.</p>
-<p>Thus begins a new project: creating a drag and drop block library of my own, where eventually each block will have their own methods, with their functions being methods (instead of blockly returning strings).</p>
+<p>The <a href="https://developers.google.com/blockly">blockly.js</a> library was a great starting point for the TidyBlocks project, but after working extensively with it there are some major limitiations [mainly the lack of accessbility to the source code and the inablity to use modern bundlers].</p>
+
+<p>Thus begins a new project: creating a drag and drop block library of my own. Eventually, each block will have its own methods (making the blocks easier to work with, because blockly blocks return functions as strings.).</p>
+
 <p>But first, I need to learn a whole lot about dragging and dropping!</p>
 
 <h5>You can drag the <font color="#8E56A">Purple circle</font> into the <font color="#7bc6ba">green</font> workspace, but once inside it cannot be dragged out.</h5>
@@ -156,9 +158,6 @@ function endDrag(evt) {
 }
 }
 </script>
-</head>
-
-<body>
 
   <!-- on load we leverage our dragging function -->
   <svg onload="makeDraggable(evt)">
@@ -190,7 +189,7 @@ function endDrag(evt) {
     &lt;rect rx=&quot;15&quot; ry=&quot;15&quot; class=&quot;draggable&quot; fill=&quot;#8E56A1&quot; x=&quot;4&quot; y=&quot;4&quot; width=&quot;4&quot; height=&quot;4&quot; /&gt;
 
   &lt;/svg&gt;</code></pre>
-<p>As you can see, we have three SVGs, an a function <code>makeDraggable(evt)</code>. This function tracks when the user is dragging and dropping by tracking <code>mousedown</code>, <code>mouseover</code>, and <code>mouseup</code> events.</p>
+<p>As you can see, we have three SVGs, and a function <code>makeDraggable(evt)</code>. This function tracks when the user is dragging and dropping by tracking <code>mousedown</code>, <code>mouseover</code>, and <code>mouseup</code> events.</p>
 <p>I’ve taken this function <a href="http://www.petercollingridge.co.uk/tutorials/svg/interactive/dragging/">from the wonderful tutorial here</a>, where the author very eloquently describes how to track SVG movement, adding one simple piece of logic to the dragEnd event:</p>
 <pre class="js"><code>  function endDrag(evt) {
     selectedElement = false;
@@ -218,7 +217,8 @@ function endDrag(evt) {
 
   }
 </script>
-<p>The <code>selectedElement = false</code> portion stops the user from dragging the selected SVG. What I’ve added here is <code>r1</code>: the position of the SVG element and <code>r2</code>: the position of the workspace. If the workspace and the circle overlap, then we add the class <code>confine</code> to the circle (we use this class in the <code>startDrag</code> function, confining the drag to the specified bounding box.)</p>
+
+<p>The <code>selectedElement = false</code> portion stops the user from dragging the selected SVG on mouseout and is included in the tutorial. What I’ve added is <code>r1</code>: the position of the SVG element and <code>r2</code>: the position of the workspace. If the workspace and the circle overlap, then we add the class <code>confine</code> to the circle (we use this class in the <code>startDrag</code> function, confining the drag to the specified bounding box.)</p>
 </div>
 <div id="and-thats-step-1" class="section level1">
 <h1>And that’s step 1!</h1>

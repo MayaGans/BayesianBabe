@@ -40,4 +40,4 @@ user_groups:
 - Visitors
 ---
 
-I am a mycologist turned data scientist. I love statistics, data visualization, and all things JavaScript. I am currently an intern at RStudio designing a visual block based programming language. I create music related infographics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing tall mountains.
+I am a mycologist turned data scientist. I love statistics, data visualization, and all things JavaScript. I am currently a statistical programmer for Cytel. As an RStudio intern I designed [TidyBlocks](tidyblocks.tech), a visual block based programming language. I also create music related infographics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing tall mountains.

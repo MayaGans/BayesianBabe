@@ -1,11 +1,11 @@
 ---
-  date: "2019-05-05T00:00:00+01:00"
+date: "2020-03-21T00:00:00+01:00"
 draft: false
-linktitle: Chapter 5
+linktitle: Chapter 8
 menu:
   example:
-  weight: 1
-title: Chapter 5
+    weight: 1
+title: Chapter 8
 toc: true
 type: docs
 weight: 1
@@ -24,7 +24,7 @@ ui <- fluidPage(
 
 ## 8.1.5.2
 
-Complete the user interface below with a server function that updates input$county choices based on input$state. For an added challenge, also change the label from “County” to “Parrish” for Louisana and “Borrough” for “Alaska”.
+Complete the user interface below with a server function that updates `input$county` choices based on `input$state`. For an added challenge, also change the label from “County” to “Parrish” for Louisana and “Borrough” for “Alaska”.
 
 ```{r, eval=FALSE}
 library(openintro)

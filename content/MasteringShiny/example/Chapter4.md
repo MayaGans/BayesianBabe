@@ -11,7 +11,7 @@ type: docs
 weight: 4
 ---
 
-## 4.3.6.1 TODO
+## 4.3.6.1
 
 Draw the reactive graph for the following server functions:
 
@@ -21,11 +21,21 @@ server1 <- function(input, output, session) {
   e <- reactive(c() + input$d)
   output$f <- renderText(e())
 }
+```
+
+<img src="/img/reactive1.png"></img>
+
+```{r, eval=FALSE}
 server2 <- function(input, output, session) {
   x <- reactive(input$x1 + input$x2 + input$x3)
   y <- reactive(input$y1 + input$y2)
   output$z <- renderText(x() / y())
 }
+```
+
+<img src="/img/reactive2.png"></img>
+
+```{r, eval=FALSE}
 server3 <- function(input, output, session) {
   d <- reactive(c() ^ input$d)
   a <- reactive(input$a * 10)
@@ -33,6 +43,8 @@ server3 <- function(input, output, session) {
   b <- reactive(a() + input$b)
 }
 ```
+
+<img src="/img/reactive3.png"></img>
 
 ## 4.3.6.2
 
@@ -43,6 +55,10 @@ No! This will create circular references and a recursion loop!
 ## 4.4.6.1 TODO
 
 Use reactive expressions to reduce the duplicated code in the following simple apps.
+
+<div class="note">
+Unclear what apps this question is referring to
+</div>
 
 <style>
 p {
@@ -79,6 +95,24 @@ body {
     font-weight: 700;
     color: #436E9A;
     background-color: transparent;
+}
+
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #cae7c1;
+    border: solid 5px #c3dac3;
+    font-size: 15px;
+  }
+  
+.note {
+  background-image: url("/img/question.png");
 }
 
 </style>

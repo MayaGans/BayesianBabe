@@ -168,7 +168,9 @@ shinyApp(ui = ui, server = server)
 
 Extend the previous app so that you can also choose to select no continent, and hence see all countries. You’ll need to add "" to the list of choices, and then handle that specially when filtering.
 
-By including the option of `""` within the data, upon load the user is able to select all countries. However, once this is selected then the user can no longer switch back to that empty value. We can replace.
+<div class="note">
+Initially setting the choices to `c("", as.character(continents))` allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this `""` option is no longer available?
+</div>
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -500,6 +502,24 @@ body {
     font-weight: 700;
     color: #436E9A;
     background-color: transparent;
+}
+
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #cae7c1;
+    border: solid 5px #c3dac3;
+    font-size: 15px;
+  }
+  
+.note {
+  background-image: url("/img/question.png");
 }
 
 </style>

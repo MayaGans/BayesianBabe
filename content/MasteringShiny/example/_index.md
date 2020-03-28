@@ -18,6 +18,10 @@ weight: 1
 <span style="font-size:18px">My attempt to answer the exercises from [Hadley Wickham's Mastering Shiny](https://mastering-shiny.org/). I'd gladly welcome thoughts, comments, and suggestions on my [website repo](https://github.com/MayaGans/BayesianBabe/tree/master/content/MasteringShiny/example)!</span>
 
 
+<div class="note">
+Anywhere you see a question box I'm unsure of my solution or have a question about the exercise!
+</div>
+
 <style>
 p {
   font-size: 12px;
@@ -53,6 +57,24 @@ body {
     font-weight: 700;
     color: #436E9A;
     background-color: transparent;
+}
+
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #cae7c1;
+    border: solid 5px #c3dac3;
+    font-size: 15px;
+  }
+  
+.note {
+  background-image: url("/img/question.png");
 }
 
 </style>

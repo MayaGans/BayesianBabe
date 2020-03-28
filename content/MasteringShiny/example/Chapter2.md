@@ -151,6 +151,10 @@ shinyApp(ui, server)
 
 The following app is very similar to one you’ve seen earlier in the chapter: you select a dataset from a package (this time we’re using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
   
+<div class="note">
+While I am able to isolate the three issues below (as seen in comments), when trying to run the app I get some issues perhaps due to the dataset?
+</div>
+
 ```{r eval=FALSE}
 library(ggplot2)
 datasets <- data(package = "ggplot2")$results[, "Item"]
@@ -214,6 +218,24 @@ body {
   font-weight: 700;
   color: #436E9A;
     background-color: transparent;
+}
+
+.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #cae7c1;
+    border: solid 5px #c3dac3;
+    font-size: 15px;
+  }
+  
+.note {
+  background-image: url("/img/question.png");
 }
 
 </style>

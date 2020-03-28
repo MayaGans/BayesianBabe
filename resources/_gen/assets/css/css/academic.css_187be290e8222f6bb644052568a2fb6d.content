@@ -1,2 +1,2 @@
 /* Source Themes Academic v4.3.1 | https://sourcethemes.com/academic/ */
-.dark body{color:#f5dbdd}.dark #text{color:#f5dbdd}video{height:auto;max-width:500px;margin-left:auto;margin-right:auto;display:block}
+.dark body{color:#f5dbdd}.dark #text{color:#f5dbdd}video{height:auto;max-width:500px;margin-left:auto;margin-right:auto;display:block}div.answer{padding:1em;margin:1em 0;padding-left:100px;background-size:70px;background-repeat:no-repeat;background-position:15px;min-height:120px;color:#1f5386;background-color:#bed3ec;border:solid 5px #dfedff}

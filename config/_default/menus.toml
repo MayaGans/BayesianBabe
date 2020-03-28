@@ -19,10 +19,10 @@
 #  url = "publication/"
 #  weight = 40
 
-# [[main]]
-#  name = "Courses"
-#  url = "courses/"
-#  weight = 50
+[[main]]
+  name = "Mastering Shiny"
+  url = "masteringshiny/example"
+  weight = 100
 
 [[main]]
   name = "DataViz"

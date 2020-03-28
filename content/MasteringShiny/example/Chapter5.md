@@ -145,9 +145,9 @@ count_top <- function(df, var, n = 5) {
 
 fct_infreq(fct_lump(test$a, n = 2))
 
-injuries <- vroom::vroom("/Users/mayagans/Downloads/injuries.tsv.gz")
-products <- vroom::vroom("/Users/mayagans/Downloads/products.tsv")
-population <- vroom::vroom("/Users/mayagans/Downloads/population.tsv")
+injuries <- vroom::vroom("injuries.tsv.gz")
+products <- vroom::vroom("products.tsv")
+population <- vroom::vroom("population.tsv")
 
 selected <- injuries %>% filter(prod_code == 1842)
 
@@ -248,9 +248,9 @@ count_top <- function(df, var, n = 5) {
 
 fct_infreq(fct_lump(test$a, n = 2))
 
-injuries <- vroom::vroom("/Users/mayagans/Downloads/injuries.tsv.gz")
-products <- vroom::vroom("/Users/mayagans/Downloads/products.tsv")
-population <- vroom::vroom("/Users/mayagans/Downloads/population.tsv")
+injuries <- vroom::vroom("injuries.tsv.gz")
+products <- vroom::vroom("products.tsv")
+population <- vroom::vroom("population.tsv")
 
 selected <- injuries %>% filter(prod_code == 1842)
 

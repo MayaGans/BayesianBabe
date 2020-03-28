@@ -15,7 +15,7 @@ type: docs
 weight: 1
 ---
 
-My attempt to answer the exercises from [Hadley Wickham's Mastering Shiny](https://mastering-shiny.org/). I'd gladly welcome thoughts, comments, and suggestions on my [website repo](https://github.com/MayaGans/BayesianBabe/tree/master/content/MasteringShiny/example)!
+<span style="font-size:18px">My attempt to answer the exercises from [Hadley Wickham's Mastering Shiny](https://mastering-shiny.org/). I'd gladly welcome thoughts, comments, and suggestions on my [website repo](https://github.com/MayaGans/BayesianBabe/tree/master/content/MasteringShiny/example)!</span>
 
 
 <style>

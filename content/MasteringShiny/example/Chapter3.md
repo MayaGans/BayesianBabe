@@ -1,14 +1,14 @@
 ---
-date: "2019-05-05T00:00:00+01:00"
+date: "2020-03-27T00:00:00+01:00"
 draft: false
 linktitle: Chapter 3
 menu:
   example:
-    weight: 1
+    weight: 3
 title: Chapter 3
 toc: true
 type: docs
-weight: 1
+weight: 3
 ---
   
 ## 3.2.8.1
@@ -202,7 +202,7 @@ code {
 }
 
 body {
- background-color: white;
+ background-color: #FFFFE0;
 }
 
 .docs-sidebar .docs-toc-item.active a, .docs-sidebar .nav>.active:hover>a, .docs-sidebar .nav>.active>a {

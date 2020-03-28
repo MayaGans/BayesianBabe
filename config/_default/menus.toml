@@ -22,7 +22,7 @@
 [[main]]
   name = "Mastering Shiny"
   url = "masteringshiny/example"
-  weight = 100
+  weight = 70
 
 [[main]]
   name = "DataViz"
@@ -30,10 +30,10 @@
   weight = 60
   
 
-[[main]]
-  name = "Shiny"
-  url = "shiny/"
-  weight = 70
+# [[main]]
+#  name = "Shiny"
+#  url = "shiny/"
+#  weight = 70
   
 [[main]]
   name = "JS4DS"

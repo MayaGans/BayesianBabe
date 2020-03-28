@@ -125,7 +125,7 @@ server <- function(input, output, session) {
 
 The application above has two numeric inputs `input$x` and `input$y`. The product output is `input$x * input$y`, the `product_plus5` and the `product_plus10` outputs only differ in the addition to `product`. We can reduce duplication by setting `product` to a reactive value and using that within all three outputs:
   
-  ```{r eval=FALSE}
+```{r eval=FALSE}
 library(shiny)
 
 ui <- fluidPage(
@@ -151,7 +151,7 @@ shinyApp(ui, server)
 
 The following app is very similar to one you’ve seen earlier in the chapter: you select a dataset from a package (this time we’re using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
   
-  ```{r eval=FALSE}
+```{r eval=FALSE}
 library(ggplot2)
 datasets <- data(package = "ggplot2")$results[, "Item"]
 

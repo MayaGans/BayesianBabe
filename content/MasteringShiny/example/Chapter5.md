@@ -53,9 +53,9 @@ count_top <- function(df, var, n = 5) {
 
 fct_infreq(fct_lump(test$a, n = 2))
 
-injuries <- vroom::vroom("/Users/mayagans/Downloads/injuries.tsv.gz")
-products <- vroom::vroom("/Users/mayagans/Downloads/products.tsv")
-population <- vroom::vroom("/Users/mayagans/Downloads/population.tsv")
+injuries <- vroom::vroom("injuries.tsv.gz")
+products <- vroom::vroom("products.tsv")
+population <- vroom::vroom("population.tsv")
 
 selected <- injuries %>% filter(prod_code == 1842)
 
@@ -87,12 +87,12 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   selected <- reactive(injuries %>% filter(prod_code == input$code))
   
-  # use n() for the n argument in count_top
-  n <- reactive(input$rows - 1)
+  # use counter() for the n argument in count_top
+  counter <- reactive(input$rows - 1)
   
-  output$diag <- renderTable(count_top(selected(), diag, n = n()), width = "100%")
-  output$body_part <- renderTable(count_top(selected(), body_part, n = n()), width = "100%")
-  output$location <- renderTable(count_top(selected(), location, n = n()), width = "100%")
+  output$diag <- renderTable(count_top(selected(), diag, n = counter()), width = "100%")
+  output$body_part <- renderTable(count_top(selected(), body_part, n = counter()), width = "100%")
+  output$location <- renderTable(count_top(selected(), location, n = counter()), width = "100%")
   
   summary <- reactive({
     selected() %>%
@@ -125,7 +125,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## 5.8.4 TODO
+## 5.8.4
 
 Provide a way to step through every narrative systematically with forward and backward buttons.
 
@@ -180,11 +180,11 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   selected <- reactive(injuries %>% filter(prod_code == input$code))
   
-  n <- reactive(input$rows - 1)
+  counter <- reactive(input$rows - 1)
   
-  output$diag <- renderTable(count_top(selected(), diag, n = n()), width = "100%")
-  output$body_part <- renderTable(count_top(selected(), body_part, n = n()), width = "100%")
-  output$location <- renderTable(count_top(selected(), location, n = n()), width = "100%")
+  output$diag <- renderTable(count_top(selected(), diag, n = counter()), width = "100%")
+  output$body_part <- renderTable(count_top(selected(), body_part, n = counter()), width = "100%")
+  output$location <- renderTable(count_top(selected(), location, n = counter()), width = "100%")
   
   summary <- reactive({
     selected() %>%
@@ -288,11 +288,11 @@ server <- function(input, output, session) {
   # in order to loop through just 6 values
   selected <- reactive(head(injuries %>% filter(prod_code == input$code)))
   
-  n <- reactive(input$rows - 1)
+  counter <- reactive(input$rows - 1)
   
-  output$diag <- renderTable(count_top(selected(), diag, n = n()), width = "100%")
-  output$body_part <- renderTable(count_top(selected(), body_part, n = n()), width = "100%")
-  output$location <- renderTable(count_top(selected(), location, n = n()), width = "100%")
+  output$diag <- renderTable(count_top(selected(), diag, n = counter()), width = "100%")
+  output$body_part <- renderTable(count_top(selected(), body_part, n = counter()), width = "100%")
+  output$location <- renderTable(count_top(selected(), location, n = counter()), width = "100%")
   
   summary <- reactive({
     selected() %>%

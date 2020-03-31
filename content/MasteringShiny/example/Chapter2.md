@@ -153,6 +153,8 @@ The following app is very similar to one you’ve seen earlier in the chapter: y
   
 <div class="note">
 While I am able to isolate the three issues below (as seen in comments), when trying to run the app I get some issues perhaps due to the dataset?
+
+Answer from [@mapaulacaldas](https://twitter.com/mapaulacaldas): The app doesn't work because calls to `plot()` take too long to render with data sets with many columns. You can replace `datasets <- "seals"` to see if everything was running OK.
 </div>
 
 ```{r eval=FALSE}

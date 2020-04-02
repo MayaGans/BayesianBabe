@@ -169,7 +169,13 @@ shinyApp(ui = ui, server = server)
 Extend the previous app so that you can also choose to select no continent, and hence see all countries. You’ll need to add "" to the list of choices, and then handle that specially when filtering.
 
 <div class="note">
-Initially setting the choices to `c("", as.character(continents))` allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this `""` option is no longer available?
+Initially setting the choices to <tt>c("", as.character(continents))</tt> allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this <tt>""</tt> option is no longer available?
+
+<br>
+<br>
+
+<a href="https://github.com/tanho63">@tanho63</a> suggests:
+"You can use <tt>"All"</tt> instead of <tt>""</tt> - not sure why it's recalculating continent when evaluated, reactivelog wasn't very helpful on it."
 </div>
 
 ```{r, eval=FALSE}
@@ -180,6 +186,8 @@ continents <- unique(gapminder$continent)
 
 ui <- fluidPage(
   selectInput("continent", "Continent", choices = c("", as.character(continents))), 
+  # @tanho83:
+  # selectInput("continent", "Continent", choices = c("All", as.character(continents))), 
   selectInput("country", "Country", choices = NULL),
   tableOutput("data")
 )
@@ -198,10 +206,9 @@ server <- function(input, output, session) {
   
   
   observeEvent( input$continent, {
-    updateSelectInput(session, "country", "Country",
-                      choices = selected_data() %>% 
-                        select(country) %>%
-                        distinct())
+    # @tanho83:
+    updateSelectInput(session, "country",
+                      choices = unique(selected_data()$country))
   })
   
   
@@ -479,6 +486,10 @@ pre {
     border: solid 5px #dfedff;
     color: #1f5386;
     padding: 5px;
+}
+
+tt {
+  background-color: #bed3ec;
 }
 
 code {

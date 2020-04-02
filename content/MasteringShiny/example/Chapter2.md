@@ -152,9 +152,11 @@ shinyApp(ui, server)
 The following app is very similar to one you’ve seen earlier in the chapter: you select a dataset from a package (this time we’re using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
   
 <div class="note">
-While I am able to isolate the three issues below (as seen in comments), when trying to run the app I get some issues perhaps due to the dataset?
 
-Answer from [@mapaulacaldas](https://twitter.com/mapaulacaldas): The app doesn't work because calls to `plot()` take too long to render with data sets with many columns. You can replace `datasets <- "seals"` to see if everything was running OK.
+While I am able to isolate the three issues below (as seen in comments), when trying to run the app I get some issues perhaps due to the dataset?
+<br>
+<br>
+Answer from <a href="https://twitter.com/mapaulacaldas">@mapaulacaldas:</a> The app doesn't work because calls to <tt>plot</tt> take too long to render with data sets with many columns. You can replace <tt>datasets <- "seals"</tt> to see if everything was running OK.
 </div>
 
 ```{r eval=FALSE}
@@ -195,6 +197,11 @@ pre {
     border: solid 5px #dfedff;
   color: #1f5386;
     padding: 5px;
+}
+
+tt {
+ background-color: #bed3ec;
+ color: #1f5386;
 }
 
 code {

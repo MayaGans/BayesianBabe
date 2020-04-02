@@ -15,7 +15,7 @@ type: docs
 weight: 1
 ---
 
-<span style="font-size:18px">My attempt to answer the exercises from [Hadley Wickham's Mastering Shiny](https://mastering-shiny.org/). I'd gladly welcome thoughts, comments, and suggestions on my [website repo](https://github.com/MayaGans/Mastering_Shiny_Solutions)!</span>
+<span style="font-size:18px">A collaboration between myself and [Marly Cormar](https://www.marlycormar.com/) to answer the exercises from [Hadley Wickham's Mastering Shiny](https://mastering-shiny.org/). We'd gladly welcome thoughts, comments, and suggestions on our [ repo](https://github.com/MayaGans/Mastering_Shiny_Solutions)!</span>
 
 
 <div class="note">
@@ -25,7 +25,6 @@ Anywhere you see a question box I'm unsure of my solution or have a question abo
 ## Contributors:
 
 - [María Paula Caldas](https://github.com/mpaulacaldas)
-- [Marly Cormar](https://www.marlycormar.com/)
 - [Tan Ho](https://github.com/tanho63)
 
 <style>

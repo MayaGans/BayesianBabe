@@ -22,6 +22,12 @@ weight: 1
 Anywhere you see a question box I'm unsure of my solution or have a question about the exercise!
 </div>
 
+## Contributors:
+
+- [María Paula Caldas](https://github.com/mpaulacaldas)
+- [Marly Cormar](https://www.marlycormar.com/)
+- [Tan Ho](https://github.com/tanho63)
+
 <style>
 p {
   font-size: 12px;

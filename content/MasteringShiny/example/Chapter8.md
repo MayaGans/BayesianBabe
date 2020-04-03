@@ -468,7 +468,7 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 ```
 
-## 8.4.3.4 TODO
+## 8.4.3.4
 
 (Hard) Make a wizard that allows the user to upload their own dataset. The first page should handle the upload. The second should handle reading it, providing one drop down for each variable that lets the user select the column type. The third page should provide some way to get a summary of the dataset.
 

@@ -472,6 +472,11 @@ shinyApp(ui = ui, server = server)
 
 (Hard) Make a wizard that allows the user to upload their own dataset. The first page should handle the upload. The second should handle reading it, providing one drop down for each variable that lets the user select the column type. The third page should provide some way to get a summary of the dataset.
 
+<div class="note">
+I don't quite understand what's meant by "some way to get a summary of the dataset" so I just took the <tt>summary()</tt> of the dataset... Any help welcome for cleaning up this code!
+</div>
+
+
 ```{r, eval=FALSE}
 library(shiny)
 library(readr)

@@ -1,0 +1,117 @@
+---
+title: A Phish Sankey Diagram
+author: Maya Gans
+date: '2020-04-05'
+slug: a-phish-sankey-diagram
+categories:
+  - Tutorial
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-04-05T17:22:17-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<style>
+.article-container {
+    max-width: 100%;
+    padding: 0 3px;
+    margin: 0 auto;
+}
+</style>
+
+Whenever Phish plays "Mike's Song", they generally also play "Weekapaug Groove". I wanted to explore the songs that they play in the middle of these two songs using a Sankey Diagram. 
+
+The width of the songs corresponds to the number of times that song pattern occurred. For instance, I am Hydrogen is the thickest connector of Mike's Song and Weekapaug. We also have interesting patterns shown by the dashed lines where a song is played, then goes *back* into Mike's Song or a prior song, before heading eventually to Weekapaug. Feel free to zoom in and move around songs to explore the data!
+
+```{r, echo=FALSE, warning=FALSE}
+library(purrr)
+library(dplyr)
+library(phishr)
+library(igraph)
+library(tidyverse)
+library(networkD3)
+library(igraph)
+
+my_apikey <- "7BA06832CEA80BE2900C"
+
+# get showdates
+url <- data.frame(
+  head = "https://api.phish.net/v3/shows/query?apikey=7BA06832CEA80BE2900C&month=",
+  body = c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"),
+  tail = "&artistid=1"
+) %>%
+  mutate(url = paste0(head, body, tail))
+
+showdate_data <- map(url$url, ~ httr::content(httr::GET(.x), as='parsed'))
+showdates <- map(showdate_data, ~ .x$response$data %>% map_chr(pluck, "showdate")) %>% unlist
+dates <- lubridate::ymd(showdates) %>% sort()
+
+# get setlists from showdates
+setlists <- map(dates, ~pn_get_setlist(apikey = my_apikey, .x)) 
+names(setlists) <- dates 
+sets <- lapply(setlists, Filter, f = function(x) length(x) >= 2) %>% compact()
+
+# get all songs between mike's and weekapaug
+# using the sets list from clean data
+mikes_song <- map(sets, ~ 
+      .x  %>% 
+      mutate(i1 = match(Song, c('Mike\'s Song', 'Weekapaug Groove'))) %>%
+      fill(i1) %>%
+      slice(if(any(!is.na(i1))) seq_len(which.max(i1)) else 0) %>%
+      filter(!is.na(i1)) %>%
+      pull(Song) %>% 
+      as.character) %>%
+  compact()
+
+mk30 <- mikes_song[c(410:length(mikes_song))]
+
+# create a dataframe of edges and nodes
+# but first remove all the list elements of length 1
+# because these aren't graphable
+cond <- lapply(mk30, function(x) length(x) > 1)
+mikes_groove_network <- mk30[unlist(cond)]
+
+make_edges <- function(x) {
+  data.frame(source = x,
+             target = c(x[-1], NA))
+}
+
+mikes_network_df <- 
+  map(mikes_groove_network, ~make_edges(.x)) %>%
+  bind_rows() %>%
+  na.omit() %>%
+  group_by(source, target) %>%
+  summarise(value = n())
+
+# Make a connection data frame
+links <- data.frame(
+  mikes_network_df
+)
+
+# From these flows we need to create a node data frame: it lists every entities involved in the flow
+nodes <- data.frame(
+  name=c(as.character(links$source), as.character(links$target)) %>% 
+    unique()
+)
+
+nodes$group <- c(rep("a", 45), "b", rep("a", 42), "b")
+
+# With networkD3, connection must be provided using id, not using real name like in the links dataframe.. So we need to reformat it.
+links$IDsource <- match(links$source, nodes$name)-1 
+links$IDtarget <- match(links$target, nodes$name)-1
+
+# prepare color scale: I give one specific color for each node.
+my_color <- 'd3.scaleOrdinal() .domain(["a", "b"]) .range(["#913C73", "#B1D152"])'
+
+# Make the Network. I call my colour scale with the colourScale argument
+sankeyNetwork(Links = links, Nodes = nodes, Source = "IDsource", Target = "IDtarget", 
+                   Value = "value", NodeID = "name", colourScale= my_color, 
+              NodeGroup ="group", width = 1100, height = 700)
+```

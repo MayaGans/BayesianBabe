@@ -26,7 +26,7 @@ projects: []
 }
 </style>
 
-Whenever Phish plays "Mike's Song", they generally also play "Weekapaug Groove". I wanted to explore the songs that they play in the middle of these two songs using a Sankey Diagram. 
+Whenever Phish plays `Mike's Song`, they generally also play `Weekapaug Groove`. I wanted to explore the songs that they play in the middle of these two songs using a Sankey Diagram. 
 
 The width of the songs corresponds to the number of times that song pattern occurred. For instance, I am Hydrogen is the thickest connector of Mike's Song and Weekapaug. We also have interesting patterns shown by the dashed lines where a song is played, then goes *back* into Mike's Song or a prior song, before heading eventually to Weekapaug. Feel free to zoom in and move around songs to explore the data!
 

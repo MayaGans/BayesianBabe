@@ -19,20 +19,15 @@ image:
 projects: []
 ---
 
----
-title: "Live Coding Interview"
-author: "Maya Gans"
-date: "8/26/2019"
-output: html_document
----
-
 Yesterday I interviewed for a position maintaining and creating ShinyApps. To call that a JOB is crazy to me. I love developing reactive web applications, the fact that you can get paid to do that is still mind blowing. I'm realizing that having fun at work is actually a possibility!
 
 That said, the data scientist position usually includes a live coding portion. I went into it trying to treat my first one as practice, but every second I didn't spend typing spanned an eternity. It was horrifying... but thinking about how to solve these questions was also kind of really fun? 
 
 I'm fairly certain I won't get the job. But I'm also certain it was an experience to learn and grow. The interview was so intense that it was pretty easy to recall the questions almost verbatim. I wanted to explore the questions again on my own with no pressure. And I'd love input on how to answer these more elegantly!
 
+:::twitter
 Before we begin, I've updated this post to include asides provided from the wonderful world of `#rstats` twitter. If you have any suggestions on tidying the code feel free to contact me or [submit a PR to my blog repo!](https://github.com/MayaGans/BayesianBabe/tree/master/content/post/2019-08-27-live-coding-interview)
+:::
 
 # Question 1
 
@@ -55,8 +50,9 @@ for (i in 1:n) {
 
 My first attempt answering the question revealed a gap in my mental model. I first attempted to construct the loop using an if statement with logical arguments in the same order as the question: `(i %% 3 == 0)`, then `(i %% 5 == 0)` and lastly `(i %% 15 == 0)`. I was operating under the idea that the arguments within a loop are circular. However, these arguments are inside an `if` statement, not the loop itself, so of course order matters! By putting `(i %% 15 == 0)` first you ensure the numbers divisible by both 3 and 5 are assigned to `buzz-feed` prior to `buzz` or `feed` assignment.
 
+:::twitter
 # The R Way
-R's stregnth is in dealing with vectors, so leverage that in the approach! [Jon Harmon](https://twitter.com/JonTheGeek) suggested a better approach for this problem.
+R's strength is in dealing with vectors, so leverage that in the approach! [Jon Harmon](https://twitter.com/JonTheGeek) suggested a better approach for this problem.
 ```{r}
     n = 15
     dplyr::tibble(
@@ -70,10 +66,11 @@ R's stregnth is in dealing with vectors, so leverage that in the approach! [Jon 
 )
 ```
 In fact, this same question is the first example within the `dplyr::case_when` documentation!
+:::
 
 # Question 2
 
-## Summarise the diamonds data set
+## Summarize the diamonds data set
 
 ```{r, include="false"}
 library(tidyverse)
@@ -110,7 +107,7 @@ m.1 <- lm(mtcars$mpg ~ mtcars$disp)
 summary(m.1)
 ```
 
-Honestly, I could write this simple code from memory, but what I said as an explanation is an embarassing blur. I think I can only attibute floundering over the output of a linear model with a single predictor to nerves. 
+Honestly, I could write this simple code from memory, but what I said as an explanation is an embarrassing blur. I think I can only attribute floundering over the output of a linear model with a single predictor to nerves. 
 
 I'm taking the time here to break the output of the model summary down line for line because every aspiring data scientist should be so comfortable the `lm` output that even nerves shouldn't matter.
 
@@ -159,9 +156,9 @@ unique(test2[[1]][duplicated(test2[[1]])])
 test[[1]][!test[[1]] %in% test[[1]][duplicated(test[[1]])]]
 ```
 
-Obtaining the data from inside a list, especially nested lists, is a skill I know I need to build. This answer does not look elegent to me but it gets the job done? I'm going to play with "better", cleaner solutions.
+Obtaining the data from inside a list, especially nested lists, is a skill I know I need to build. This answer does not look elegant to me but it gets the job done? I'm going to play with "better", cleaner solutions.
 
 
 # Summary
 
-I left the interview feeling exhausted and deflated. I found myself asking: *if I can't answer these questions, what am I doing trying to become a data scientist?* But now that I've spent a day to reflect, the interview was an incredible learning experience. It pinpointed concrete areas where I can grow and I honestly had fun thinking about these problems. I'm not sure I'll ever perform smoothly under pressure, but at the very least I now have a function to seperate duplicates from unique values!
+I left the interview feeling exhausted and deflated. I found myself asking: *if I can't answer these questions, what am I doing trying to become a data scientist?* But now that I've spent a day to reflect, the interview was an incredible learning experience. It pinpointed concrete areas where I can grow and I honestly had fun thinking about these problems. I'm not sure I'll ever perform smoothly under pressure, but at the very least I now have a function to separate duplicates from unique values!

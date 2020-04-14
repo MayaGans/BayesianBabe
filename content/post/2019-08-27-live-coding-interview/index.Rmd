@@ -85,7 +85,7 @@ In an attempt to over-complicate this question and to flex my `tidyverse` skills
 ### Find the maximum diamond price
 ```{r}
 diamonds %>%
-  filter(price == max(diamonds$price))
+  filter(price == max(price))
 ```
 
 I was quick to type `max(diamonds$price)` and smugly said 'Done!' The interviewer responded, okay but I wanted to know everything else about that diamond. This meant I needed to print the whole row. I'm not sure the function I'm using is the most efficient, but I like it?
@@ -140,6 +140,7 @@ seperated(my_list)
 ```
 
 To get there, I made a dummy data set to play with, a list with 6 numbers, only one of which is a duplicate. This helped to highlight the workflow (1) find the duplicates for the first list, then (2) find the unique values, but remove the duplicates
+
 ```{r}
 test <- list(c(1,2,3,4,5,3))
 
@@ -157,7 +158,6 @@ test[[1]][!test[[1]] %in% test[[1]][duplicated(test[[1]])]]
 ```
 
 Obtaining the data from inside a list, especially nested lists, is a skill I know I need to build. This answer does not look elegant to me but it gets the job done? I'm going to play with "better", cleaner solutions.
-
 
 # Summary
 

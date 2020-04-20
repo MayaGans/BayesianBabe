@@ -9,7 +9,7 @@ day_night = true
 
 # Font style.
 #   Choose from `default`, `classic`, or `playfair`.
-font = "default"
+font = "maya"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
 description = "Maya Gans' personal website"

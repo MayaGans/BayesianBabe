@@ -1,3 +1,35 @@
+h1, h2, h3 {
+  text-transform: uppercase;
+}
+
+
+.hljs { /* code font size */
+font-size: 16px;
+padding: 1rem;
+}
+
+
+/* --------Blog posts--------- */
+/* Headers within blogs */
+
+.article-style .section.level1 h1,
+.article-style .section.level2 h2,
+.article-style .section.level3 h3 {
+  padding-top: 2em;
+  padding-bottom: 1em;
+  font-weight: 700;
+}
+
+/* Links within blog posts */
+
+.article-style .section a {
+  color: #E14675;
+}
+
+.article-style .section a:hover {
+  color: #DCA0B2;
+}
+
 .dark body {
 	color: #F5DBDD;
 }
@@ -20,8 +52,34 @@ div.twitter {
     background-size: 70px;
     background-repeat: no-repeat;
     background-position: 15px center;
-    min-height: 120px;
     color: #1f5386;
     background-color: #B6D079;
     border: solid 5px #E9F0D6;
   }
+  
+div.question {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    color: #1f5386;
+    background-color: #B6D079;
+    border: solid 5px #E9F0D6;
+}
+
+div.TODO {
+    padding: 1em;
+    margin: 1em 0;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    color: white;
+    background-color: #b53737;
+    border: solid 5px #8e1600;
+}
+
+div.question {
+  background-image: url("../question.png");
+}

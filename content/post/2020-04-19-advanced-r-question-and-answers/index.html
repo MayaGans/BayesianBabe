@@ -696,7 +696,6 @@ tt {
 }
 
 #TOC {
-    position: fixed;
     left: 2em;
     top: 12em; /* 5em is height of header, 6em brings just under */
     /* bottom: 5em; /* 5em puts us above the footer; not bad but too low when TOC is collapsed */
@@ -708,10 +707,11 @@ tt {
     /* Add opacity (translucency) */
     background-color: pink;
     background-color: rgba(249, 249, 249, 0.9); /* Higher opacity (last arg) means less transparency */
+    margin-bottom: 20px;
 }
 /* Ensure the TOC height doesn't take over the screen; percentages may be higher than view port, so we use pixels */
 #TOC > ul {
-    max-height: 350px;
+    max-height: 200px;
     overflow: auto; 
     padding: 2em;
 }

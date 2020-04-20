@@ -8,6 +8,17 @@ font-size: 16px;
 padding: 1rem;
 }
 
+tr:nth-child(even){
+  background-color: none;
+}
+
+tr:nth-child(odd){
+background-color: none;
+}
+
+tr.mat-header-row {
+  background-color: none;
+}
 
 /* --------Blog posts--------- */
 /* Headers within blogs */

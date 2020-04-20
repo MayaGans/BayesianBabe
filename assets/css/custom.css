@@ -8,8 +8,22 @@ font-size: 16px;
 padding: 1rem;
 }
 
-tr {
-    background: transparent;
+table {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+tr,td,th {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+table>tbody>tr:nth-child(odd)>td, table>tbody>tr:nth-child(odd)>th {
+  background-color: transparent !important;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: transparent !important;
 }
 
 /* --------Blog posts--------- */

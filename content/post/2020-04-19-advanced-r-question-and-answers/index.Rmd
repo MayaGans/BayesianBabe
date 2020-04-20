@@ -578,9 +578,7 @@ Resources:
 Putting it all together in a single diagram:
 :::
 
-```{r, echo=FALSE}
-#knitr::include_graphics("../images/vectors.png")
-```
+<img src="/img/vectors.png"></img>
 
 # Chapter 4
 
@@ -713,16 +711,22 @@ XXX
 
 <style>
 
-body {
-  list-style-type: none important!;
-  scrollbar-color: pink;
-    scrollbar-face-color: #367CD2;
-    scrollbar-shadow-color: #FFFFFF;
-    scrollbar-highlight-color: #FFFFFF;
-    scrollbar-3dlight-color: #FFFFFF;
-    scrollbar-darkshadow-color: #FFFFFF;
-    scrollbar-track-color: #FFFFFF;
-    scrollbar-arrow-color: #FFFFFF;
+table {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+tr,td,th {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+table>tbody>tr:nth-child(odd)>td, table>tbody>tr:nth-child(odd)>th {
+  background-color: transparent !important;
+}
+
+.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+    background-color: transparent !important;
 }
 
 p {
@@ -739,6 +743,7 @@ tt {
 
 #TOC {
     left: 2em;
+    position: fixed;
     top: 12em; /* 5em is height of header, 6em brings just under */
     /* bottom: 5em; /* 5em puts us above the footer; not bad but too low when TOC is collapsed */
     font-size: 10px;
@@ -753,7 +758,7 @@ tt {
 }
 /* Ensure the TOC height doesn't take over the screen; percentages may be higher than view port, so we use pixels */
 #TOC > ul {
-    max-height: 200px;
+    max-height: 400px;
     overflow: auto;	
     padding: 2em;
 }
@@ -761,3 +766,4 @@ tt {
     float: right;
 }
 </style>
+

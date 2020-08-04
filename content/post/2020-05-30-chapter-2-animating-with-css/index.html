@@ -1,0 +1,53 @@
+---
+title: 'Chapter 2: Animating with CSS'
+author: Maya Gans
+date: '2020-05-30'
+slug: chapter-2-animating-with-css
+categories:
+  - Tutorial
+tags:
+  - CSS
+  - SVG
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-05-30T15:00:14-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<svg width="200px" height="70px" viewBox="0 0 200 70">
+<circle class="ball" cx="45" cy="45" r="25"/>
+</svg>
+<style>
+  @keyframes animation-name-you-pick {
+      0% {
+       fill: blue;
+       transform: translateX(0);
+     }
+      50% {
+       fill: purple;
+       transform: translateX(50px);
+}
+100% {
+       fill: red;
+       transform: translateX(100px);
+     }
+}
+
+.ball {
+      animation-name: animation-name-you-pick;
+      animation-duration: 2s;
+      animation-delay: 2s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+}
+</style>

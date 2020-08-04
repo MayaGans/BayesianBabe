@@ -20,20 +20,15 @@
 #  weight = 40
 
 [[main]]
-  name = "Mastering Shiny"
-  url = "masteringshiny/example"
-  weight = 70
-
-[[main]]
   name = "DataViz"
   url = "gallery"
   weight = 60
   
 
-# [[main]]
-#  name = "Shiny"
-#  url = "shiny/"
-#  weight = 70
+[[main]]
+  name = "Shiny"
+  url = "Shiny"
+  weight = 70
   
 # [[main]]
 #  name = "JS4DS"

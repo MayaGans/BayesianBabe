@@ -25,23 +25,14 @@ projects: []
 
 
 <p>This past week was my first as an intern at RStudio where I’m designing a prototype for a visual programming language: a block-based version of the Tidyverse. Prior to my official start date with R Studio, I spent my summer familiarizing myself with JavaScript and design considerations when building a user interface.</p>
-<div class="figure">
-<img src="img1.png" />
-
-</div>
+<p><img src="img1.png" /></p>
 <p>The end goal of the internship is obvious: a working proof of concept where I envision each block as a step in a chain of Tidy functions. I started off the week identifying the task of creating a single functional block and only later in the week did I realize how important this would be.</p>
 <p>My first pass reading the blockly documentation was overwhelming, but after running through a concrete tutorial I could tinker with, I began to create a mental model of blocky. I realized every block has three components: it’s physical shape, the JavaScript code under the hood (its <strong>generator function</strong>) and an xml script to include the block within the toolbox of available blocks.</p>
-<div class="figure">
-<img src="img2.png" />
-
-</div>
+<p><img src="img2.png" /></p>
 <p>Google provides a “Block Factory” a block-based program to create the physical block shapes (I know, meta) and easy to follow documentation on how to add the block to the toolbox. Following along with the documentation (adding some of my own CSS mustard) I created a UI for my block playground and to display the code output. [I’m tinkering with making this in the style of RStudio, and avoiding any color scheme that would convey block based coding is juvenile.] One day in and I had a canvass to create blocks on!</p>
 <p>But as soon as my objectives became more personalized (alright, I have an idea of how the data frame block should look and how to add it to my toolbox… now how the hell do I get the data into a block?) my progress came to a halt. It was time to generate the generator code. I love coding because I can problem solve and practice being comfortable with the uncomfortable. But it also makes me crazy.</p>
 <p>I spent the next day breaking demo apps and trying to apply the <em>data-forge.js</em> logic to a single block. The next day I started to panic. This internship is short, how much time do I have to troubleshoot? How much time do I budget to tinkering and trying to problem solve? I want to prove myself, but how stuck should one be before reaching out? Failure is part of the process but for how long? I decided either once I exhaust my ideas or by the end of day I’ll reach out for help. One of the amazing things about R is the community and how no question is too small, but ego and pride can get in the way of asking.</p>
 <p>Just addressing my frustrations with Greg (and perhaps the new eyes of a fresh day) were enough to figure out how to add the data to the block! By Thursday I had a block containing two columns of data, one a string and the other numeric. I also created a second, filter block whose inputs are the column from the dataframe, the operation to apply, and the pr.</p>
-<div class="figure">
-<img src="img3.png" />
-
-</div>
+<p><img src="img3.png" /></p>
 <p>But here’s the cliff hanger – I had to add the dataframe to the filter block to have it work, realizing an important gap I need to address next week: HOW do blocks talk to one another? Can I relay a mental model of where blockly global variables live and how to access them?</p>
 <p>On a project in a field where there’s always more to do and more to learn, I ended the week feeling like a rock star that I had two blocks instead of one within an environment where the code can be displayed, and I overcame my first code writing block. It would have been easy to end the week thinking about the big picture and how much I need to do in the allotted time frame of the internship but instead I went into the weekend excited to take on my next challenge!</p>

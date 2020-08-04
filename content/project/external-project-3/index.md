@@ -1,6 +1,6 @@
 ---
 date: "2016-04-27T00:00:00Z"
-external_link: https://mastering-shiny.org/
+external_link: https://mastering-shiny-solutions.org/
 image:
   caption: Mastering Shiny
 focal_point: Smart

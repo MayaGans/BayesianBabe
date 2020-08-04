@@ -44,10 +44,7 @@ projects: []
   &quot;style&quot;: {&quot;hat&quot;:&quot;cap&quot;},
 }
 ]);</code></pre>
-<div class="figure">
-<img src="/post/2019-06-13-week-2-humble-pie/img1.png" />
-
-</div>
+<p><img src="/post/2019-06-13-week-2-humble-pie/img1.png" /></p>
 <p>With a pretty good looking block it was time to work on the <strong>generator code</strong>. By using the same unique ID, when the user hits <code>run</code> this is what the block actually does under the hood. I spent A LOT of time trying to bake my dataframe into this code. I mean, it seemed logical the data live inside the block because that’s what the block does…</p>
 <p>Turns out this mental model was oh so incredibly WRONG. When you click blocks together, you’re creating a script as a string which you can then <code>eval</code> [WARNING: This is a security big programming no-no but I’m an Ecologist by training so it’s fine for now].</p>
 <p>Here’s an example: the data-forge code <code>iris.where(row =&gt; (row.SepalLength = 5))</code> is the same as <code>iris %&gt;% filter(SepalLength = 5)</code> I was trying to include the entire iris dataset within my generator code when all I needed to do was have a SEPERATE js file with all our desired datasets then have the following generator code:</p>
@@ -56,10 +53,7 @@ projects: []
 }</code></pre>
 <p>This block literally just returns the word iris. That’s it. Day’s of stress and imposter syndrome resulting in ONE WORD.</p>
 <p>The filter block is a tiny bit more complicated, but with a drop down to change the column, a drop down for your operators, and an empty box to put a number of text (all specified in the <code>Blockly.Block</code> world) it results in the string <code>.where(row =&gt; row.SepalLength = 5)</code>.</p>
-<div class="figure">
-<img src="/post/2019-06-13-week-2-humble-pie/img2.png" />
-
-</div>
+<p><img src="/post/2019-06-13-week-2-humble-pie/img2.png" /></p>
 <p>Back in html world we use the function <code>workspaceToCode</code> to concatenate all the strings our blocks made</p>
 <pre class="js"><code>var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);</code></pre>
 <script type="text/javascript">

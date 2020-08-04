@@ -1,11 +1,11 @@
 ---
 date: "2016-04-27T00:00:00Z"
-external_link: https://maya-gans.shinyapps.io/JordansClimbs/
+external_link: https://github.com/willdebras/shinykeyboard
 image:
-  caption: Exploring Data from stats.thephish.fm
+  caption: shinyKeyboard
   focal_point: Smart
-summary: Aggregating, transforming, and visualizing data from a MySQL database. 
+summary: A custom shiny input binding to either click on keys, or use in tandem with your keyboard
 tags:
-- Phish
-title: thePhish.fm
+- Widget
+title: shinyKeyboard
 ---

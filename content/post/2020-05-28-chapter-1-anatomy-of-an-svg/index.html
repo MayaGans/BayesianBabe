@@ -1,0 +1,110 @@
+---
+title: 'Chapter 1: Anatomy of an SVG'
+author: Maya Gans
+date: '2020-05-28'
+slug: chapter-1-anatomy-of-an-svg
+categories:
+  - Tutorial
+tags:
+  - SVG
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-05-28T14:42:13-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>I’m reading <a href="">Sarah Drasner’s SVG Animations</a> book and thought that blogging a summary of each chapter will help cement what I learn! My goal for the end of the book is to create a blockly like front end where blocks can be clicked together, nested, and move together in groups.</p>
+<p>But for now <strong>SVG Anatomy!</strong></p>
+<div id="an-example" class="section level3">
+<h3>An Example</h3>
+<p>The book starts off with an <code>&lt;svg&gt;</code> element which has</p>
+<ul>
+<li><code>x</code> where to start the svg canvass x coordinate</li>
+<li><code>y</code> where to start the svg canvass y coordinate</li>
+<li><code>width</code> where to end the svg canvass x coordinate</li>
+<li><code>height</code> where to end the svg canvass y coordinate</li>
+<li><code>viewBox</code> given the same attibutes as <code>x</code>, <code>y</code>, <code>450</code>, <code>100</code></li>
+</ul>
+<pre><code>&lt;svg x=&quot;0px&quot; y=&quot;0px&quot; width=&quot;450px&quot; height=&quot;100px&quot; viewBox=&quot;0 0 450 100&quot;&gt;
+     &lt;rect x=&quot;10&quot; y=&quot;5&quot; fill=&quot;white&quot; stroke=&quot;black&quot; width=&quot;90&quot; height=&quot;90&quot;/&gt;
+     &lt;circle fill=&quot;white&quot; stroke=&quot;black&quot; cx=&quot;170&quot; cy=&quot;50&quot; r=&quot;45&quot;/&gt;
+     &lt;polygon fill=&quot;white&quot; stroke=&quot;black&quot; points=&quot;279,5 294,35 328,40 303,62
+      309,94 279,79 248,94 254,62 230,39 263,35&quot;/&gt;
+     &lt;line fill=&quot;none&quot; stroke=&quot;black&quot; x1=&quot;410&quot; y1=&quot;95&quot; x2=&quot;440&quot; y2=&quot;6&quot;/&gt;
+     &lt;line fill=&quot;none&quot; stroke=&quot;black&quot; x1=&quot;360&quot; y1=&quot;6&quot; x2=&quot;360&quot; y2=&quot;95&quot;/&gt;
+&lt;/svg&gt;</code></pre>
+<p>We see that the elements take up the height and width of our viewBox:</p>
+<p><img src="/img/svg1.png" /></p>
+</div>
+<div id="everyting-in-half" class="section level3">
+<h3>Everyting in Half</h3>
+<p>If we keep the same <code>svg</code> but divide all our contents in half they will take up half the <code>svg</code> canvass</p>
+<pre><code>&lt;svg x=&quot;0px&quot; y=&quot;0px&quot; width=&quot;450px&quot; height=&quot;100px&quot; viewBox=&quot;0 0 450 100&quot;&gt;
+     &lt;rect x=&quot;5&quot; y=&quot;2.5&quot; fill=&quot;white&quot; stroke=&quot;black&quot; width=&quot;45&quot; height=&quot;45&quot;/&gt;
+     &lt;circle fill=&quot;white&quot; stroke=&quot;black&quot; cx=&quot;85&quot; cy=&quot;25&quot; r=&quot;22.5&quot;/&gt;
+     &lt;polygon fill=&quot;white&quot; stroke=&quot;black&quot; points=&quot;139.5,2.5 147,17.5 164,20 151.5,31
+      154.5,47 139.5,39.5 124,47 127,31 115,19.5 131.5,17.5&quot;/&gt;
+     &lt;line fill=&quot;none&quot; stroke=&quot;black&quot; x1=&quot;205&quot; y1=&quot;47.5&quot; x2=&quot;220&quot; y2=&quot;3&quot;/&gt;
+     &lt;line fill=&quot;none&quot; stroke=&quot;black&quot; x1=&quot;180&quot; y1=&quot;3&quot; x2=&quot;180&quot; y2=&quot;47.5&quot;/&gt;
+&lt;/svg&gt;</code></pre>
+<p><img src="/img/svg2.png" /></p>
+</div>
+<div id="beyond-the-canvass" class="section level3">
+<h3>Beyond the canvass</h3>
+<p>By changing the rect <code>y</code> from <code>5</code> to <code>50</code> we see the shape goes beyond the canvass</p>
+<pre><code>  &lt;svg x=&quot;0px&quot; y=&quot;0px&quot; width=&quot;450px&quot; height=&quot;100px&quot; viewBox=&quot;0 0 450 100&quot;&gt;
+     &lt;rect x=&quot;10&quot; y=&quot;50&quot; fill=&quot;white&quot; stroke=&quot;black&quot; width=&quot;90&quot; height=&quot;90&quot;/&gt;
+     &lt;circle fill=&quot;white&quot; stroke=&quot;black&quot; cx=&quot;170&quot; cy=&quot;50&quot; r=&quot;45&quot;/&gt;
+     &lt;polygon fill=&quot;white&quot; stroke=&quot;black&quot; points=&quot;279,5 294,35 328,40 303,62
+      309,94 279,79 248,94 254,62 230,39 263,35&quot;/&gt;
+     &lt;line fill=&quot;none&quot; stroke=&quot;black&quot; x1=&quot;410&quot; y1=&quot;95&quot; x2=&quot;440&quot; y2=&quot;6&quot;/&gt;
+     &lt;line fill=&quot;none&quot; stroke=&quot;black&quot; x1=&quot;360&quot; y1=&quot;6&quot; x2=&quot;360&quot; y2=&quot;95&quot;/&gt;
+&lt;/svg&gt;</code></pre>
+<p><img src="/img/svg3.png" /></p>
+</div>
+<div id="preserveaspectratio" class="section level3">
+<h3><code>preserveAspectRatio</code></h3>
+<p>We can use <code>x</code><strong><code>Y</code></strong> and <code>slice</code>/<code>meet</code> to further adjust where our elements lie within the viewbox. The options for x and Y are <code>Mid</code>, <code>Min</code>, and <code>Max</code>. This example was adopted <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio">from here</a>. <em>The viewBox really becomes apparent here when you hover over each square in the inspector!</em></p>
+<pre><code>&lt;svg viewBox=&quot;-1 -1 162 92&quot;&gt;
+  &lt;defs&gt;
+     &lt;rect id=&quot;my_rectangle&quot; x=&quot;10&quot; y=&quot;5&quot; fill=&quot;white&quot; stroke=&quot;black&quot; width=&quot;90&quot; height=&quot;90&quot; /&gt;
+  &lt;/defs&gt;
+
+  &lt;!-- (width&gt;height) meet --&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMid meet&quot;  x=&quot;0&quot;   y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;20&quot;  height=&quot;10&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMinYMid meet&quot;  x=&quot;25&quot;  y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;20&quot;  height=&quot;10&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMaxYMid meet&quot;  x=&quot;50&quot;  y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;20&quot;  height=&quot;10&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+
+  &lt;!-- (width&gt;height) slice --&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMin slice&quot; x=&quot;0&quot;   y=&quot;15&quot; viewBox=&quot;0 0 100 100&quot; width=&quot;20&quot;  height=&quot;10&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMid slice&quot; x=&quot;25&quot;  y=&quot;15&quot; viewBox=&quot;0 0 100 100&quot; width=&quot;20&quot;  height=&quot;10&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMax slice&quot; x=&quot;50&quot;  y=&quot;15&quot; viewBox=&quot;0 0 100 100&quot; width=&quot;20&quot;  height=&quot;10&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+
+  &lt;!-- (width&lt;height) meet --&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMin meet&quot;  x=&quot;75&quot;  y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;10&quot;  height=&quot;25&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMid meet&quot;  x=&quot;90&quot;  y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;10&quot;  height=&quot;25&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMax meet&quot;  x=&quot;105&quot; y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;10&quot;  height=&quot;25&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+
+  &lt;!-- (width&lt;height) slice --&gt;
+  &lt;svg preserveAspectRatio=&quot;xMinYMid slice&quot; x=&quot;120&quot; y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;10&quot;  height=&quot;25&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMidYMid slice&quot; x=&quot;135&quot; y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;10&quot;  height=&quot;25&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+  &lt;svg preserveAspectRatio=&quot;xMaxYMid slice&quot; x=&quot;150&quot; y=&quot;0&quot;  viewBox=&quot;0 0 100 100&quot; width=&quot;10&quot;  height=&quot;25&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+
+  &lt;!-- none --&gt;
+  &lt;svg preserveAspectRatio=&quot;none&quot; x=&quot;0&quot; y=&quot;30&quot; viewBox=&quot;0 0 100 100&quot; width=&quot;160&quot; height=&quot;60&quot;&gt;&lt;use href=&quot;#my_rectangle&quot; /&gt;&lt;/svg&gt;
+&lt;/svg&gt;</code></pre>
+<ul>
+<li><code>meet</code> attempts to scale the graphic while maintaining the aspect ratio</li>
+<li><code>scale</code> allows the graphic to expand beyond the viewBox and what the user sees</li>
+<li><code>none</code> will ignore the aspect ratio</li>
+</ul>
+<p>I’m still a little confused about how and when to alter the viewBox versus the element’s height and width directly, but hopefully this will make more sense as I read on….</p>
+</div>

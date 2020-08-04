@@ -26,10 +26,7 @@ projects: []
 <p><br></br></p>
 <p>Along with the hands-on skills I’ve been learning during my internship with RStudio, I’ve also been bolstering my theoretical understandings of programming concepts. This brought me to a common trick <code>setTimeout(0)</code>, which defers the execution of a function, giving something else a chance to run.</p>
 <p>This concept was described using a concrete example in a <a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful">StackOverflow post</a> that I wanted to explore in more detail (both visually and without using JQuery):</p>
-<div class="figure">
-<img src="img1.png" />
-
-</div>
+<p><img src="img1.png" /></p>
 <p>You want to create a button on your website with two tasks (1) perform a long calculation (2) and to print “Calculating…” in a div until “Done!” can be printed.</p>
 <div id="create-button-in-html" class="section level1">
 <h1>CREATE BUTTON IN HTML</h1>
@@ -44,10 +41,7 @@ projects: []
       &lt;td&gt;&lt;div id=&#39;status_ok&#39;&gt;Not Calculating yet.&lt;/div&gt;&lt;/td&gt;
   &lt;/tr&gt;
 &lt;/table&gt;</code></pre>
-<div class="figure">
-<img src="img3.png" />
-
-</div>
+<p><img src="img3.png" /></p>
 </div>
 <div id="create-long-function" class="section level1">
 <h1>CREATE LONG FUNCTION</h1>
@@ -105,10 +99,7 @@ document.getElementById("do").addEventListener("click", function() {
 <div id="fail" class="section level1">
 <h1>FAIL</h1>
 <p>Without using <code>setTimeout(0)</code> the queue of tasks that the button fires off are done serially: the long calculation “locks” the thread; the text <em>is</em> quickly set to “Done!” but the <code>status_update</code> function overwrites it with <code>calculating...</code></p>
-<div class="figure">
-<img src="img2.png" />
-
-</div>
+<p><img src="img2.png" /></p>
 <p>Using <code>setTimeout(0)</code> is a nifty trick to defer the actual long calculations until <code>status_update</code> has been executed. By setting a timeout if 0, you are queuing asynchronous code until the engine executes the current call stack.</p>
 <pre class="js"><code>document.getElementById(&quot;do_ok&quot;).addEventListener(&quot;click&quot;, function() {
   setTimeout(function() {

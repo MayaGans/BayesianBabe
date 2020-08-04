@@ -72,10 +72,7 @@ cat(x)</code></pre>
 <div id="filter" class="section level1">
 <h1>FILTER</h1>
 <p>Next I decided to tackle a filter block. In <code>data-forge</code> synatx, this means <code>.where(row =&gt; row.colName === &quot;someValue&quot;)</code>. Because I have the <code>iris</code> dataset, rather than think in generalizations I began with the concrete example <code>iris.where(row =&gt; row.Sepal_Length &gt; 5)</code>.</p>
-<div class="figure">
-<img src="img2.png" />
-
-</div>
+<p><img src="img2.png" /></p>
 <p>In order to get the <code>iris</code> part of the statement all I need to do is click this block to the dataset block, so we’re already good there! I created a block with an input called <code>Columns</code> (where the user will select the column to filter by, in this case <code>Sepal_Length</code>), a drop down menu of operators (where the user will select <code>&gt;</code>), and lastly a variable input to filter by (<code>5</code>). The generator code is a little more complex in that we need to access the users inputs of these three fields then print them within our where statement.</p>
 <pre class="js"><code>Blockly.JavaScript[&#39;dplyr_filter&#39;] = function(block) {
 
@@ -162,16 +159,10 @@ Blockly.JavaScript['dplyr_filter'] = function(block) {
   }
 </script>
 <p>And holy crap it works! But what if I want to filter based on <code>Sepal_Length &gt; 5</code> and <code>Sepal_Length &lt; 7</code>? Blockly comes with some basic logic blocks that I knew would be the first step in generalizing the filter block and will become the major workhorses of generalizing all my functions:</p>
-<div class="figure">
-<img src="img3.png" />
-
-</div>
+<p><img src="img3.png" /></p>
 <p>As you can see in the image, the AND/OR block and the operator block can be nested within one another to create a chain of arguments. It turns out by nesting these blocks the returned value is <code>Sepal_Length &gt; 5 &amp;&amp; Sepal_Length &lt; 7</code>, all I need to do is data-forge-ify it!</p>
 <p>This required completely revamping the FILTER generator code. Rather than having the filter block simulate an operator block with drop downs and column selection, we’ll make the logic blocks do the heavy lifting. All the filter needs to do is take the logic output and put it within the .where syntax: <code>where.(row =&gt; [INSERT NESTED BLOCKS HERE] ))</code>.</p>
-<div class="figure">
-<img src="img4.png" />
-
-</div>
+<p><img src="img4.png" /></p>
 <pre class="js"><code>Blockly.JavaScript[&#39;dplyr_filter&#39;] = function(block) {
   
 
@@ -202,8 +193,5 @@ Blockly.JavaScript['dplyr_filter'] = function(block) {
 <p>My current work around <em>which is highly likely to change</em> is I <strong>added <code>row.</code> to the logic blocks, so the output is <code>row.[INSERT COLUMN] operator row.[INSERT COLUMN]</code></strong></p>
 <p>This makes sense for needing the output <code>row.Sepal_Length</code> &amp;&amp; <code>row.Sepal_Width</code> (which is consistant for the groupBy blocks) but for blocks like SELECT the data-forge output is <code>[&quot;Sepal_Length&quot;, &quot;Sepal_Width&quot;]</code>. Dealing with these differing outputs and where to put my regular expressions to mold them into the formats we need is on the immediate to-do list.</p>
 <p>But for now, I will revel in my small victory: WE CAN FILTER!</p>
-<div class="figure">
-<img src="img5.png" />
-
-</div>
+<p><img src="img5.png" /></p>
 </div>

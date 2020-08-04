@@ -1,11 +1,11 @@
 ---
 date: "2016-04-27T00:00:00Z"
-external_link: https://maya-gans.shinyapps.io/JordansClimbs/
+external_link: https://github.com/MayaGans/shinyBody
 image:
-  caption: Jordan's Climbing Data
+  caption: shinyBody
   focal_point: Smart
-summary: Pulling client data from a google sheet to analyze climbing progress within an interactive dashboard.
+summary: A custom shiny input binding that allows the user to click on body parts and color them based on data
 tags:
-- Climbing
-title: Climbing Data
+- Widget
+title: shinyBody
 ---

@@ -23,7 +23,8 @@ projects: []
 
 
 
-<p>My favorite music is improvisational; seeing my favorite musicians push themselves into new territory in a one of a kind unique experience is one of the most exciting creative processes to bear witness to. The art of improvisation also tends to bring people together, which was the inspiration behind creating this network. I chose to teach myself network science using a topic I’m extremely familiar with; the jam band live music scene. I began documenting all the concerts I attend, noting the artists partaking in those bands.</p>
+<p>My favorite music is improvisational; seeing my favorite musicians push themselves into new territory in a one of a kind unique experience is one of the most exciting creative processes to bear witness to. The art of improvisation also tends to bring people together, which was the inspiration behind creating this network.
+I chose to teach myself network science using a topic I’m extremely familiar with; the jam band live music scene. I began documenting all the concerts I attend, noting the artists partaking in those bands.</p>
 <p>This allowed me to learn <code>Neo4J</code>, and <code>RNeo4J</code> for the visualization of the network. Here I have visualized the artists I’ve seen, using the metric of betweeness to quantify the importance of artists and bands connecting other network nodes. Betweenness centrality takes every combination of node and measures the shortest path between them, counting how many times each node is used in the shortest path. Nodes are proportionately sized to reflect their betwenness centrality within the network.</p>
 <p>I also used the <code>Gervan-Newman algorithm</code> which removes these highly important nodes to see which artists and bands belong to clusters. We can then look at these artists and ask questions like: are they clustering due to geography? Perhaps the New Orleans music scene is segregated from the New York scene. <strong>As Wikipedia puts it: Instead of trying to construct a measure that tells us which edges are the most central to communities, the Girvan–Newman algorithm focuses on edges that are most likely “between” communities.</strong></p>
 <p>Edges are also sized according to their weight. Here that is a metric of how many times we’ve seen that artist in the band. As a Phishhead, the edges of Phish are far thicker than any other relationship.</p>
@@ -88,16 +89,10 @@ projects: []
 <p><code>graph_from_data_frame</code> takes this edgelist and we can then pass that to plot (with default settings)</p>
 <pre id="r"><code>    ig = graph_from_data_frame(edges, directed = F)
     plot(ig)</code></pre>
-<div class="figure">
-<img src="figure-markdown_strict/unnamed-chunk-1-1.png" />
-
-</div>
+<p><img src="figure-markdown_strict/unnamed-chunk-1-1.png" /></p>
 <p>This visual is pretty gross, especially because it is a large network. We can remove labels to look at the general structure of our graph.</p>
 <pre id="r"><code>plot(ig, vertex.color = &quot;forestgreen&quot;, vertex.label = NA, size = 1)</code></pre>
-<div class="figure">
-<img src="figure-markdown_strict/unnamed-chunk-1-2.png" />
-
-</div>
+<p><img src="figure-markdown_strict/unnamed-chunk-1-2.png" /></p>
 <p>We can further improve on this by making the size of the nodes a function of some graph metric. Here we will explore <strong>betweenness:</strong> how often some node is on the shortest paths. Betweenness looks at every combination of nodes and calculates the shortest path between them; adding up how many times a node is on that shortest path. <strong>High betweennesss indicates bridges between clusters in the graph.</strong></p>
 <pre id="r"><code>    # we are sorting based on the top 5 nodes of betweenness
     sort(betweenness(ig), decreasing = TRUE)[1:5]
@@ -109,10 +104,7 @@ projects: []
 <p>We can then use this in our visualization by changing the size of the vertices and scale so that it doesn’t take up the entire graph</p>
 <pre id="r"><code>    plot(ig, vertex.color = &quot;cyan&quot;, vertex.label = NA,
          vertex.size = betweenness(ig)/(max(betweenness(ig)* 0.1)))</code></pre>
-<div class="figure">
-<img src="figure-markdown_strict/unnamed-chunk-1-3.png" />
-
-</div>
+<p><img src="figure-markdown_strict/unnamed-chunk-1-3.png" /></p>
 <p>We also want to look at <strong>community detection algorithms</strong>. There are many different algorithms and here we are using the <strong>Gervin Newman algorithm</strong> which iteratively removes edges with high betweeenness centrality. What’s left without these major bridges is our clusters</p>
 <pre id="r"><code>    clusters = cluster_edge_betweenness(ig)
     clusters[1:3]
@@ -187,10 +179,7 @@ projects: []
 <p>We can see some structure to these clusters; Phish and Dead and Company is seprate from the local shows I’ve seen in Colorado in cluster 3. We can use these clusters to color our graph coloring the verteces by their clusters.</p>
 <pre id="r"><code>    plot(ig, vertex.color = clusters$membership, vertex.label = NA,
          vertex.size = betweenness(ig)/(max(betweenness(ig)* 0.1)))</code></pre>
-<div class="figure">
-<img src="figure-markdown_strict/unnamed-chunk-1-4.png" />
-
-</div>
+<p><img src="figure-markdown_strict/unnamed-chunk-1-4.png" /></p>
 <p>We can make this same graph dynamic using networkD3; a package which uses beautiful D3 visuals in R.</p>
 <pre id="r"><code>library(networkD3)</code></pre>
 <p>We have an edge dataframe but we also need a node dataframe for this package. It’s easy enough to extract this, pulling out the unique names of all our nodes from the edgeist.</p>

@@ -1,0 +1,3 @@
+{{/* put this file in the partials/component folder in the theme */}}
+{{ $class := "my-button" }}
+<a{{ if .id }} id="{{ .id }}"{{ end }} href="{{ if .href }}{{ .href | safeURL }}{{ end }}" target="{{ if .target }}{{ .target }}{{ end }}" class="{{ if .class }}{{print $class (print " " .class)}}{{ else }}{{ $class }}{{ end }}"{{if .disabled }} disabled{{end}}>{{ .value | default "My Button"}}</a>

@@ -5,7 +5,7 @@ name = "maya"
 light = true
 
 # Primary
-primary ="#fadadd"
+primary ="#fffff7"
 primary_light = "#ee5863"
 primary_dark = "#ee5863"
 
@@ -14,9 +14,9 @@ link = "#EE5863"
 link_hover = "#FF0080"
 
 # Menu
-menu_primary = "#014421"
-menu_text = "#fff"
-menu_text_active = "#84d6d3"
+menu_primary = "#fffff7"
+menu_text = "grey"
+menu_text_active = "#ee5863"
 menu_title = "#fff"
 
 # Backgrounds

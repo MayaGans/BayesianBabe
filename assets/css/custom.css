@@ -2,6 +2,16 @@ h1, h2, h3 {
   text-transform: uppercase;
 }
 
+.navbar {
+    background-color: #fffff7;
+    box-shadow: 0 0 50px rgba(252, 252, 252, 0.76);
+    text-transform: lowercase;
+    background-image: linear-gradient(to bottom,  #fffff7,  #fffff7,  #fffff7,  #fffff7ed,  #fffff7ba,  #fffff7) !important;  
+}
+
+.navbar-brand{
+  color: grey !important;
+}
 
 .hljs { /* code font size */
 font-size: 16px;
@@ -99,4 +109,56 @@ div.TODO {
 
 div.question {
   background-image: url("../question.png");
+}
+
+.navbar-brand, .navbar-nav li.nav-item a.nav-link {
+    height: inherit;
+    line-height: 30px !important;
+    padding-top: 7px !important;
+    padding-bottom: 5px !important;
+}
+
+a.nav-link,
+a.nav-link:after,
+a.nav-link:before {
+  transition: all .5s;
+}
+
+a.nav-link {
+  position: relative;
+}
+
+a.nav-link:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.'; /* make invisible, dot beneath links */
+  color: transparent;
+  background: #EE5863;
+  height: 2px;
+}
+
+a.nav-link:hover:after {
+  width: 70%;
+}
+
+a[href="resume.pdf"] {
+  border: solid 1px white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+}
+
+a[href="resume.pdf"]:hover {
+  background-color: white;
+  color: black;
+}
+
+.card {
+  background-color: #fffff7;
 }

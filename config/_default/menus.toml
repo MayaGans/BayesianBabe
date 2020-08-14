@@ -7,17 +7,12 @@
 [[main]]
   name = "TidyBlocks"
   url = "tidyblocks"
-  weight = 20
+  weight = 30
   
 [[main]]
-  name = "Tutorials"
+  name = "Blog"
   url = "tutorials"
-  weight = 30
-
-# [[main]]
-#  name = "Publications"
-#  url = "publication/"
-#  weight = 40
+  weight = 20
 
 [[main]]
   name = "DataViz"
@@ -34,15 +29,3 @@
   name = "CV"
   url = "CV/"
   weight = 80
-  
-# [[main]]
-#  name = "JS4DS"
-#  url = "http://js4ds.org/"
-#  weight = 80
-
-# Link to a PDF of your resume/CV from the menu.
-# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
-# [[main]]
-#  name = "CV"
-#  url = "files/Resume_MG.pdf"
-#  weight = 90

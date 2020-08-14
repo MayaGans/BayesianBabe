@@ -178,3 +178,35 @@ a[data-fancybox] img {
   height: 150px !important;
   width: 150px !important;
 }
+
+.course .card-subtitle a:hover {
+  color: pink !important;
+}
+
+.talk_pub_img {
+  max-height: 100px;
+  max-width: 150px;
+  padding-left: 50px;
+}
+
+img.card-link.talk_pub_img {
+  filter: drop-shadow(0 0 0.25rem grey);
+}
+
+.card-left {
+  float: left !important;
+  width: 65% !important;
+  overflow: hidden !important;
+  padding-right: 10px !important;
+}
+
+
+a.page-link:hover {
+  color: grey;
+  background-color: white;
+}
+
+a.page-link {
+  color: white;
+  background-color: #FADADD;
+}

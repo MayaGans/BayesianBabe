@@ -32,7 +32,7 @@ description = ""
 [[item]]
 organization = "Data Carpentries"
 organization_url = "https://datacarpentry.org/"
-title = "Teach R Programming"
+title = "Travel grant to become a Carpentries Instructor"
 url = ""
 certificate_url = ""
 date_start = "2018-11-01"

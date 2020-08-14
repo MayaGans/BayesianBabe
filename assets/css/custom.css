@@ -7,6 +7,7 @@ h1, h2, h3 {
     box-shadow: 0 0 50px rgba(252, 252, 252, 0.76);
     text-transform: lowercase;
     background-image: linear-gradient(to bottom,  #fffff7,  #fffff7,  #fffff7,  #fffff7ed,  #fffff7ba,  #fffff7) !important;  
+    min-height: 100px !important;
 }
 
 .navbar-brand{
@@ -145,6 +146,7 @@ a.nav-link:hover:after {
   width: 70%;
 }
 
+/* resume button */
 a[href="resume.pdf"] {
   border: solid 1px white;
   padding: 5px 10px;
@@ -159,6 +161,7 @@ a[href="resume.pdf"]:hover {
   color: black;
 }
 
+/* card color */
 .card {
   background-color: #fffff7;
 }

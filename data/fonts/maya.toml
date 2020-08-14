@@ -2,10 +2,10 @@
 name = "maya"
 
 # Optional Google font URL
-google_fonts = "Abril+Fatface|Cutive+Mono|Josefin+Slab:300,400,600,700|Open+Sans:400,600,700,800|Raleway:300,400,500,600"
+google_fonts = "Abril+Fatface|Cutive+Mono|Josefin+Slab:300,400,600,700|Open+Sans:400,600,700,800|Raleway:300,400,500,600|Nixie+One:400"
 
 # Font families
-heading_font = "Josefin Slab"
+heading_font = "Nixie One"
 body_font = "Raleway"
 nav_font = "Raleway"
 mono_font = "Cutive Mono"

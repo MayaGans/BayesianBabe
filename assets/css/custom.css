@@ -10,6 +10,10 @@ h1, h2, h3 {
     min-height: 100px !important;
 }
 
+li.nav-item {
+  text-align: center !important;
+}
+
 .navbar-brand{
   color: grey !important;
 }

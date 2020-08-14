@@ -173,3 +173,8 @@ a[href="resume.pdf"]:hover {
 .card {
   background-color: #fffff7;
 }
+
+a[data-fancybox] img {
+  height: 150px !important;
+  width: 150px !important;
+}

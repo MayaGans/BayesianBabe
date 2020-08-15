@@ -220,3 +220,7 @@ a.page-link {
   color: white;
   background-color: #FADADD;
 }
+
+#gallery {
+  background-color: #fffff7 !important;
+}

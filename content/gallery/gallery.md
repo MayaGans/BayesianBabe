@@ -5,8 +5,8 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 66  # Order that this section will appear.
 
-title = "Data Visualizations"
-subtitle = ""
+title = "Data Viz"
+subtitle = "Visualizing data using R and D3"
 
 [design.background]
   color = "white"

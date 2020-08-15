@@ -7,8 +7,8 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 60  # Order that this section will appear.
 
-title = "Tutorials"
-subtitle = "Networks and Statistics in R"
+title = "Writings"
+subtitle = "JavaScript, Shiny, Networks, and general R musings"
 
 [content]
   # Page type to display. E.g. post, talk, or publication.

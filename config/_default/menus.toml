@@ -4,10 +4,10 @@
 #   The weight parameter defines the order that the links will appear in.
 
   
-[[main]]
-  name = "TidyBlocks"
-  url = "tidyblocks"
-  weight = 30
+# [[main]]
+#  name = "TidyBlocks"
+#  url = "tidyblocks"
+#  weight = 30
   
 [[main]]
   name = "Blog"
@@ -26,6 +26,6 @@
   weight = 70
   
 [[main]]
-  name = "CV"
+  name = "resume"
   url = "CV/"
   weight = 80

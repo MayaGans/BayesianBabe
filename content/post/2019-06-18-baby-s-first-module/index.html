@@ -26,14 +26,14 @@ projects: []
 <h2>A book is organized into chapters, a good program is divided into modules.</h2>
 <p>In my <a href="https://maya.rbind.io/post/2019/blockly-the-big-picture/">blockly big picture post</a> I used an inelegant hack within the <code>CreateDataSet</code> block to include the stringified class code into the block itself. <strong>This is the perfect use case for a module!</strong></p>
 </div>
-<div id="our-goal" class="section level1">
-<h1>Our Goal:</h1>
+<div id="our-goal" class="section level2">
+<h2>Our Goal:</h2>
 <p>Rather than include the class script inside the <code>CreateDataSet</code> block, create a seperate module</p>
 <iframe id="demo block-iframe" height="300" width="700" src="../../../example_withModule/index.html" scrolling="false">
 </iframe>
 </div>
-<div id="workflow" class="section level1">
-<h1>Workflow</h1>
+<div id="workflow" class="section level2">
+<h2>Workflow</h2>
 <ul>
 <li>Create the Analysis class in a file called myModule.js and export it</li>
 <li>Import Analysis within our index.html file</li>
@@ -42,8 +42,8 @@ projects: []
 </ul>
 <p><em>Before we even begin, I’m still a little confused why each browser has their own errors but in order to run and debug any html code locally download lite-server [<code>npm install lite-server</code>] then serve your site in the directory where your html is located using <code>lite-server index.html</code>. This worked far better than using Chrome directly!</em></p>
 </div>
-<div id="mymodule.js" class="section level1">
-<h1>myModule.js</h1>
+<div id="mymodule.js" class="section level2">
+<h2>myModule.js</h2>
 <p>I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that’s changed here from the code in the prior post is the first line, be sure to export this as <code>default</code></p>
 <pre class="js"><code>// rather than const PREFIX = 
 // we will export Analysis as a module
@@ -76,8 +76,8 @@ export default class Analysis {
 }
 </script>
 </div>
-<div id="import" class="section level1">
-<h1>Import</h1>
+<div id="import" class="section level2">
+<h2>Import</h2>
 <p>Back inside our html file we add</p>
 <pre class="js"><code>import Analysis from &quot;myModule.js&quot;;</code></pre>
 <script type="text/javascript">
@@ -95,8 +95,8 @@ window.Analysis = Analysis
 </script>
 </script>
 </div>
-<div id="example_blocks.js" class="section level1">
-<h1>example_blocks.js</h1>
+<div id="example_blocks.js" class="section level2">
+<h2>example_blocks.js</h2>
 <p>Now we get elegant. Rather than include the Analysis class defintion within our block, we can simply point to our newly created module</p>
 <pre class="js"><code>Blockly.JavaScript[&#39;example_CreateDataSet&#39;] = function(block) {
     return &quot;new Analysis()&quot;
@@ -108,8 +108,8 @@ Blockly.JavaScript['example_CreateDataSet'] = function(block) {
 </script>
 <p>Whew! With <strong>A LOT</strong> of help from <a href="https://ca.linkedin.com/in/evanschultz1">Evan Schultz</a>, I successfully loaded my first module!</p>
 </div>
-<div id="bonus" class="section level1">
-<h1>BONUS</h1>
+<div id="bonus" class="section level2">
+<h2>BONUS</h2>
 <p>I had to include <code>window.Analysis = Analysis</code> because in my current framework I created two buttons with event handlers ABOVE the module.</p>
 <p>While this works, it’s not good code ettiquite. Instead, we can create the button elements with IDs, then assign the event handlers <strong>BELOW</strong> the module script tag. That way we create buttons, then specify what those buttons actually DO after our module is loaded. This way, our two buttons <code>show JavaScript</code> and <code>run JavaScript</code> will work without needing to specify Analysis at the global scope.</p>
 <div id="rather-than-having-buttons-with-their-functions-at-the-top-of-the-html" class="section level3">

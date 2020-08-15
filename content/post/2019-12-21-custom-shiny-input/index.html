@@ -59,8 +59,8 @@ projects: []
   })
 }</code></pre>
 <p>Note that I wrapped the SVG within a div called <code>all_circles</code> - this is the div that will act as our <code>selectInput</code>.</p>
-<div id="javascript-time" class="section level1">
-<h1>JavaScript Time!</h1>
+<div id="javascript-time" class="section level2">
+<h2>JavaScript Time!</h2>
 <p>In the next little chunk of code we use JQuery to go into the div of class <code>all_circles</code> and find the id of the <code>circ</code> class that was clicked on. We can then take that id and assign it as the value of the shiny input <code>all_circles</code>.</p>
 <pre><code>  tags$script(HTML(
     &quot;$(&#39;#all_circles&#39;).on(&#39;click&#39;, &#39;.circ&#39;, (ev) =&gt; {
@@ -68,7 +68,8 @@ projects: []
         })
         &quot;
   ))</code></pre>
-<p>And there you have it! The <code>#</code> denotes that we’re looking for an id and the <code>.</code> a class name. We’re using a callback function to get the id of the clicked svg, which you can learn more about in some of my prior blog posts. By adding <code>verbatimTextOutput(&quot;debug&quot;)</code> and in the server <code>input$debug &lt;- renderText(input$all_circles)</code> you’ll see that the input changes from red to yellow to blue on click!</p>
+<p>And there you have it! The <code>#</code> denotes that we’re looking for an id and the <code>.</code> a class name. We’re using a callback function to get the id of the clicked svg, which you can learn more about in some of my prior blog posts.
+By adding <code>verbatimTextOutput(&quot;debug&quot;)</code> and in the server <code>input$debug &lt;- renderText(input$all_circles)</code> you’ll see that the input changes from red to yellow to blue on click!</p>
 <p>My revelation to set custom Shiny inputs was an incredibly powerful one that I needed to share, as it enables assigning whatever you want as an input with only a little bit of JQuery to find the elements you want to set as your <code>choices</code>. For instance, I used <a href="https://github.com/volcanioo/Human-Body-Rendering-HTML">This opensource library of a human body made fully with CSS and SVGs</a> to create a <code>div</code> called <code>human_body</code>, then made the “choices” each of the body part SVGs. I hope this opens up new ways of exploring and interacting with data as it did for me!!</p>
 <iframe src="https://maya-gans.shinyapps.io/human_body_app/" height="700px" width="400px">
 </iframe>

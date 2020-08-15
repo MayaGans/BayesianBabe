@@ -78,7 +78,7 @@ And put the SVG code in a reactive within the server:
 
 Note that I wrapped the SVG within a div called `all_circles` - this is the div that will act as our `selectInput`.
 
-# JavaScript Time!
+## JavaScript Time!
 
 In the next little chunk of code we use JQuery to go into the div of class `all_circles` and find the id of the `circ` class that was clicked on. We can then take that id and assign it as the value of the shiny input `all_circles`.
 

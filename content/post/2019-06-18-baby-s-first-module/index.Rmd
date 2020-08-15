@@ -25,12 +25,12 @@ Modules are self contained scripts with their own distinct functionality. This a
 
 In my [blockly big picture post](https://maya.rbind.io/post/2019/blockly-the-big-picture/) I used an inelegant hack within the `CreateDataSet` block to include the stringified class code into the block itself. **This is the perfect use case for a module!**
 
-# Our Goal:
+## Our Goal:
 Rather than include the class script inside the `CreateDataSet` block, create a seperate module
 
 <iframe id="demo block-iframe" height="300" width="700" src="../../../example_withModule/index.html" scrolling = "false"></iframe>
  
-# Workflow
+## Workflow
 * Create the Analysis class in a file called myModule.js and export it
 * Import Analysis within our index.html file
 * Change the `CreateDataSet` block to only contain the string `new Analysis()`
@@ -38,7 +38,7 @@ Rather than include the class script inside the `CreateDataSet` block, create a 
 
 *Before we even begin, I'm still a little confused why each browser has their own errors but in order to run and debug any html code locally download lite-server [`npm install lite-server`] then serve your site in the directory where your html is located using `lite-server index.html`. This worked far better than using Chrome directly!*
 
-# myModule.js
+## myModule.js
 I’ve created a file called myModule.js where I’ve defined the Analysis class and I’m exporting it to be used in our html file. The only line that's changed here from the code in the prior post is the first line, be sure to export this as `default`
 
 ```{js}
@@ -58,7 +58,7 @@ export default class Analysis {
 }
 ```
 
-# Import
+## Import
 Back inside our html file we add
 ```{js}
 import Analysis from "myModule.js";
@@ -73,7 +73,7 @@ window.Analysis = Analysis
 </script>
 ```
 
-# example_blocks.js
+## example_blocks.js
 Now we get elegant. Rather than include the Analysis class defintion within our block, we can simply point to our newly created module
 ```{js}
 Blockly.JavaScript['example_CreateDataSet'] = function(block) {
@@ -83,7 +83,7 @@ Blockly.JavaScript['example_CreateDataSet'] = function(block) {
 
 Whew! With **A LOT** of help from [Evan Schultz](https://ca.linkedin.com/in/evanschultz1), I successfully loaded my first module!
 
-# BONUS
+## BONUS
 I had to include `window.Analysis = Analysis` because in my current framework I created two buttons with event handlers ABOVE the module. 
 
 While this works, it's not good code ettiquite. Instead, we can create the button elements with IDs, then assign the event handlers **BELOW** the module script tag. That way we create buttons, then specify what those buttons actually DO after our module is loaded. This way, our two buttons `show JavaScript` and `run JavaScript` will work without needing to specify Analysis at the global scope. 

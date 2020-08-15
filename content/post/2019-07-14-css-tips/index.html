@@ -22,8 +22,8 @@ projects: []
 
 
 <p>Rather than work through a specific question, this post is a collection of cool CSS tips and tricks I’ve learned through Wes Bos’s free <a href="https://courses.wesbos.com">CSS Grids course</a></p>
-<div id="colors" class="section level1">
-<h1>COLORS</h1>
+<div id="colors" class="section level2">
+<h2>COLORS</h2>
 <p>I spend a lot of time thoughtfully choosing color pallets, then spend an embarrassing amount of time figuring out what those HEX codes I picked out actually are. The first tip that blew my mind was that we can assign HEX codes to default color names that we want to use repeatedly in our main.css under <code>:root</code>, then access those colors by name in our html!</p>
 <p>For instance we can specify hex codes for yellow and black</p>
 <pre class="css"><code>:root {
@@ -44,16 +44,13 @@ p {
 &lt;/style&gt;</code></pre>
 <p>With this nifty trick we don’t have to memorize or track down HEX codes, using familiar color names instead.</p>
 </div>
-<div id="border-box" class="section level1">
-<h1>Border Box</h1>
+<div id="border-box" class="section level2">
+<h2>Border Box</h2>
 <p>When setting a div’s border, if that div is inside a container you’ll want the border to scale to its container’s size. By using <code>border-box</code>, rather than adding a border to a div, you’re telling the browser to account for the border and padding within the div’s total size.</p>
-<div class="figure">
-<img src="img1.png" />
-
+<p><img src="img1.png" /></p>
 </div>
-</div>
-<div id="inherit" class="section level1">
-<h1>INHERIT</h1>
+<div id="inherit" class="section level2">
+<h2>INHERIT</h2>
 <p>You can use border-boxes as above, but best practices add this inheritance snippet:</p>
 <pre class="css"><code>*, *:before, *:after {
   box-sizing: inherit;
@@ -69,13 +66,10 @@ p {
 </blockquote>
 <p><em><a href="https://css-tricks.com/box-sizing/">Taking the internet’s word for it on that one…</a></em></p>
 </div>
-<div id="griddyup" class="section level1">
-<h1>GRIDDYUP</h1>
+<div id="griddyup" class="section level2">
+<h2>GRIDDYUP</h2>
 <p>We can use grids to dice an element into columns and rows (“tracks”), then use those tracks to position our items.</p>
-<div class="figure">
-<img src="img2.png" />
-
-</div>
+<p><img src="img2.png" /></p>
 <p>By using grids, we make take the direct children of a container (items), and lay them out on a grid.</p>
 <p>Let’s create a container with 10 child divs inside</p>
 <pre class="html"><code>&lt;div class=&quot;container&quot;&gt;
@@ -90,10 +84,7 @@ p {
   &lt;div class=&quot;item&quot;&gt;9&lt;/div&gt;
   &lt;div class=&quot;item&quot;&gt;10&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-<div class="figure">
-<img src="img3.png" />
-
-</div>
+<p><img src="img3.png" /></p>
 <p>We can specify a grid display on the container then slice it into columns by defining the column size. Here we create three columns all of equal size using <code>grid-template-columns</code> (100px), for a total div width of 300px. We can also define the space between our grid tracks using <code>grid-gap</code></p>
 <pre class="html"><code>&lt;style&gt;
   .container {
@@ -102,10 +93,7 @@ p {
     grid-gap: 20px
   }
 &lt;/style&gt;</code></pre>
-<div class="figure">
-<img src="img4.png" />
-
-</div>
+<p><img src="img4.png" /></p>
 <p>We can specify row width using <code>grid-template-rows</code> which defaults to a single column. Specifying both <code>grid-template-rows</code> and <code>grid-template-columns</code> is what gives us a grid.</p>
 <pre class="html"><code>&lt;style&gt;
   .container {
@@ -115,13 +103,7 @@ p {
     grid-gap: 20px
   }
 &lt;/style&gt;</code></pre>
-<div class="figure">
-<img src="img5.png" />
-
-</div>
+<p><img src="img5.png" /></p>
 <p>If you want to keep some columns locks and allow others to rescale, you can specify <code>auto</code> rather than a number – I used this sweet feature within the second column below:</p>
-<div class="figure">
-<img src="gif1.gif" />
-
-</div>
+<p><img src="gif1.gif" /></p>
 </div>

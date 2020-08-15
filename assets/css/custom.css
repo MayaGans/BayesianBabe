@@ -224,3 +224,10 @@ a.page-link {
 #gallery {
   background-color: #fffff7 !important;
 }
+
+section#post,
+section#projects,
+section#accomplishments {
+  padding-top: 150px;
+}
+

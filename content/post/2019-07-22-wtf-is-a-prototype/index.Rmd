@@ -21,7 +21,7 @@ projects: []
 
 ![](img1.png)
 
-# From Functions to Object Constructors
+## From Functions to Object Constructors
 
 Let's start with a function called `Person`. This function is a **class**, also called an *object constructor* because it provides a blueprint to create new objects. It is the conveyor belt on which are objects are made.
 
@@ -38,7 +38,7 @@ Every object of class `Person` will accept two arguments, a string for first nam
 let maya = new Person('Maya','Gans');
 ```
 
-# Prototypes
+## Prototypes
 
 So now we have a whole bunch of people with first and last names. What if we want each person to be able to access a function that prints their first and last name with a greeting? This is where `prototypes` come in. 
 
@@ -63,7 +63,7 @@ Hello Maya Gans
 
 Since a prototype is an object, every `new Person` object now has access to this reference function. This is NOT the same as **instance values** like `this.firstName` which are not shared among objects.
 
-# Prototype Inheritance
+## Prototype Inheritance
 
 If it turns out we want to be more formal with our greeting, prototypes can be modified! We can modify or add new properties to all `Person` objects:
 
@@ -90,7 +90,7 @@ We can see through this example the utility of being able to update prototypes. 
 
 **However a danger to be weary of is writing over an already existing function**. For instance, what if we want a new object to be less formal but we've already written over `sayHello`? For this reason, rather than overwrite functions I recommend adding functions, calling our new function `greetFormal`.
 
-# Giving our Prototype a Method
+## Giving our Prototype a Method
 
 Another approach is to add a method to our greeting with a default value (but it can also take on their own instance properties). This can get tricky because the instance property has the same name as the prototype property. 
 
@@ -134,11 +134,11 @@ jane.sayHello()
 Hello Jane Doe
 ```
 
-# In conclusion
+## In conclusion
 
 Most things in JavaScript have a prototype [including functions, objects, classes, numbers, and boolians]. A prototype is an object which has properties and values, and the value of that property will also have a prototype (see: `Person.prototype.sayHello.prototype`)
 
-# This Post Covers
+## This Post Covers
  
 * **Instance properties** `firstName, lastName`
 * **Prototype properties** `sayHello, greeting`

@@ -31,7 +31,7 @@ This concept was described using a concrete example in a [StackOverflow post](ht
 
 You want to create a button on your website with two tasks (1) perform a long calculation (2) and to print "Calculating..." in a div until "Done!" can be printed.
 
-# CREATE BUTTON IN HTML
+## CREATE BUTTON IN HTML
 First we'll create two buttons with small divs to see the status of the calculation
 ```{html}
 <table border=1>
@@ -49,7 +49,7 @@ First we'll create two buttons with small divs to see the status of the calculat
 
 ![](img3.png)
 
-# CREATE LONG FUNCTION
+## CREATE LONG FUNCTION
 Create a function that takes a "long time" to run. When the function is done, it prints "Done!" to the div
 ```{js}
 unction long_running(statusId) {
@@ -65,14 +65,14 @@ unction long_running(statusId) {
       }
 ```
 
-# CREATE STATUS UPDATE FUNCTION
+## CREATE STATUS UPDATE FUNCTION
 ```{js}
 function status_update(statusId, message) {
   document.getElementById(statusId).innerHTML = message;
 }
 ```
 
-# PUT IT ALL TOGETHER
+## PUT IT ALL TOGETHER
 Update the div by using an Event Listener. When clicking the button run our long calculation and the status update.
 ```{js}
 document.getElementById("do").addEventListener("click", function() {
@@ -81,7 +81,7 @@ document.getElementById("do").addEventListener("click", function() {
 });
 ```
 
-# FAIL 
+## FAIL 
 Without using `setTimeout(0)` the queue of tasks that the button fires off are done serially: the long calculation "locks" the thread; the text *is* quickly set to "Done!" but the `status_update` function overwrites it with `calculating...`
 
 ![](img2.png)
@@ -99,5 +99,5 @@ document.getElementById("do_ok").addEventListener("click", function() {
 
 **In the code chunk above the button text "Not calculating yet" will change to "Calculating...." and THEN "Done!"**
 
-# CONCLUSION 
+## CONCLUSION 
 JavaScript runtimes contain a message queue to store the list of messages to be processed (here "calculating..."). Because JavaScript is non-blocking, the messages can be queued in response to events (here: the long calculation). Using a simple **event loop** within our button, JavaScript enables the collection of asynchronous callbacks freeing the runtime to handle concurrent operations.

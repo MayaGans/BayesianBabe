@@ -21,7 +21,7 @@ projects: []
 
 Rather than work through a specific question, this post is a collection of cool CSS tips and tricks I've learned through Wes Bos's free [CSS Grids course](https://courses.wesbos.com)
 
-# COLORS
+## COLORS
 
 I spend a lot of time thoughtfully choosing color pallets, then spend an embarrassing amount of time figuring out what those HEX codes I picked out actually are. The first tip that blew my mind was that we can assign HEX codes to default color names that we want to use repeatedly in our main.css under `:root`, then access those colors by name in our html!
 
@@ -44,12 +44,12 @@ p {
 
 With this nifty trick we don't have to memorize or track down HEX codes, using familiar color names instead.
 
-# Border Box
+## Border Box
 When setting a div's border, if that div is inside a container you'll want the border to scale to its container's size. By using `border-box`, rather than adding a border to a div, you're telling the browser to account for the border and padding within the div's total size.
 
 ![](img1.png)
 
-# INHERIT
+## INHERIT
 You can use border-boxes as above, but best practices add this inheritance snippet: 
 
 ```{css}
@@ -65,7 +65,7 @@ You can use border-boxes as above, but best practices add this inheritance snipp
   
 *[Taking the internet's word for it on that one...](https://css-tricks.com/box-sizing/)*
 
-# GRIDDYUP
+## GRIDDYUP
 We can use grids to dice an element into columns and rows ("tracks"), then use those tracks to position our items. 
 
 ![](img2.png)

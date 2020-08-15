@@ -21,12 +21,9 @@ projects: []
 
 
 
-<div class="figure">
-<img src="img1.png" />
-
-</div>
-<div id="from-functions-to-object-constructors" class="section level1">
-<h1>From Functions to Object Constructors</h1>
+<p><img src="img1.png" /></p>
+<div id="from-functions-to-object-constructors" class="section level2">
+<h2>From Functions to Object Constructors</h2>
 <p>Let’s start with a function called <code>Person</code>. This function is a <strong>class</strong>, also called an <em>object constructor</em> because it provides a blueprint to create new objects. It is the conveyor belt on which are objects are made.</p>
 <pre class="js"><code>function Person(firstName, lastName) {
   this.firstName = firstName;
@@ -44,8 +41,8 @@ function Person(firstName, lastName) {
 let maya = new Person('Maya','Gans');
 </script>
 </div>
-<div id="prototypes" class="section level1">
-<h1>Prototypes</h1>
+<div id="prototypes" class="section level2">
+<h2>Prototypes</h2>
 <p>So now we have a whole bunch of people with first and last names. What if we want each person to be able to access a function that prints their first and last name with a greeting? This is where <code>prototypes</code> come in.</p>
 <p>Our original class has two properties, and both are strings. But an object can have properties that are functions too! Here we create a function called <code>sayHello</code> which every person can access.</p>
 <pre class="js"><code>Person.prototype.sayHello = function() {
@@ -68,8 +65,8 @@ Hello Maya Gans
 </iframe>
 <p>Since a prototype is an object, every <code>new Person</code> object now has access to this reference function. This is NOT the same as <strong>instance values</strong> like <code>this.firstName</code> which are not shared among objects.</p>
 </div>
-<div id="prototype-inheritance" class="section level1">
-<h1>Prototype Inheritance</h1>
+<div id="prototype-inheritance" class="section level2">
+<h2>Prototype Inheritance</h2>
 <p>If it turns out we want to be more formal with our greeting, prototypes can be modified! We can modify or add new properties to all <code>Person</code> objects:</p>
 <pre class="js"><code>Person.prototype.sayHello = function() {
   console.log(`Greetings ${this.firstName} ${this.lastName}`)
@@ -97,8 +94,8 @@ Greetings Maya Gans
 <p>We can see through this example the utility of being able to update prototypes. This doesn’t need to only be applied to objects you create, but you can import packages and modify them by creating new functions that objects can access.</p>
 <p><strong>However a danger to be weary of is writing over an already existing function</strong>. For instance, what if we want a new object to be less formal but we’ve already written over <code>sayHello</code>? For this reason, rather than overwrite functions I recommend adding functions, calling our new function <code>greetFormal</code>.</p>
 </div>
-<div id="giving-our-prototype-a-method" class="section level1">
-<h1>Giving our Prototype a Method</h1>
+<div id="giving-our-prototype-a-method" class="section level2">
+<h2>Giving our Prototype a Method</h2>
 <p>Another approach is to add a method to our greeting with a default value (but it can also take on their own instance properties). This can get tricky because the instance property has the same name as the prototype property.</p>
 <pre class="js"><code>function Person(firstName, lastName, greeting) {
   this.firstName = firstName;
@@ -155,12 +152,12 @@ jane.sayHello()
 Hello Jane Doe
 </script>
 </div>
-<div id="in-conclusion" class="section level1">
-<h1>In conclusion</h1>
+<div id="in-conclusion" class="section level2">
+<h2>In conclusion</h2>
 <p>Most things in JavaScript have a prototype [including functions, objects, classes, numbers, and boolians]. A prototype is an object which has properties and values, and the value of that property will also have a prototype (see: <code>Person.prototype.sayHello.prototype</code>)</p>
 </div>
-<div id="this-post-covers" class="section level1">
-<h1>This Post Covers</h1>
+<div id="this-post-covers" class="section level2">
+<h2>This Post Covers</h2>
 <ul>
 <li><strong>Instance properties</strong> <code>firstName, lastName</code></li>
 <li><strong>Prototype properties</strong> <code>sayHello, greeting</code></li>

@@ -30,6 +30,17 @@ description = ""
 img = ""
 
 [[item]]
+organization = "INBRE Summer of Code"
+organization_url = ""
+title = "From Manuscript to R Package"
+url = "bit.ly/manuscriptrpackage"
+certificate_url = ""
+date_start = "2020-08-18"
+date_end = ""
+description = ""
+img = "img/talk_inbre.png"
+
+[[item]]
 organization = "Phuse Single Day Event"
 organization_url = "https://www.phuse.eu/sde-boston"
 title = "TidyCDISC: An Open-source Application to Interactively Create Tables, Figures, and Patient Profiles from ADaM Data"

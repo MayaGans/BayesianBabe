@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Briar';
-  src: local('Briar'), url('fonts/Briar.otf');
+  src: local('Briar'), url('fonts/Briar.ttf');
 }
 
 body {

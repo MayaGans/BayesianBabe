@@ -32,6 +32,16 @@ li.nav-item {
   color: grey !important;
 }
 
+a.nav-link {
+  font-weight: 200 !important;
+}
+
+
+.navbar .navbar-nav .nav-link.active {
+    font-weight: 700 !important;
+    color: #ee5863 !important;
+}
+
 .hljs { /* code font size */
 font-size: 16px;
 padding: 1rem;

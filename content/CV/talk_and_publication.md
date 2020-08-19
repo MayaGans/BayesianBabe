@@ -18,6 +18,18 @@ date_format = "Jan 2006"
 #   `title`, `organization` and `date_start` are the required parameters.
 #   Leave other parameters empty if not required.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
+
+[[item]]
+organization = "CDISC US Interchange"
+organization_url = "https://www.cdisc.org/events/interchange/2020-cdisc-us-interchange/program"
+title = "tidyCDISC: an Open Source Platform in R to Analyze Clinical Trial Data"
+url = ""
+certificate_url = ""
+date_start = "2020-10-07"
+date_end = ""
+description = ""
+img = "img/talk_rmed.png"
+
 [[item]]
 organization = "R/Medicine"
 organization_url = "https://events.linuxfoundation.org/r-medicine/program/schedule/"
@@ -41,15 +53,20 @@ description = ""
 img = "img/talk_inbre.png"
 
 [[item]]
-organization = "Phuse Single Day Event"
-organization_url = "https://www.phuse.eu/sde-boston"
+organization = "Phuse"
+organization_url = ""
 title = "TidyCDISC: An Open-source Application to Interactively Create Tables, Figures, and Patient Profiles from ADaM Data"
 url = ""
 certificate_url = ""
 date_start = "2020-08-13"
 date_end = ""
-description = ""
-img = ""
+description = """
+<br/>
+
+* [Phuse Single Day Event](https://www.phuse.eu/sde-boston)
+* [Phuse EU](https://www.phuse.eu/sde-boston)
+"""
+img = "img/talk_rmed.png"
 
 [[item]]
 organization = "rstudio::conf 2020"

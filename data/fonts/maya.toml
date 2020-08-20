@@ -6,8 +6,8 @@ google_fonts = "Abril+Fatface|Cutive+Mono|Josefin+Slab:300,400,600,700|Open+Sans
 
 # Font families
 heading_font = "Nixie One"
-body_font = "Biko"
-nav_font = "Biko"
+body_font = "Raleway"
+nav_font = "Raleway"
 mono_font = "Cutive Mono"
 
 # Font size

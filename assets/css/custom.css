@@ -3,11 +3,6 @@
   src: local('Briar'), url('fonts/Briar.ttf');
 }
 
-@font-face {
-  font-family: 'Biko';
-  src: local('Biko'), url('fonts/Biko.ttf');
-}
-
 article {
   padding-top: 100px !important;
 }

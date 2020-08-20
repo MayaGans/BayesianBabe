@@ -20,3 +20,6 @@ image:
 projects: []
 ---
 
+```{r, echo=FALSE}
+htmltools::htmlTemplate(filename = "d3network.html")
+```

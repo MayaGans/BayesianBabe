@@ -31,8 +31,8 @@ I chose to teach myself network science using a topic I’m extremely familiar w
 <iframe src="../../../html/networkd3_closenode.html" height="300px" width="700px">
 </iframe>
 <pre id="r"><code># library(RNeo4j)</code></pre>
-<div id="connect-your-graph-to-the-database" class="section level1">
-<h1>Connect your graph to the database</h1>
+<div id="connect-your-graph-to-the-database" class="section level2">
+<h2>Connect your graph to the database</h2>
 <p>I’m using the default port. You can find this under <code>Details</code> in Neo4j Desktop. Make sure to use the HTTP port (7474)</p>
 <pre id="r"><code>graph &lt;- startGraph(&quot;http://localhost:7474/db/data/&quot;)</code></pre>
 <p>Pass the graph object to summary to get graph overview. This gives us all the combinations of node relationships and helps to familiarize ourselves with the data model.</p>

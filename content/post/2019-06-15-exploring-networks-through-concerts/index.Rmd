@@ -36,7 +36,7 @@ Edges are also sized according to their weight. Here that is a metric of how man
 # library(RNeo4j)
 ```
 
-# Connect your graph to the database
+## Connect your graph to the database
 I'm using the default port. You can find this under `Details` in Neo4j Desktop. Make sure to use the HTTP port (7474)
 
 ```{#r}

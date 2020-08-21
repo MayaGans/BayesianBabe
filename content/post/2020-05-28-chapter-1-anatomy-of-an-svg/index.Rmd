@@ -1,5 +1,5 @@
 ---
-title: 'Chapter 1: Anatomy of an SVG'
+title: "Wait... What's a ViewBox?"
 author: Maya Gans
 date: '2020-05-28'
 slug: chapter-1-anatomy-of-an-svg
@@ -15,9 +15,7 @@ featured: false
 projects: []
 ---
 
-I'm reading [Sarah Drasner's SVG Animations]() book and thought that blogging a summary of each chapter will help cement what I learn! My goal for the end of the book is to create a blockly like front end where blocks can be clicked together, nested, and move together in groups.
-
-But for now **SVG Anatomy!**
+I'm reading [Sarah Drasner's SVG Animations]() book and thought that blogging a summary of each chapter will help cement what I learn... but then went down a viewbox rabbit hole trying to understand the anatomy of an SVG.
 
 ### An Example
 
@@ -119,4 +117,4 @@ We can use `x`__`Y`__ and `slice`/`meet` to further adjust where our elements li
 - `none` will ignore the aspect ratio
 
 
-I'm still a little confused about how and when to alter the viewBox versus the element's height and width directly, but hopefully this will make more sense as I read on....
+I'm still a little confused about how and when to alter the viewBox versus the element's height and width directly but maybe that will come together with time...

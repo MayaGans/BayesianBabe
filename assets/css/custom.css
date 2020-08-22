@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'briarbold';
-    src: url('briar-webfont.woff2') format('woff2'),
-         url('briar-webfont.woff') format('woff'),
-         url('briar-webfont.svg#briarbold') format('svg');
+    src: url('fonts/briar-webfont.woff2') format('woff2'),
+         url('fonts/briar-webfont.woff') format('woff'),
+         url('fonts/briar-webfont.svg#briarbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }

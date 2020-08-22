@@ -2,3 +2,13 @@
   font-family: 'Edda Filled';
   src: local('Edda Filled'), url('fonts/EddaFilled.ttf');
 }
+
+@font-face {
+  font-family: 'Briar';
+  src: url('fonts/Briar.eot');
+  src: url('fonts/Briar.eot') format('embedded-opentype'),
+  url('fonts/Briar.woff2') format('woff2'),
+  url('fonts/Briar.woff') format('woff'),
+  url('fonts/Briar.ttf') format('truetype'),
+  url('fonts/Briar.svg#Briar') format('svg');
+}

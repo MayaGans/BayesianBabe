@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'Briar';
-  src: local('Briar'), url('fonts/Briar.ttf');
-}
-
 article {
   padding-top: 100px !important;
 }

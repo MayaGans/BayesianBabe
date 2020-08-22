@@ -252,3 +252,7 @@ section#accomplishments {
 .card-simple {
   background-color: #fffff7 !important;
 }
+
+span.highlight-code code {
+  background-color: yellow;
+}

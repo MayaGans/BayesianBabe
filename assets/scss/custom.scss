@@ -5,7 +5,7 @@
 
 /* font converted using font-converter.net. thank you! */
 @font-face {
-  font-family: "BriarBold";
+  font-family: "Briar";
   src: url("./fonts/Briar.eot"); /* IE9 Compat Modes */
   src: url("./fonts/Briar.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
     url("./fonts/Briar.otf") format("opentype"), /* Open Type Font */
@@ -16,3 +16,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {@font-face {font-family: 'Briar';
+src: url('.fonts/Briar.svg') format('svg');
+}}

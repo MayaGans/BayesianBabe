@@ -4,10 +4,6 @@
          url('briar-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
-}
-h1 {
-  font-family: 'briarbold';
 }
 
 article {

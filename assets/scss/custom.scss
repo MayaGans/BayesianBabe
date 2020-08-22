@@ -1,17 +1,12 @@
 @font-face {
-  font-family: 'Edda Filled';
-  src: local('Edda Filled'), url('fonts/EddaFilled.ttf');
+  font-family: 'EddaFilled';
+  src: local('EddaFilled'), url('fonts/EddaFilled.ttf');
 }
 
 /* font converted using font-converter.net. thank you! */
 @font-face {
   font-family: "Briar";
-  src: url("fonts/Briar.eot"); /* IE9 Compat Modes */
-  src: url("fonts/Briar.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("fonts/Briar.otf") format("opentype"), /* Open Type Font */
-    url("fonts/Briar.svg") format("svg"), /* Legacy iOS */
-    url("fonts/Briar.ttf") format("truetype"), /* Safari, Android, iOS */
-    url("fonts/Briar.woff") format("woff"), /* Modern Browsers */
+  src: url("fonts/Briar.woff") format("woff"), /* Modern Browsers */
     url("fonts/Briar.woff2") format("woff2"); /* Modern Browsers */
   font-weight: normal;
   font-style: normal;

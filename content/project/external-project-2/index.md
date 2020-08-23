@@ -6,6 +6,6 @@ image:
   focal_point: Smart
 summary: A custom shiny input binding to either click on keys, or use in tandem with your keyboard
 tags:
-- Widget
+- Package
 title: shinyKeyboard
 ---

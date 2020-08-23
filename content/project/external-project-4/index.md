@@ -6,7 +6,7 @@ image:
 focal_point: Smart
 summary: An application to explore quasiquotation, expressions, and evaluation in R
 tags:
-  - App
+  - Shiny
 title: Expressions Application
 ---
   

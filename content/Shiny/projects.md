@@ -26,12 +26,16 @@ subtitle = "A portfolio of the interactive web applications I've created using a
     tag = "*"
   
   [[content.filter_button]]
-    name = "Widget"
-    tag = "Widget"
+    name = "Shiny"
+    tag = "Shiny"
     
   [[content.filter_button]]
-    name = "Applications"
-    tag = "App"
+    name = "Package"
+    tag = "Package"
+    
+  [[content.filter_button]]
+    name = "Website"
+    tag = "Website"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.

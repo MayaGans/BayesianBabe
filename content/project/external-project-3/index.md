@@ -6,7 +6,7 @@ image:
 focal_point: Smart
 summary: A solutions manual to accompany Hadley Wickhams Mastering Shiny
 tags:
-  - Widget
+  - Shiny
 title: Mastering Shiny Solutions Manual
 ---
   

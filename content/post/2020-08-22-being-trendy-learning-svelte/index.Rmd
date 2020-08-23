@@ -391,5 +391,6 @@ Rather than writing the input element as we have, there is a Svelte shortcut for
 
 And there you have it! A first contact introduction to Svelte. This was inspired by the [The Net Ninja's Tutorials](https://www.youtube.com/watch?v=QJJjXRIg7kI&list=PL4cUxeGkcC9hlbrVO_2QFVqVPhlZmz7tO&index=5) which you can follow along with here. I've also included this code in a [repo here](https://github.com/MayaGans/svelteproj).
 
+I put these skills to the test (and more!) by making a website to keep track of the Phish broadcasts entitled [Dinner and a Movie](bit.ly/phishdaam). You can check out the repo [here](https://github.com/MayaGans/DaaM)
 <br/>
 <br/>

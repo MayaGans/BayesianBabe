@@ -242,10 +242,10 @@ a.page-link {
   background-color: #fffff7 !important;
 }
 
-section#post,
+section#posts,
 section#projects,
 section#accomplishments {
-  padding-top: 100px;
+  padding-top: 150px !important;
 }
 
 

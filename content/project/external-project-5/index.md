@@ -6,6 +6,6 @@ image:
 focal_point: Smart
 summary: An application to explore ADaM datasets using a drag and drop table interface, plotly, and timevis
 tags:
-  - App
+  - Shiny
 title: tidyCDISC
 ---

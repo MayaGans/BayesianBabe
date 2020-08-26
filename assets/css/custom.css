@@ -256,3 +256,15 @@ section#accomplishments {
 span.highlight-code code {
   background-color: yellow;
 }
+
+i.fa-li.fab.fa-twitter.fa-2x, 
+i.fa-li.fab.fa-github.fa-2x
+{
+  color: #ee5863 !important;
+}
+
+i.fa-li.fab.fa-twitter.fa-2x:hover,
+i.fa-li.fab.fa-github.fa-2x:hover
+{
+  color: #FF0080 !important;
+}

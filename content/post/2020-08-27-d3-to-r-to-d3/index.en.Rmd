@@ -146,7 +146,7 @@ Becomes
 
 ## Put it together in R2D3
 
-You can find the JS code all together in my [repo here]() but now all we need to do is specify our data and our js file!
+You can find the JS code all together in my [repo here](https://github.com/MayaGans/BayesianBabe/blob/master/content/post/2020-08-27-d3-to-r-to-d3/tweezer.js) but now all we need to do is specify our data and our js file!
 
 ```{r}
 r2d3::r2d3(data = tweezer, "tweezer.js")

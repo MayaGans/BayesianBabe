@@ -28,7 +28,7 @@ dimensions.boundedHeight = dimensions.height
 const wrapper = svg
       .attr("width", dimensions.width)
       .attr("height", dimensions.height)
-      .attr("background", "#fadadd")
+      .style("background", "#fadadd")
       
 const bounds = wrapper.append("g") .
         style("transform", `translate(${

@@ -268,3 +268,7 @@ i.fa-li.fab.fa-github.fa-2x:hover
 {
   color: #FF0080 !important;
 }
+
+.media.stream-item img {
+  height: 100px !important;
+}

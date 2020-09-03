@@ -1,0 +1,109 @@
+---
+title: GSAP & Xaringan
+author: Maya Gans
+date: '2020-09-02'
+slug: gsap-xaringan
+categories:
+  - Tutorial
+tags:
+  - JavaScript
+  - CSS
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-09-02T17:27:41-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<p>Greensock is a JavaScript library that lets you animate DOM elements. I’ve honestly learned everything I know about GSAP from <a href="https://greensock.com/get-started/">their 20 minute tutorial video</a> and trial and error. Here I’ll go over the three steps needed to animate an element of your Xaringan slides:</p>
+<ol style="list-style-type: decimal">
+<li>Import the Greensock CDN into the head of your slide html</li>
+<li>Create the elements you want to animate in markdown</li>
+<li>Create a JavaScript file with the GSAP code to make those elements move.</li>
+</ol>
+<div style="padding:20px;border:5px solid hotpink;text-align:center;">
+<p>tl;dr <a href="https://github.com/MayaGans/gsapXaringan">here’s the slide repo</a> where I animate two rotating images inside a Xaringan presentation.</p>
+</div>
+<div id="import-the-greensock-cdn" class="section level2">
+<h2>Import the Greensock CDN</h2>
+<p>I took the default YAML included in the Xaringan examples, then totally stole some code from the incredible <a href="https://www.garrickadenbuie.com/blog/">Garrick Aden-Buie</a>’s presentation. He adds the argument <code>includes: in_header: head.html</code> in the YAML where <code>head.html</code> includes what you want to load in the head of your slides. Your front matter should look a little something like this:</p>
+<pre><code>title: &quot;A GSAP Tutorial&quot;
+subtitle: &quot;Learn how to use GSAP animations in your slides!&quot;
+author: &quot;Maya Gans&quot;
+output:
+  xaringan::moon_reader:
+    css: &quot;style.css&quot;
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      in_header: head.html</code></pre>
+<p>And we’ll put the CDN for GSAP inside the <code>head.html</code> file:</p>
+<pre><code>&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>Alright! Now we can use GSAP in our slides!</p>
+</div>
+<div id="create-elements-to-animate" class="section level2">
+<h2>Create elements to animate</h2>
+<p>So we can use GSAP functions now but first we need to create elements to use those functions <em>on</em>. I’m going to add two images, similar to the GSAP video. I wrapped the two images below in a container and child div in order to center the images on the page.</p>
+<pre><code>&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;child&quot;&gt;
+  &lt;img src = &quot;Rlogo.png&quot; class=&quot;r&quot;/&gt;
+  &lt;img src = &quot;gsap.png&quot; class=&quot;gsap&quot;/&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div id="gsap-code" class="section level2">
+<h2>GSAP Code</h2>
+<p>Before we get to our goal of spinning these images in a circle, I want to break down what a GSAP “TWEEN”. Let’s simply start by using the <code>to</code> method to move our R logo from it’s start position 300 pixels to the right:</p>
+<style>
+img[src*="tween"] {
+    filter: drop-shadow(0 0 0.75rem grey);
+}
+</style>
+<p><img src="tween.png" width="1032" /></p>
+<img src="Rlogo.png" style="height:25%;width:25%" class="R1"/>
+<script>
+gsap.to(".R1", {duartion: 3, x: 100, repeat: -1, yoyo:true, ease: "bounce"})
+</script>
+<p><em>But Maya, I copied your code above and my animation occurs once - yours occurs on loop, it goes back and forth, and it even BOUNCES!</em></p>
+<p>I got fancy and added more to my configuration. I set <code>repeat: -1</code> which means loop through my animation infinitely, and <code>yoyo: true</code> which means play my animation, then play it in reverse – try it!</p>
+<p>There’s also an ease property if we want. We can use <code>ease: &quot;bounce&quot;</code> in our configuration to make the image look like its bouncing. GSAP includes a <a href="https://greensock.com/ease-visualizer/">GUI explorer</a> to look at different eases, and even create your own!</p>
+</div>
+<div id="animate-around-center" class="section level2">
+<h2>Animate around center</h2>
+<div id="step-1-use-the-set-method-to-set-the-transform-of-each-element-to-its-center" class="section level4">
+<h4>Step 1: Use the <code>set</code> method to set the transform of each element to its center</h4>
+<pre><code>gsap.set(&quot;.R, .gsap&quot;, {transformOrigin: &quot;50% 50%&quot;});</code></pre>
+<p>There’s no duration here because it’s set immediately when called. GSAP uses the JavaScript function <code>querySelectorAll</code> for the target, so we can specify both elements in the same tween by comma seperating them!</p>
+</div>
+<div id="step-2-rotate" class="section level4">
+<h4>Step 2: Rotate</h4>
+<pre><code>gsap.to(&quot;.R, .gsap&quot;, {duration 2, rotation: 360})</code></pre>
+</div>
+<div id="step-3-rotate-inifinitely" class="section level4">
+<h4>Step 3: Rotate inifinitely</h4>
+<p>Let’s rotate the object by 360 degrees, and give the animation a duration of 2. Let’s also set the repeat to infinity:</p>
+<pre><code>gsap.to(&quot;.R, .gsap&quot;, {duration: 2, rotation: 360, repeat: -1})</code></pre>
+<img src="Rlogo.png" style="height:25%;width:25%" class="R"/>
+<script>
+gsap.set(".R, .gsap", {transformOrigin: "50% 50%"});
+gsap.to(".R, .gsap", {duration: 2, rotation: 360, repeat: -1})
+</script>
+<p>Putting that together we can place our JS code under the R and GSAP images because they have to exist on the page prior to running our GSAP code:</p>
+<pre><code>&lt;script&gt;
+gsap.set(&quot;.R, .gsap&quot;, {transformOrigin: &quot;50% 50%&quot;});
+gsap.to(&quot;.R, .gsap&quot;, {duration: 2, rotation: 360, repeat: -1})
+&lt;/script&gt;</code></pre>
+<p>And that’s all there is to it for including GSAP in R. To recap you need (1) GSAP in the head of the document, (2) the elements to animate, and (3) the GSAP JavaScript code to animate them. This is only the tiniest tip of the GSAP iceberg; you can create really cool timelines of animations which trigger one after the other. Hopefully this is enough to get you started. Have fun!</p>
+</div>
+</div>

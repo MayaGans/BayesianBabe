@@ -148,6 +148,8 @@ Becomes
 
 You can find the JS code all together in my [repo here](https://github.com/MayaGans/BayesianBabe/blob/master/content/post/2020-08-27-d3-to-r-to-d3/tweezer.js) but now all we need to do is specify our data and our js file!
 
+**I added an argument to the `options` so my plot has the background color of my blog instead of a default white background**
+
 ```{r}
 r2d3::r2d3(data = tweezer, 
            "tweezer.js",

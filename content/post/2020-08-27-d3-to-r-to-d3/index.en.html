@@ -116,6 +116,7 @@ meanSong = bounds.append(&quot;rect&quot;)
 <div id="put-it-together-in-r2d3" class="section level2">
 <h2>Put it together in R2D3</h2>
 <p>You can find the JS code all together in my <a href="https://github.com/MayaGans/BayesianBabe/blob/master/content/post/2020-08-27-d3-to-r-to-d3/tweezer.js">repo here</a> but now all we need to do is specify our data and our js file!</p>
+<p><strong>I added an argument to the <code>options</code> so my plot has the background color of my blog instead of a default white background</strong></p>
 <pre class="r"><code>r2d3::r2d3(data = tweezer, 
            &quot;tweezer.js&quot;,
            options = list(&quot;background&quot;, &quot;#fadadd&quot;))</code></pre>

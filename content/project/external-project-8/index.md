@@ -6,6 +6,6 @@ image:
 focal_point: Smart
 summary: A Voronoi mesh timelapse using Purple Air sensor data 
 tags:
-  - Package
+  - Website
 title: California Voronoi
 ---

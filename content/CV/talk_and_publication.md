@@ -20,6 +20,17 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[item]]
+organization = "Shiny Developer Podcast"
+organization_url = ""
+title = ""
+url = ""
+certificate_url = ""
+date_start = "2020-10-11"
+date_end = ""
+description = ""
+img = "img/talk_shinydev.png"
+
+[[item]]
 organization = "CDISC US Interchange"
 organization_url = "https://www.cdisc.org/events/interchange/2020-cdisc-us-interchange/program"
 title = "tidyCDISC: an Open Source Platform in R to Analyze Clinical Trial Data"

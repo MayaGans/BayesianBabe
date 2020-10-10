@@ -1,6 +1,6 @@
 +++
 # Accomplishments widget.
-widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
+widget = "talks_and_pub"  # See https://sourcethemes.com/academic/docs/page-builder/
   
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
@@ -25,7 +25,7 @@ organization_url = "https://rstudio.com/conference/"
 title = "Starting an R Book Club: Finding Friendship in Isolation"
 url = ""
 certificate_url = ""
-date_start = ""
+date_start = "2021-01-01"
 date_end = ""
 description = ""
 img = "img/talk_rstudioconf2021.png"
@@ -55,7 +55,7 @@ description = ""
 img = "img/talk_inbre.png"
 
 [[item]]
-organization = "Phuse"
+organization = "Biogen"
 organization_url = ""
 title = "TidyCDISC: An Open-source Application to Interactively Create Tables, Figures, and Patient Profiles from ADaM Data"
 url = ""
@@ -65,10 +65,10 @@ date_end = ""
 description = """
 <br/>
 
-* [Phuse Single Day Event](https://www.phuse.eu/sde-boston)
-* [Phuse EU](https://www.phuse.eu/sde-boston)
-* [Phuse Single Day Event](https://www.phuse.eu/sde-boston)
-* [Phuse EU](https://www.phuse.eu/sde-boston)
+* [Phuse Single Day Event](https://www.youtube.com/watch?v=EFGkHrV0WbY)
+* [Phuse EU](https://www.youtube.com/watch?v=EFGkHrV0WbY)
+* [R/Medicine](https://www.youtube.com/watch?v=QeHSjw-vU3U&list=PL4IzsxWztPdljYo7uE5G_R2PtYw3fUReo&index=4)
+* [R/Pharma](https://www.youtube.com/watch?v=QeHSjw-vU3U&list=PL4IzsxWztPdljYo7uE5G_R2PtYw3fUReo&index=4)
 """
 img = "img/talk_rmed.png"
 

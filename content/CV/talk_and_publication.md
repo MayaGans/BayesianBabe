@@ -53,20 +53,20 @@ description = ""
 img = "img/talk_inbre.png"
 
 [[item]]
-organization = "tidyCDISC"
+organization = "Phuse"
 organization_url = ""
 title = "TidyCDISC: An Open-source Application to Interactively Create Tables, Figures, and Patient Profiles from ADaM Data"
 url = ""
 certificate_url = ""
 date_start = "2020-08-13"
-date_end = "2020-10-14"
+date_end = ""
 description = """
 <br/>
 
 * [Phuse Single Day Event](https://www.youtube.com/watch?v=EFGkHrV0WbY)
 * [Phuse EU](https://www.youtube.com/watch?v=EFGkHrV0WbY)
 * [R/Medicine](https://www.youtube.com/watch?v=QeHSjw-vU3U)
-* [R/Pharma]()
+* [R/Pharma](https://www.youtube.com/watch?v=QeHSjw-vU3U)
 """
 img = "img/talk_rmed.png"
 

@@ -20,6 +20,17 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[item]]
+organization = "rstudio::global(2021)"
+organization_url = "https://rstudio.com/conference/"
+title = "Starting an R Book Club: Finding Friendship in Isolation"
+url = ""
+certificate_url = ""
+date_start = ""
+date_end = ""
+description = ""
+img = "img/talk_rstudioconf2021.png"
+
+[[item]]
 organization = "Shiny Developer Podcast"
 organization_url = ""
 title = ""
@@ -29,28 +40,6 @@ date_start = "2020-10-11"
 date_end = ""
 description = ""
 img = "img/talk_shinydev.png"
-
-[[item]]
-organization = "CDISC US Interchange"
-organization_url = "https://www.cdisc.org/events/interchange/2020-cdisc-us-interchange/program"
-title = "tidyCDISC: an Open Source Platform in R to Analyze Clinical Trial Data"
-url = ""
-certificate_url = ""
-date_start = "2020-10-07"
-date_end = ""
-description = ""
-img = "img/talk_rmed.png"
-
-[[item]]
-organization = "R/Medicine"
-organization_url = "https://events.linuxfoundation.org/r-medicine/program/schedule/"
-title = "tidyCDISC: an Open Source Platform in R to Analyze Clinical Trial Data"
-url = ""
-certificate_url = ""
-date_start = "2020-08-27"
-date_end = ""
-description = ""
-img = "img/talk_rmed.png"
 
 [[item]]
 organization = "INBRE Summer of Code"
@@ -64,18 +53,20 @@ description = ""
 img = "img/talk_inbre.png"
 
 [[item]]
-organization = "Phuse"
+organization = "tidyCDISC"
 organization_url = ""
 title = "TidyCDISC: An Open-source Application to Interactively Create Tables, Figures, and Patient Profiles from ADaM Data"
 url = ""
 certificate_url = ""
 date_start = "2020-08-13"
-date_end = ""
+date_end = "2020-10-14"
 description = """
 <br/>
 
-* [Phuse Single Day Event](https://www.phuse.eu/sde-boston)
-* [Phuse EU](https://www.phuse.eu/sde-boston)
+* [Phuse Single Day Event](https://www.youtube.com/watch?v=EFGkHrV0WbY)
+* [Phuse EU](https://www.youtube.com/watch?v=EFGkHrV0WbY)
+* [R/Medicine](https://www.youtube.com/watch?v=QeHSjw-vU3U)
+* [R/Pharma]()
 """
 img = "img/talk_rmed.png"
 

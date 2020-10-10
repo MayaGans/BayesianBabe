@@ -61,7 +61,7 @@ title = "TidyCDISC: An Open-source Application to Interactively Create Tables, F
 url = ""
 certificate_url = ""
 date_start = "2020-08-13"
-date_end = ""
+date_end = "2020-10-14"
 description = """
 <br/>
 

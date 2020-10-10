@@ -1,6 +1,6 @@
 +++
 # Accomplishments widget.
-widget = "talk_and_pub"  # See https://sourcethemes.com/academic/docs/page-builder/
+widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
   
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
@@ -41,27 +41,7 @@ date_end = ""
 description = ""
 img = "img/talk_shinydev.png"
 
-[[item]]
-organization = "CDISC US Interchange"
-organization_url = "https://www.cdisc.org/events/interchange/2020-cdisc-us-interchange/program"
-title = "tidyCDISC: an Open Source Platform in R to Analyze Clinical Trial Data"
-url = ""
-certificate_url = ""
-date_start = "2020-10-07"
-date_end = ""
-description = ""
-img = "img/talk_rmed.png"
 
-[[item]]
-organization = "R/Medicine"
-organization_url = "https://events.linuxfoundation.org/r-medicine/program/schedule/"
-title = "tidyCDISC: an Open Source Platform in R to Analyze Clinical Trial Data"
-url = ""
-certificate_url = ""
-date_start = "2020-08-27"
-date_end = ""
-description = ""
-img = "img/talk_rmed.png"
 
 [[item]]
 organization = "INBRE Summer of Code"
@@ -85,6 +65,8 @@ date_end = ""
 description = """
 <br/>
 
+* [Phuse Single Day Event](https://www.phuse.eu/sde-boston)
+* [Phuse EU](https://www.phuse.eu/sde-boston)
 * [Phuse Single Day Event](https://www.phuse.eu/sde-boston)
 * [Phuse EU](https://www.phuse.eu/sde-boston)
 """

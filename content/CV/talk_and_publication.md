@@ -68,7 +68,7 @@ description = """
 * [Phuse Single Day Event](https://www.youtube.com/watch?v=EFGkHrV0WbY)
 * [Phuse EU](https://www.youtube.com/watch?v=EFGkHrV0WbY)
 * [R/Medicine](https://www.youtube.com/watch?v=QeHSjw-vU3U&list=PL4IzsxWztPdljYo7uE5G_R2PtYw3fUReo&index=4)
-* [R/Pharma](https://www.youtube.com/watch?v=QeHSjw-vU3U&list=PL4IzsxWztPdljYo7uE5G_R2PtYw3fUReo&index=4)
+* [R/Pharma](https://www.youtube.com/watch?v=XzcMsNr_c0E&list=PLMtxz1fUYA5DSpVzwR7bT37IZqCT4SH5a&index=12)
 """
 img = "img/talk_rmed.png"
 

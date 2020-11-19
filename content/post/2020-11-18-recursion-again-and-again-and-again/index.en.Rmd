@@ -19,20 +19,21 @@ image:
 projects: []
 ---
 
-I've gotten pretty far in the past year and a half or so of my limited JavaScript knowledge, but I still have some glaring gaps that I'd like to address. My familiarity with recursive functions ends after the classic fibonacci sequence or counter example. I found myself asking okay but when am I _actually_ going to use this? There must be a time were recursion will shine and I can't just brute force my way through with a for loop.... right? 
+I've gotten pretty far in the past year and a half or so of my limited JavaScript knowledge, but I still have some glaring gaps that I'd like to address. My familiarity with recursive functions ends after the classic Fibonacci sequence or counter example. I found myself asking okay but when am I _actually_ going to use this? There must be a time were recursion will shine and I can't just brute force my way through with a for loop.... right? 
 
 ## Hierarchical Data!
 
 Enter hierarchical data. Let's say you have hierarchical data represented in a flat structure. Here we have elements with an id, that each have a parent element. At the highest level we have body which doesn't have a parent element, but both `hand` and `foot` have the `body` parent. Then `finger` has the parent `hand` and `toe` the parent `foot`. Let's structure this data as a tree to represent these relationships better!
 
 ```
-let anatomy = {
+let anatomy = [
  { id: 'body',   parent: null },
  { id: 'hand',   parent: 'body' },
- { id: 'finger', parent: 'hand' },
+ { id: 'ring finger', parent: 'hand' },
+ { id: 'pinky', parent: 'hand' },
  { id: 'foot',   parent: 'body' },
- { id: 'toe',    parent: 'foot' }
-}
+ { id: 'big toe',    parent: 'foot' }
+]
 ```
 
 ## The recursive function
@@ -64,15 +65,16 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)
 {
   body: {
     hand: {
-     finger: {}
-   },
+      "ring finger": {},
+      "pinky":{}
+    },
     foot: {
-     toe: {}
-   }
+      "big toe": {}
+    }
   }
 }
 ```
 
-In the first loop, we pass in our object, `anatomy` and also pass in the root parent: `null`. For every body part we use `forEach` to assign the node (`body`) and give it the return value of the same function, but this time we're not passing in `anatomy`, we've passed in `body` so it will return `hand` and `foot` - and we recurse down assigning `finger` and `toe` respectively. This recursion happens all the way down until there are not properties left to assign.
+In the first loop, we pass in our object, `anatomy` and also pass in the root parent: `null`. For every body part we use `forEach` to assign the node (`body`) and give it the return value of the same function, but this time we're not passing in `anatomy`, we've passed in `body` so it will return `hand` and `foot` - and we recurse down assigning all fingers to hand and toes to feet. This recursion happens all the way down until there are not properties left to assign.
 
-This tree structure makes it quite obvious that body contains both hand and foot, which contains finger and toe respectively. A little more practical than the fibonacci sequence example if you ask me... 
+This tree structure makes it quite obvious that body contains both hand and foot, which contains finger and toe respectively. A little more practical than the Fibonacci sequence example if you ask me... 

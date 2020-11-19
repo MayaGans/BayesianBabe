@@ -23,17 +23,18 @@ projects: []
 <script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
-<p>I’ve gotten pretty far in the past year and a half or so of my limited JavaScript knowledge, but I still have some glaring gaps that I’d like to address. My familiarity with recursive functions ends after the classic fibonacci sequence or counter example. I found myself asking okay but when am I <em>actually</em> going to use this? There must be a time were recursion will shine and I can’t just brute force my way through with a for loop…. right?</p>
+<p>I’ve gotten pretty far in the past year and a half or so of my limited JavaScript knowledge, but I still have some glaring gaps that I’d like to address. My familiarity with recursive functions ends after the classic Fibonacci sequence or counter example. I found myself asking okay but when am I <em>actually</em> going to use this? There must be a time were recursion will shine and I can’t just brute force my way through with a for loop…. right?</p>
 <div id="hierarchical-data" class="section level2">
 <h2>Hierarchical Data!</h2>
 <p>Enter hierarchical data. Let’s say you have hierarchical data represented in a flat structure. Here we have elements with an id, that each have a parent element. At the highest level we have body which doesn’t have a parent element, but both <code>hand</code> and <code>foot</code> have the <code>body</code> parent. Then <code>finger</code> has the parent <code>hand</code> and <code>toe</code> the parent <code>foot</code>. Let’s structure this data as a tree to represent these relationships better!</p>
-<pre><code>let anatomy = {
+<pre><code>let anatomy = [
  { id: &#39;body&#39;,   parent: null },
  { id: &#39;hand&#39;,   parent: &#39;body&#39; },
- { id: &#39;finger&#39;, parent: &#39;hand&#39; },
+ { id: &#39;ring finger&#39;, parent: &#39;hand&#39; },
+ { id: &#39;pinky&#39;, parent: &#39;hand&#39; },
  { id: &#39;foot&#39;,   parent: &#39;body&#39; },
- { id: &#39;toe&#39;,    parent: &#39;foot&#39; }
-}</code></pre>
+ { id: &#39;big toe&#39;,    parent: &#39;foot&#39; }
+]</code></pre>
 </div>
 <div id="the-recursive-function" class="section level2">
 <h2>The recursive function</h2>
@@ -59,13 +60,14 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)</code></pre>
 <pre><code>{
   body: {
     hand: {
-     finger: {}
-   },
+      &quot;ring finger&quot;: {},
+      &quot;pinky&quot;:{}
+    },
     foot: {
-     toe: {}
-   }
+      &quot;big toe&quot;: {}
+    }
   }
 }</code></pre>
-<p>In the first loop, we pass in our object, <code>anatomy</code> and also pass in the root parent: <code>null</code>. For every body part we use <code>forEach</code> to assign the node (<code>body</code>) and give it the return value of the same function, but this time we’re not passing in <code>anatomy</code>, we’ve passed in <code>body</code> so it will return <code>hand</code> and <code>foot</code> - and we recurse down assigning <code>finger</code> and <code>toe</code> respectively. This recursion happens all the way down until there are not properties left to assign.</p>
-<p>This tree structure makes it quite obvious that body contains both hand and foot, which contains finger and toe respectively. A little more practical than the fibonacci sequence example if you ask me…</p>
+<p>In the first loop, we pass in our object, <code>anatomy</code> and also pass in the root parent: <code>null</code>. For every body part we use <code>forEach</code> to assign the node (<code>body</code>) and give it the return value of the same function, but this time we’re not passing in <code>anatomy</code>, we’ve passed in <code>body</code> so it will return <code>hand</code> and <code>foot</code> - and we recurse down assigning all fingers to hand and toes to feet. This recursion happens all the way down until there are not properties left to assign.</p>
+<p>This tree structure makes it quite obvious that body contains both hand and foot, which contains finger and toe respectively. A little more practical than the Fibonacci sequence example if you ask me…</p>
 </div>

@@ -83,6 +83,8 @@ This tree structure makes it quite obvious that body contains both hand and foot
 
 I assume recursive functions are also possible with R - I wonder how one would turn this dataframe into a nested list? 
 
+### Given this Tibble
+
 ```{r}
 library(tidyr)
 anatomy <- tibble(
@@ -91,4 +93,12 @@ anatomy <- tibble(
 )
 ```
 
+### Create the Desired Output:
+
+```{r}
+list(body =
+ list(hand = list(c(list(`ring finger` = list(), pinky = list())))),
+ list(foot = list(`big toe` = list()))
+)
+```
 

@@ -74,9 +74,35 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)</code></pre>
 <div id="translating-into-r" class="section level2">
 <h2>Translating into R:</h2>
 <p>I assume recursive functions are also possible with R - I wonder how one would turn this dataframe into a nested list?</p>
+<div id="given-this-tibble" class="section level3">
+<h3>Given this Tibble</h3>
 <pre class="r"><code>library(tidyr)
 anatomy &lt;- tibble(
   id = c(&#39;body&#39;, &#39;hand&#39;, &#39;ring finger&#39;, &#39;pinky&#39;, &#39;foot&#39;, &#39;big toe&#39;),
   parent = c(NA, &#39;body&#39;, &#39;hand&#39;, &#39;hand&#39;, &#39;body&#39;, &#39;foot&#39;)
 )</code></pre>
+</div>
+<div id="create-the-desired-output" class="section level3">
+<h3>Create the Desired Output:</h3>
+<pre class="r"><code>list(body =
+ list(hand = list(c(list(`ring finger` = list(), pinky = list())))),
+ list(foot = list(`big toe` = list()))
+)</code></pre>
+<pre><code>## $body
+## $body$hand
+## $body$hand[[1]]
+## $body$hand[[1]]$`ring finger`
+## list()
+## 
+## $body$hand[[1]]$pinky
+## list()
+## 
+## 
+## 
+## 
+## [[2]]
+## [[2]]$foot
+## [[2]]$foot$`big toe`
+## list()</code></pre>
+</div>
 </div>

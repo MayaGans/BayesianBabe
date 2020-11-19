@@ -81,8 +81,10 @@ This tree structure makes it quite obvious that body contains both hand and foot
 
 ## Translating into R:
 
+I wanted to translate this function into #rstats and of course Twitter came through. With the help of [Jakub T. Jankiewicz]([https://twitter.com/jcubic) we can translate this function above into #rstats using applys!
 
-Given this list of lists:
+
+#### Given this list of lists:
 
 ```{r}
 anatomy <- list(
@@ -94,6 +96,8 @@ anatomy <- list(
   list(id = 'big toe', parent = 'foot')
 )
 ```
+
+#### We can make our recursive function
 
 We can create an empty list and filter it based on the selected parent argument. We use this same argument and assign it as the node id, then run the `makeTree` function on that node again, going deeper and deeper into the tree
 

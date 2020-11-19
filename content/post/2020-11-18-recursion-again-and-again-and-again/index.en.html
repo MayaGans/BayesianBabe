@@ -73,7 +73,9 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)</code></pre>
 </div>
 <div id="translating-into-r" class="section level2">
 <h2>Translating into R:</h2>
-<p>Given this list of lists:</p>
+<p>I wanted to translate this function into #rstats and of course Twitter came through. With the help of <a href="%5Bhttps://twitter.com/jcubic">Jakub T. Jankiewicz</a> we can translate this function above into #rstats using applys!</p>
+<div id="given-this-list-of-lists" class="section level4">
+<h4>Given this list of lists:</h4>
 <pre class="r"><code>anatomy &lt;- list(
   list(id = &#39;body&#39;, parent = NULL),
   list(id = &#39;hand&#39;, parent = &#39;body&#39;),
@@ -82,6 +84,9 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)</code></pre>
   list(id = &#39;foot&#39;, parent = &#39;body&#39;),
   list(id = &#39;big toe&#39;, parent = &#39;foot&#39;)
 )</code></pre>
+</div>
+<div id="we-can-make-our-recursive-function" class="section level4">
+<h4>We can make our recursive function</h4>
 <p>We can create an empty list and filter it based on the selected parent argument. We use this same argument and assign it as the node id, then run the <code>makeTree</code> function on that node again, going deeper and deeper into the tree</p>
 <pre class="r"><code>makeTree &lt;- function(categories, parent) {
   node &lt;- list()
@@ -107,4 +112,5 @@ makeTree(anatomy, NULL)</code></pre>
 ## $body$foot
 ## $body$foot$`big toe`
 ## list()</code></pre>
+</div>
 </div>

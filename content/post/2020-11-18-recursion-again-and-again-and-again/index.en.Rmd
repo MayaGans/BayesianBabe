@@ -78,3 +78,17 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)
 In the first loop, we pass in our object, `anatomy` and also pass in the root parent: `null`. For every body part we use `forEach` to assign the node (`body`) and give it the return value of the same function, but this time we're not passing in `anatomy`, we've passed in `body` so it will return `hand` and `foot` - and we recurse down assigning all fingers to hand and toes to feet. This recursion happens all the way down until there are not properties left to assign.
 
 This tree structure makes it quite obvious that body contains both hand and foot, which contains finger and toe respectively. A little more practical than the Fibonacci sequence example if you ask me... 
+
+## Translating into R:
+
+I assume recursive functions are also possible with R - I wonder how one would turn this dataframe into a nested list? 
+
+```{r}
+library(tidyr)
+anatomy <- tibble(
+  id = c('body', 'hand', 'ring finger', 'pinky', 'foot', 'big toe'),
+  parent = c(NA, 'body', 'hand', 'hand', 'body', 'foot')
+)
+```
+
+

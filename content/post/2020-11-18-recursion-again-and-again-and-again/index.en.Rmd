@@ -81,24 +81,33 @@ This tree structure makes it quite obvious that body contains both hand and foot
 
 ## Translating into R:
 
-I assume recursive functions are also possible with R - I wonder how one would turn this dataframe into a nested list? 
 
-### Given this Tibble
+Given this list of lists:
 
 ```{r}
-library(tidyr)
-anatomy <- tibble(
-  id = c('body', 'hand', 'ring finger', 'pinky', 'foot', 'big toe'),
-  parent = c(NA, 'body', 'hand', 'hand', 'body', 'foot')
+anatomy <- list(
+  list(id = 'body', parent = NULL),
+  list(id = 'hand', parent = 'body'),
+  list(id = 'ring finger', parent = 'hand'),
+  list(id = 'pinky', parent = 'hand'),
+  list(id = 'foot', parent = 'body'),
+  list(id = 'big toe', parent = 'foot')
 )
 ```
 
-### Create the Desired Output:
+We can create an empty list and filter it based on the selected parent argument. We use this same argument and assign it as the node id, then run the `makeTree` function on that node again, going deeper and deeper into the tree
 
 ```{r}
-list(body =
- list(hand = list(c(list(`ring finger` = list(), pinky = list())))),
- list(foot = list(`big toe` = list()))
-)
-```
+makeTree <- function(categories, parent) {
+  node <- list()
+  filtered <- sapply(categories, function(c) {
+    identical(c$parent, parent)
+  })
+  lapply(categories[filtered], function(c) {
+    node[[c$id]] <<- makeTree(categories, c$id)
+  })
+  node
+}
 
+makeTree(anatomy, NULL)
+```

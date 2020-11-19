@@ -73,36 +73,38 @@ console.log(JSON.stringify(makeTree(anatomy, null)), null, 2)</code></pre>
 </div>
 <div id="translating-into-r" class="section level2">
 <h2>Translating into R:</h2>
-<p>I assume recursive functions are also possible with R - I wonder how one would turn this dataframe into a nested list?</p>
-<div id="given-this-tibble" class="section level3">
-<h3>Given this Tibble</h3>
-<pre class="r"><code>library(tidyr)
-anatomy &lt;- tibble(
-  id = c(&#39;body&#39;, &#39;hand&#39;, &#39;ring finger&#39;, &#39;pinky&#39;, &#39;foot&#39;, &#39;big toe&#39;),
-  parent = c(NA, &#39;body&#39;, &#39;hand&#39;, &#39;hand&#39;, &#39;body&#39;, &#39;foot&#39;)
+<p>Given this list of lists:</p>
+<pre class="r"><code>anatomy &lt;- list(
+  list(id = &#39;body&#39;, parent = NULL),
+  list(id = &#39;hand&#39;, parent = &#39;body&#39;),
+  list(id = &#39;ring finger&#39;, parent = &#39;hand&#39;),
+  list(id = &#39;pinky&#39;, parent = &#39;hand&#39;),
+  list(id = &#39;foot&#39;, parent = &#39;body&#39;),
+  list(id = &#39;big toe&#39;, parent = &#39;foot&#39;)
 )</code></pre>
-</div>
-<div id="create-the-desired-output" class="section level3">
-<h3>Create the Desired Output:</h3>
-<pre class="r"><code>list(body =
- list(hand = list(c(list(`ring finger` = list(), pinky = list())))),
- list(foot = list(`big toe` = list()))
-)</code></pre>
+<p>We can create an empty list and filter it based on the selected parent argument. We use this same argument and assign it as the node id, then run the <code>makeTree</code> function on that node again, going deeper and deeper into the tree</p>
+<pre class="r"><code>makeTree &lt;- function(categories, parent) {
+  node &lt;- list()
+  filtered &lt;- sapply(categories, function(c) {
+    identical(c$parent, parent)
+  })
+  lapply(categories[filtered], function(c) {
+    node[[c$id]] &lt;&lt;- makeTree(categories, c$id)
+  })
+  node
+}
+
+makeTree(anatomy, NULL)</code></pre>
 <pre><code>## $body
 ## $body$hand
-## $body$hand[[1]]
-## $body$hand[[1]]$`ring finger`
+## $body$hand$`ring finger`
 ## list()
 ## 
-## $body$hand[[1]]$pinky
+## $body$hand$pinky
 ## list()
 ## 
 ## 
-## 
-## 
-## [[2]]
-## [[2]]$foot
-## [[2]]$foot$`big toe`
+## $body$foot
+## $body$foot$`big toe`
 ## list()</code></pre>
-</div>
 </div>

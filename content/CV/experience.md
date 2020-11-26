@@ -18,12 +18,27 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
+  title = "Informatics Application Developer"
+  company = "Atorus Research"
+  company_url = "https://www.atorusresearch.com/"
+  location = "Philadelphia, PA"
+  date_start = "2020-11-30"
+  date_end = ""
+  description = """
+  Responsibilities include:
+  
+  * Software product design and development, end to end from user interface to technical application
+  * Maintenance of a code base using software versioning tools and continuous integration tests
+  * Client interface and project leadership
+  """
+  
+[[experience]]
   title = "Statistical Programmer"
   company = "Cytel Inc"
-  company_url = ""
+  company_url = "https://www.cytel.com/"
   location = "Boston, MA"
   date_start = "2019-11-01"
-  date_end = ""
+  date_end = "2020-11-27"
   description = """
   Responsibilities include:
   
@@ -36,7 +51,7 @@ date_format = "Jan 2006"
 [[experience]]
   title = "Intern"
   company = "RStudio"
-  company_url = ""
+  company_url = "https://rstudio.com/"
   location = "Boston, MA"
   date_start = "2019-06-01"
   date_end = "2019-08-01"

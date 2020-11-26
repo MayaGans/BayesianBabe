@@ -40,4 +40,4 @@ user_groups:
 - Visitors
 ---
 
-I am currently a statistical programmer at Cytel where I develop custom applications using R and JavaScript. As an RStudio intern I designed [TidyBlocks](https://tidyblocks.tech), a visual block based programming language. I also co-wrote [JavaScript for Data Science](https://js4ds.org). I use `ggplot2` and `d3.js` to create music related infographics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing tall mountains.
+I am currently an Informatics Application Developer at Atorus Research where I develop custom applications using R and JavaScript. As an RStudio intern I designed [TidyBlocks](https://tidyblocks.tech), a visual block based programming language. I also co-wrote [JavaScript for Data Science](https://js4ds.org). I use `ggplot2` and `d3.js` to create music related infographics for [JamBase.com](https://www.jambase.com/article/new-orleans-jazz-fest-after-dark-deep-dive). When I'm not coding, I'm climbing tall mountains.

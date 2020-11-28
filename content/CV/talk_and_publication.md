@@ -28,7 +28,7 @@ certificate_url = ""
 date_start = "2021-01-01"
 date_end = ""
 description = ""
-img = "img/talk_rstudioconf2021.png"
+img = "img/talk_bookclub.png"
 
 [[item]]
 organization = "Shiny Developer Podcast"

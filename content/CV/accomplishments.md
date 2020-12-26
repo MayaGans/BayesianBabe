@@ -20,6 +20,16 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
   
 [[item]]
+organization = "RStudio"
+organization_url = ""
+title = "2020 Table Contest"
+url = ""
+certificate_url = "https://blog.rstudio.com/2020/12/23/winners-of-the-2020-rstudio-table-contest/"
+date_start = "2020-01-23"
+date_end = ""
+description = ""
+
+[[item]]
 organization = "University of Wyoming School of Botany"
 organization_url = ""
 title = "Wilhem G and Ragnhild Solheim Memorial Scholarship"

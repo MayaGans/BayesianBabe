@@ -46,13 +46,22 @@ hr {
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
   .grid-container {
-    display: grid;
     grid-template-columns: 100%;
-    gap: 0px 0px;
-    height: 100%;
-    width: 100%;
+    grid-template-rows: 0.5fr 0.7fr 0.5fr 2fr 0.7fr 1fr 1.5fr;
+    grid-template-areas:
+    "LOGO"
+    "TITLE"
+    "Intro"
+    "Social"
+    "Experience"
+    "Education"
+    "Expertise"
+    "Publications"
+    "Skills"
+    "Awards"
+    "Hobbies" !important;
   }
 }
 

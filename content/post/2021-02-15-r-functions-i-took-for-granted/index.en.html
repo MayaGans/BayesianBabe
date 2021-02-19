@@ -1,0 +1,91 @@
+---
+title: R Functions I Took for Granted
+author: Maya Gans
+date: '2021-02-15'
+slug: r-functions-i-took-for-granted
+categories:
+  - Tutorial
+tags:
+  - R
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-02-15T09:02:57-08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>I’m always trying to sharpen my JavaScript skills and I thought a good way of doing this would be to turn some dataframes I had lying around into JavaScript arrays of objects. What resulted is a love letter to the little R functions that are in actuality powerhouses and make our lives so easy because the best way I’ve seen to write these in JavaScript is, well, cray.</p>
+<div id="seq" class="section level2">
+<h2><code>seq</code></h2>
+<p>In R the seq function lets us create a sequence of numbers by specifying where to start and where to finish. Done.</p>
+<p>In JavaScript, the most concise way I’ve found to do this is create an empty array of the length of your sequence, spread it using <code>...</code> so you get keys for each item, and then extract those keys to get a sequence of numbers!</p>
+<div class="split-container">
+<div class="left">
+<h4 id="r">R:</h4>
+<pre class="r"><code>(r_arr &lt;- seq(0,10))</code></pre>
+<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div class="right">
+<h4 id="js">JS:</h4>
+<pre><code>let js_arr = [...Array(11).keys()]</code></pre>
+<pre><code>(11) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code></pre>
+</div>
+</div>
+</div>
+<div id="seqs-by" class="section level2">
+<h2>seq’s <code>by</code></h2>
+<p><code>seq</code> also has a <code>by</code> argument, where we can specify by how much to increment the vector. In R if we want to create a sequence that increases by <code>0.5</code> we just add another argument <code>by = 0.5</code>!</p>
+<p>However, in JavaScript, the easiest way I’ve found is to take our initial array and multiply each number in the array by <code>0.5</code>:</p>
+<div class="split-container">
+<div class="left">
+<h4 id="r-1">R:</h4>
+<pre class="r"><code>seq(0,length(r_arr)/2, by = 0.5)</code></pre>
+<pre><code>##  [1] 0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5</code></pre>
+</div>
+<div class="right">
+<h4 id="js-1">JS:</h4>
+<pre><code>js_arr.map(i =&gt; 0.5*i)</code></pre>
+<pre><code>(11) [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]</code></pre>
+</div>
+</div>
+</div>
+<div id="rep" class="section level2">
+<h2><code>rep</code></h2>
+<p>In R we can use the rep function to repeat whatever <code>(5 and 10)</code> we want in the first argument as many times <code>length(r_arr)</code> as the second argument.</p>
+<p><code>rep</code> is by no means limited to two numbers, that just so happen to be divisible by one another, but I leveraged this for my approach. We can take our sequence array and map over it so that for each number we find it’s remainder when divided by two, giving us <code>0</code> or <code>1</code>. In the case that it is <code>0</code> we end up multiplying <code>5</code> by <code>1</code>, and in the case that the remainder is <code>1</code> we multiply <code>2</code> by <code>5</code> to get 10. <em>This seems like a lot of trickery and problem solving for a little repeating sequence!!!</em></p>
+<div class="split-container">
+<div class="left">
+<h4 id="r-2">R:</h4>
+<pre class="r"><code>rep(c(5,10), length(r_arr))</code></pre>
+<pre><code>##  [1]  5 10  5 10  5 10  5 10  5 10  5 10  5 10  5 10  5 10  5 10  5 10</code></pre>
+</div>
+<div class="right">
+<h4 id="js-2">JS:</h4>
+<pre><code>js_arr.map(i =&gt; 5 * (1 + i%2))</code></pre>
+<pre><code>(11) [5, 10, 5, 10, 5, 10, 5, 10, 5, 10, 5]</code></pre>
+</div>
+</div>
+<p>In this post I’m focusing on base R functions because I can write an entire tome on tidyverse functions and <code>ggplot2</code>…. In short thank your local R developer, and push yourself to write these functions in other languages!</p>
+<p>Have any other vectorized operations you’d like to add? Find me on <a href="www.twitter.com/mayacelium">twitter</a> I’d love to add it!</p>
+<style>
+.split-container {
+   width: 100%;
+   display: flex;
+}
+
+.left, .right {
+  width: 50%;
+  padding: 5px;
+}
+</style>
+</div>

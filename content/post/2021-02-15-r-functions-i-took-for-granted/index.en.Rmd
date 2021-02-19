@@ -1,0 +1,134 @@
+---
+title: R Functions I Took for Granted
+author: Maya Gans
+date: '2021-02-15'
+slug: r-functions-i-took-for-granted
+categories:
+  - Tutorial
+tags:
+  - R
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-02-15T09:02:57-08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+I'm always trying to sharpen my JavaScript skills and I thought a good way of doing this would be to turn some dataframes I had lying around into JavaScript arrays of objects. What resulted is a love letter to the little R functions that are in actuality powerhouses and make our lives so easy because the best way I've seen to write these in JavaScript is, well, cray.
+
+## `seq`
+
+In R the seq function lets us create a sequence of numbers by specifying where to start and where to finish. Done.
+
+In JavaScript, the most concise way I've found to do this is create an empty array of the length of your sequence, spread it using `...` so you get keys for each item, and then extract those keys to get a sequence of numbers!
+
+<div class="split-container">
+<div class="left">
+
+#### R:
+```{r}
+(r_arr <- seq(0,10))
+```
+</div>
+
+
+<div class="right">
+
+#### JS:
+
+```
+let js_arr = [...Array(11).keys()]
+```
+
+```
+(11) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+</div>
+</div>
+
+
+## seq's `by`
+
+`seq` also has a `by` argument, where we can specify by how much to increment the vector. In R if we want to create a sequence that increases by `0.5` we just add another argument `by = 0.5`!
+
+However, in JavaScript, the easiest way I've found is to take our initial array and multiply each number in the array by `0.5`:
+
+<div class="split-container">
+<div class="left">
+
+#### R:
+```{r}
+seq(0,length(r_arr)/2, by = 0.5)
+```
+</div>
+
+
+<div class="right">
+
+#### JS:
+
+```
+js_arr.map(i => 0.5*i)
+```
+
+```
+(11) [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
+```
+
+</div>
+</div>
+
+
+## `rep`
+
+In R we can use the rep function to repeat whatever `(5 and 10)` we want in the first argument as many times `length(r_arr)` as the second argument.
+
+`rep` is by no means limited to two numbers, that just so happen to be divisible by one another, but I leveraged this for my approach. We can take our sequence array and map over it so that for each number we find it's remainder when divided by two, giving us `0` or `1`. In the case that it is `0` we end up multiplying `5` by `1`, and in the case that the remainder is `1` we multiply `2` by `5` to get 10. *This seems like a lot of trickery and problem solving for a little repeating sequence!!!*
+
+
+<div class="split-container">
+<div class="left">
+
+#### R:
+```{r}
+rep(c(5,10), length(r_arr))
+```
+</div>
+
+
+<div class="right">
+
+#### JS:
+
+```
+js_arr.map(i => 5 * (1 + i%2))
+```
+
+```
+(11) [5, 10, 5, 10, 5, 10, 5, 10, 5, 10, 5]
+```
+</div>
+</div>
+
+In this post I'm focusing on base R functions because I can write an entire tome on tidyverse functions and `ggplot2`.... In short thank your local R developer, and push yourself to write these functions in other languages! 
+
+Have any other vectorized operations you'd like to add? Find me on [twitter](www.twitter.com/mayacelium) I'd love to add it! 
+
+
+<style>
+.split-container {
+   width: 100%;
+   display: flex;
+}
+
+.left, .right {
+  width: 50%;
+  padding: 5px;
+}
+</style>

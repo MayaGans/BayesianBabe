@@ -204,6 +204,7 @@ a[href="resume.pdf"]:hover {
 a[data-fancybox] img {
   height: 150px !important;
   width: 150px !important;
+  object-fit: cover;
 }
 
 .course .card-subtitle a:hover {

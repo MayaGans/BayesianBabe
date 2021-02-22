@@ -119,7 +119,7 @@ js_arr.map(i => 5 * (1 + i%2))
 
 ## Array subsetting
 
-This last one is an ode to subsetting. If I want to find the third, seventh, and tenth elements in my array, all we need in R are some brackets!
+This last one is an ode to subsetting with a special shout out to [Nischal Shrestha ](https://twitter.com/nischaldesign?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor). If I want to find the third, seventh, and tenth elements in my array, all we need in R are some brackets!
 
 
 <div class="split-container">
@@ -127,7 +127,7 @@ This last one is an ode to subsetting. If I want to find the third, seventh, and
 
 #### R:
 ```{r}
-r_subset = c(2,6,9) +1
+r_subset = c(2,6,9) +1 ## +1 will make R == JS
 r_arr[r_subset]
 ```
 </div>

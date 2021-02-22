@@ -116,9 +116,42 @@ js_arr.map(i => 5 * (1 + i%2))
 </div>
 </div>
 
-In this post I'm focusing on base R functions because I can write an entire tome on tidyverse functions and `ggplot2`.... In short thank your local R developer, and push yourself to write these functions in other languages! 
 
-Have any other vectorized operations you'd like to add? Find me on [twitter](www.twitter.com/mayacelium) I'd love to add it! 
+## Array subsetting
+
+This last one is an ode to subsetting. If I want to find the third, seventh, and tenth elements in my array, all we need in R are some brackets!
+
+
+<div class="split-container">
+<div class="left">
+
+#### R:
+```{r}
+r_subset = c(2,6,9) +1
+r_arr[r_subset]
+```
+</div>
+
+
+<div class="right">
+
+#### JS:
+
+```
+js_subset = [2,6,9]
+js_arr.filter((_, index) => js_subset.includes(index));
+```
+
+```
+(3) [2, 6, 9]
+```
+
+</div>
+</div>
+
+In this post I'm focusing on base R functions because I can write an entire tome on translating tidyverse functions and `ggplot2`.... In short thank your local R developer, and it's pretty fun to push yourself to write functions in other languages! 
+
+Have any other operations you'd like to add? Find me on [twitter](www.twitter.com/mayacelium) and I'd love to add it! 
 
 
 <style>

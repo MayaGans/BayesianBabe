@@ -75,8 +75,26 @@ projects: []
 <pre><code>(11) [5, 10, 5, 10, 5, 10, 5, 10, 5, 10, 5]</code></pre>
 </div>
 </div>
-<p>In this post I’m focusing on base R functions because I can write an entire tome on tidyverse functions and <code>ggplot2</code>…. In short thank your local R developer, and push yourself to write these functions in other languages!</p>
-<p>Have any other vectorized operations you’d like to add? Find me on <a href="www.twitter.com/mayacelium">twitter</a> I’d love to add it!</p>
+</div>
+<div id="array-subsetting" class="section level2">
+<h2>Array subsetting</h2>
+<p>This last one is an ode to subsetting. If I want to find the third, seventh, and tenth elements in my array, all we need in R are some brackets!</p>
+<div class="split-container">
+<div class="left">
+<h4 id="r-3">R:</h4>
+<pre class="r"><code>r_subset = c(2,6,9) +1
+r_arr[r_subset]</code></pre>
+<pre><code>## [1] 2 6 9</code></pre>
+</div>
+<div class="right">
+<h4 id="js-3">JS:</h4>
+<pre><code>js_subset = [2,6,9]
+js_arr.filter((_, index) =&gt; js_subset.includes(index));</code></pre>
+<pre><code>(3) [2, 6, 9]</code></pre>
+</div>
+</div>
+<p>In this post I’m focusing on base R functions because I can write an entire tome on translating tidyverse functions and <code>ggplot2</code>…. In short thank your local R developer, and it’s pretty fun to push yourself to write functions in other languages!</p>
+<p>Have any other operations you’d like to add? Find me on <a href="www.twitter.com/mayacelium">twitter</a> and I’d love to add it!</p>
 <style>
 .split-container {
    width: 100%;

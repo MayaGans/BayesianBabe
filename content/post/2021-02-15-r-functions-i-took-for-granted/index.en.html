@@ -78,7 +78,7 @@ projects: []
 </div>
 <div id="array-subsetting" class="section level2">
 <h2>Array subsetting</h2>
-<p>This last one is an ode to subsetting. If I want to find the third, seventh, and tenth elements in my array, all we need in R are some brackets!</p>
+<p>This last one is an ode to subsetting with a special shout out to <a href="https://twitter.com/nischaldesign?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Nischal Shrestha</a>. If I want to find the third, seventh, and tenth elements in my array, all we need in R are some brackets!</p>
 <div class="split-container">
 <div class="left">
 <h4 id="r-3">R:</h4>
@@ -91,6 +91,47 @@ r_arr[r_subset]</code></pre>
 <pre><code>js_subset = [2,6,9]
 js_arr.filter((_, index) =&gt; js_subset.includes(index));</code></pre>
 <pre><code>(3) [2, 6, 9]</code></pre>
+</div>
+</div>
+<div class="twitter">
+<h2 style="padding-top:0px;">
+Twitter Update
+</h2>
+<h3 id="unique">Unique</h3>
+<p><a href="https://twitter.com/daranzolin"><span class="citation">@daranzolin</span></a> reccomended adding <code>unique</code> to the list! In JavaScript we can pass the entire array into <code>filter</code> where we can use the logic: (1) return the index of the current letter in the array. This will return the <em>first</em> time we see, “a”, “b”, or “c”. If that is equal to the current index, that means we have a new letter and will keep it, otherwise we can throw that letter away. In R, well, we can just use <code>unique</code>!</p>
+<div class="split-container">
+<div class="left">
+<h4 id="r-4">R:</h4>
+<pre class="r"><code>abc &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;c&quot;, &quot;b&quot;, &quot;c&quot;)
+unique &lt;- unique(abc)
+print(unique)</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+</div>
+<div class="right">
+<h4 id="js-4">JS:</h4>
+<pre><code>let abc = [&quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;c&quot;, &quot;b&quot;, &quot;c&quot;];
+let unique = letters.filter((item, i, ar) =&gt; ar.indexOf(item) === i);
+console.log(unique);</code></pre>
+<pre><code>(3) [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</code></pre>
+</div>
+</div>
+<h3 id="paste">Paste</h3>
+<p><a href="https://twitter.com/MattDzugan"><span class="citation">@MattDzugan</span></a> bought up the real MVP, <code>paste</code>: a lovely, vectorized hero. In order to do this in JS my solution was to map over the first vector, and return the letter vector with the same index of the number vector:</p>
+<div class="split-container">
+<div class="left">
+<h4 id="r-5">R:</h4>
+<pre class="r"><code>abc &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+numb &lt;- c(1:3)
+paste(abc, numb)</code></pre>
+<pre><code>## [1] &quot;a 1&quot; &quot;b 2&quot; &quot;c 3&quot;</code></pre>
+</div>
+<div class="right">
+<h4 id="js-5">JS:</h4>
+<pre><code>let abc = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+let numb = [1,2,3]
+abc.map((letter, i) =&gt; (letter + &quot; &quot; + numb[i]))</code></pre>
+<pre><code>(3) [&quot;a 1&quot;, &quot;b 2&quot;, &quot;c 3&quot;]</code></pre>
+</div>
 </div>
 </div>
 <p>In this post I’m focusing on base R functions because I can write an entire tome on translating tidyverse functions and <code>ggplot2</code>…. In short thank your local R developer, and it’s pretty fun to push yourself to write functions in other languages!</p>

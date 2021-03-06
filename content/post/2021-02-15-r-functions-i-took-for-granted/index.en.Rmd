@@ -149,6 +149,84 @@ js_arr.filter((_, index) => js_subset.includes(index));
 </div>
 </div>
 
+<div class="twitter">
+
+<h2 style="padding-top:0px;">Twitter Update</h2>
+
+### Unique
+
+<a href="https://twitter.com/daranzolin">@daranzolin</a> reccomended adding `unique` to the list! In JavaScript we can pass the entire array into `filter` where we can use the logic: (1) return the index of the current letter in the array. This will return the _first_ time we see, "a", "b", or "c". If that is equal to the current index, that means we have a new letter and will keep it, otherwise we can throw that letter away. In R, well, we can just use `unique`!
+
+<div class="split-container">
+<div class="left">
+
+#### R:
+
+```{r}
+abc <- c("a", "b", "b", "c", "b", "c")
+unique <- unique(abc)
+print(unique)
+```
+
+</div>
+
+
+<div class="right">
+
+#### JS:
+
+```
+let abc = ["a", "b", "b", "c", "b", "c"];
+let unique = letters.filter((item, i, ar) => ar.indexOf(item) === i);
+console.log(unique);
+```
+
+```
+(3) ["a", "b", "c"]
+```
+
+</div>
+</div>
+
+### Paste
+
+<a href="https://twitter.com/MattDzugan">@MattDzugan</a> bought up the real MVP, `paste`: a lovely, vectorized hero. In order to do this in JS my solution was to map over the first vector, and return the letter vector with the same index of the number vector:
+
+<div class="split-container">
+<div class="left">
+
+#### R:
+
+```{r}
+abc <- c("a", "b", "c")
+numb <- c(1:3)
+paste(abc, numb)
+```
+
+</div>
+
+
+<div class="right">
+
+#### JS:
+
+```
+let abc = ["a", "b", "c"]
+let numb = [1,2,3]
+abc.map((letter, i) => (letter + " " + numb[i]))
+```
+
+```
+(3) ["a 1", "b 2", "c 3"]
+```
+
+</div>
+</div>
+
+
+</div>
+
+
 In this post I'm focusing on base R functions because I can write an entire tome on translating tidyverse functions and `ggplot2`.... In short thank your local R developer, and it's pretty fun to push yourself to write functions in other languages! 
 
 Have any other operations you'd like to add? Find me on [twitter](www.twitter.com/mayacelium) and I'd love to add it! 

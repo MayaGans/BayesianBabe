@@ -22,7 +22,7 @@
 
 [[main]]
   name = "Projects"
-  url = "Shiny"
+  url = "projects"
   weight = 70
   
 [[main]]

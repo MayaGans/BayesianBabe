@@ -7,5 +7,5 @@ focal_point: Smart
 summary: A blocks based coding language to learn rstats programming 
 tags:
   - Website
-title: TidyBlockss
+title: TidyBlocks
 ---

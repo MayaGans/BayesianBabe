@@ -5,7 +5,7 @@ headless = false  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 65  # Order that this section will appear.
 
-title = "Shiny Apps"
+title = "Projects"
 subtitle = "A portfolio of the interactive web applications I've created using a combination of R and JavaScript"
 
 [content]

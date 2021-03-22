@@ -7,6 +7,14 @@
     font-style: normal;
 }
 
+::-moz-selection {
+  background: #ffb7b7; /* Gecko Browsers */
+}
+
+::selection {
+  background-color: #fffff7;
+}
+
 p > a:hover {
   color: #e14675;
   text-decoration: none;
@@ -16,6 +24,10 @@ p > a {
   position: relative;
   color: #e14675;
   text-decoration: none;
+}
+
+ul.share li a {
+    background-color: #ee5863;
 }
 
 p > a::before {

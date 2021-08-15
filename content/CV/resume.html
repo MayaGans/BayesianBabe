@@ -1,326 +1,27 @@
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
-  
-.pub {
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
-  margin: 20px 0px;
-  display: flex;
-  justify-content: space-around;
-}
-
-a {
-  color: black;
-  text-decoration: underline;
-}
-
-.edu {
-  border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
-    margin: 20px 0px;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-  body {
-    font-family: 'Source Sans Pro';
-    color: gray;
-  }
-
-  @media (min-width: 992px) {
-    .col-lg-8 {
-      min-width: 100%;
-    }
-  }
-
-  .col-12 {
-    width: 100%;
-  }
-
-  .section-heading {
-    display: none;
-}
-
-  .bar-container {
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
-  }
-
-  a {
-    text-decoration: none;
-    color: #EE5963;
-  }
-
-  h1,h2,h3,h4 {
-    font-family: 'Libre Baskerville';
-    text-align: center;
-    text-transform: uppercase;
-    color: #EE5963;
-  }
-
-hr {
-  border: 0px;
-  border-bottom: 5px solid #EE5963;
-  width: 100%;
-  background: transparent;
-  background-image: none;
-}
-
-@media (max-width: 992px) {
-  .grid-container {
-    grid-template-columns: 100% !important;
-    grid-template-rows: 0.3fr 0.5fr 0.2fr 2fr 0.7fr 1fr 1.5fr; !important;
-    grid-template-areas:
-        "LOGO"
-        "TITLE"
-        "Intro"
-        "Social"
-        "Experience"
-        "Education"
-        "Expertise"
-        "Publications"
-        "Skills"
-        "Awards"
-        "Hobbies" !important;
-  }
-  .LOGO {
-      border-right: solid 5px #EE5963 !important;
-  }
-  .Social {
-    border-right: solid 5px #EE5963 !important;
-  }
-  .Education {
-    border-right: solid 5px #EE5963 !important;
-  }
-  .Skills {
-    border-right: solid 5px #EE5963 !important;
-    border-bottom: 0px !important;
-  }
-  .Expertise {
-    border-right: solid 5px #EE5963 !important;
-    border-bottom: 0px !important;
-  }
-  .Awards {
-    border-right: solid 5px #EE5963 !important;
-    border-bottom: 0px !important;
-  }
-
-  .link-container {
-    padding: 20px 0px;
-  }
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.1fr 0.1fr 0.1fr 0.85fr 0.25fr 0.8fr 0.8fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "LOGO TITLE TITLE TITLE"
-    "Intro Intro Intro Intro"
-    "Social Experience Experience Experience"
-    "Education Experience Experience Experience"
-    "Expertise Publications Publications Publications"
-    "Expertise Publications Publications Publications"
-    "Skills Awards Awards Hobbies"
-    "Skills Awards Awards Hobbies"
-    "Skills Awards Awards Hobbies";
-    height: 100%;
-    width: 100%;
-}
-
-.icon {
-  padding: 10px;
-}
-
-.pubimg {
-  width: 112px;
-  height: 85px;
-}
-
-.pubd {
-  width: 50%;
-}
-
-.icon:hover {
-  fill: #EE5963;
-}
-
-.link-container {
- padding: 20px 0px;
-}
-
-.LOGO { 
-  grid-area: LOGO; 
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-  border-right: 0px;
-}
-.TITLE { 
-  grid-area: TITLE; 
-  text-align: center;
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-}
-
-.Intro { 
-  grid-area: Intro; 
-  padding: 10px;
-  text-align:center;
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-  padding-left: 70px;
-  padding-right: 70px;
-  position: relative;
-}
-
-.Experience { 
-  grid-area: Experience; 
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-}
-
-.Social { 
-  grid-area: Social; 
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-  border-right: 0px;
-  text-align:center;
-}
-
-.Education { 
-  grid-area: Education; 
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-  border-right: 0px;
-}
-
-.Expertise { 
-  grid-area: Expertise; 
-  text-align: center;
-  line-height: 150%;
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-  border-right: 0px;
-}
-.Publications { 
-  grid-area: Publications; 
-  border: solid 5px #EE5963;
-  border-bottom: 0px;
-}
-
-.Skills { 
-  grid-area: Skills; 
-  border: solid 5px #EE5963;
-  border-right: 0px;
-  text-align: center;
-}
-
-strong {
-  color: #EE5963;
-}
-.Awards { 
-  grid-area: Awards; 
-  border: solid 5px #EE5963;
-  border-right: 0px;
-}
-
-
-.Hobbies { 
-  grid-area: Hobbies; 
-  border: solid 5px #EE5963;
-  text-align: center;
-}
-
-/* For presentation only, no need to copy the code below */
-.grid-container * {
-  position: relative;
-}
-
-.grid-container *:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.big-box {
-  margin: auto;
-  height: 30px;
-  border: solid 2px #EE5963;
-}
-
-.grid-container-position {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 0.2fr 0.2fr 0.2fr;
-  gap: 10px 10px;
-  grid-template-areas:
-    "Position Role"
-    "Date Description";
-    width: 90%;
-    margin: auto;
-}
-.Position { 
-  grid-area: Position; 
-  color: #EE5963;
-  font-weight: bold;
-  }
-
-.Date { 
-  grid-area: Date; 
-  color: #EE5963;
-}
-.Role { 
-  grid-area: Role; 
-  color: #EE5963;
-}
-
-.publication-container {
-  padding: 3%;
-}
-
-.awards-container {
-  padding: 3%;
-}
-
-.Description { 
-  grid-area: Description; 
-}
-
-</style>
-
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <div class="grid-container">
   
-  <div class="LOGO">
-  </div>
+  <section class="logo"></section>
 
-  <div class="TITLE">
+  <section class="title">
     <h1>MAYA GANS</h1>
-    <p>Informatics Application Developer<br>
-  </div>
+    <p>Data Visualization Engineer</p>
+   </section>
 
   
-  <div class="Intro">
+  <section class="intro">
     <p>I graduated from the University of Wyoming with my Master’s in Science May 2019. My thesis was on the bacterial communities of a parasitic plant and how it interacts with fungi and adjacent trees. Working in ecology provided the foundation for studying complex, interconnected networks. My interests shifted from my study system to the statistical methods needed to model complex interactions and large datasets. After completing my degree, I worked at RStudio as an Intern where I created tidyblocks.tech, a blocks-based coding language to teach high school statistical students the fundamentals of programming. 
       After my internship I have been applying my R and JavaScript skills as a web developer in the clinical trial space.</p>
-  </div>
+  </section>
 
-  <div class="Experience">
+  <section class="experience">
     <h3>Experience</h3>
     <hr>
 
-    <div class="grid-container-position" style="padding-top:5%;">
+    <div class="grid-container-position">
       <div class="Position">Informatics Application Developer</div>
       <div class="Date">2020-Present</div>
       <div class="Role">Atorus Research</div>
@@ -345,16 +46,16 @@ strong {
       <div class="Description">Using JavaScript and R to build <a href="tidyblocks.tech">TidyBlocks</a>, a blocks-based coding language of the Tidyverse for data manipulation and visualization</div>
     </div>
 
-    <div class="grid-container-position" style="padding-bottom:5%;">
+    <div class="grid-container-position">
       <div class="Position">Master of Science</div>
       <div class="Date">2016-2018</div>
       <div class="Role">University Wyoming</div>
       <div class="Description">Quantifying the bacterial community of P. andromedea required techniques in experimental design, laboratory skill, collection and analysis of genetic and geographic data. My course is focused in statistics and computational biology.</div>
     </div>
 
-  </div>
+  </section>
 
-  <div class="Social">
+  <section class="social">
     <div class="link-container">
     <a href="https://twitter.com/Mayacelium">
       <svg class="icon" version="1.1" width="50px" height="50px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -438,25 +139,26 @@ strong {
 			C393.438,372.924,392.892,373.47,392.38,374.067z M414.089,344.457c-26.161-13.358-54.106-22.888-82.978-28.297 c5.099-19.725,8.294-39.893,9.54-60.228H442.88C440.266,287.271,430.41,317.575,414.089,344.457z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
     </a>
   </div>
-  </div>
+</section>
 
-  <div class="Education">
+  <section class="education">
     <h3>Education</h3>
     <hr>
-    <div style="margin:auto;width:60%;top:20%;">
-    <strong>MASTER OF SCIENCE</strong><br>
-    University of Wyoming<br>
-    2016-2019
-    <br><br>
-    <br><br>
-    <strong>BACHELOR OF SCIENCE</strong><br>
-    Florida International University<br>
-    2010-2014
-  </div>
-  </div>
+    <card class="description">
+      <header>MASTER OF SCIENCE</header>
+      <p>University of Wyoming</p>
+      <p>2016-2019</p>
+    </card>
+
+    <card class="description">
+      <header>BACHELOR OF SCIENCE</header>
+      <p>Florida International University</p>
+      <p>2010-2014</p>
+    </card>
+</section>
 
 
-  <div class="Expertise">
+  <section class="skills">
     <h3>Skills</h3>
     <hr>
     <strong>R</strong>
@@ -494,129 +196,117 @@ strong {
       <div class="big-box" style="width:90%;"></div>
       <div class="big-box" style="width:10%;"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="Publications">
+  <section class="publications">
     <h3>Talks and Publications</h3>
     <hr>
-    <div class="publication-container">
-      
-      
-    <div class="pub">
-    <div class="pubd">
-      <strong>Gans, MR </strong><a href="https://alittlejs.netlify.app/#1">A Little JS Goes a Long Way</a><br>
-      RLadies Dammamm and RLadies Tunis<br>
-    </div>
-    <img src="img/talk_alittlejs.png" class="pubimg" />
-    </div>
-    
-    <div class="pub">
-    <div class="pubd">
-      <strong>Gans, MR </strong> <a href="https://phuseus-jsandr.netlify.app/">JS + R = Amazing Applicatins</a><br>
-      Phuse US 2021<br>
-    </div>
-    <img src="img/talk_jsplusr.png" class="pubimg" />
-    </div>
-      
-    <div class="pub">
-    <div class="pubd">
-      <strong>Gans, MR </strong><a href="https://r4dsbookclub.netlify.app/#1">Starting an R Book Club: Finding Friendship in
-      Isolation.</a><br>
-      rstudio::global(2021). January, 2021.<br>
-    </div>
-    <img src="img/talk_bookclub.png" class="pubimg" />
-    </div>
-    
-    <div class="pub">
-    <div class="pubd">
-    Episode 15, <strong>Maya Gans</strong><br>
-    Shiny Developer Podcast<br>
-    </div>
-    <img src="img/talk_shinydev.png" class="pubimg" />
-    </div>
-    
-    <div class="pub">
-    <div class="pubd">
-    <strong>Gans, MR</strong>, From Manuscript to R Package.<br>
-    INBRE Summer of Code. August 2020, Virtual.<br>
-    </div>
-    <img src="img/talk_inbre.png" class="pubimg" />
-    </div>
-    
-    <div class="pub">
-      <div class="pubd">
-    <strong>Gans, MR</strong>, Gotti, M. TidyCDISC: An Open-source Application to Interactively Create Tables, Figures, and Patient Profiles from ADaM Data. <br>
-    R/Pharma, R/Medicine, and Phuse EU. September 2020, Virtual.<br>
-    </div>
-    <img src="img/talk_rmed.png" class="pubimg" />
-    </div>
-    
-    <div class="pub">
-    <div class="pubd">
-    <strong>Gans, MR</strong> TidyBlocks: using the language of the Tidyverse in a blocks-based interface. <br>
-    RStudio Conference January 2020, San Francisco, CA.<br>
-    </div>
-    <img src="img/talk_tidyblocks.png" class="pubimg" />
-    </div>
-    
-    <div class="pub">
-    <div class="pubd">
-    <strong>Gans, MR</strong> JavaScript for Data Science. CRC Press, 2020.
-    </div>
-    <img src="img/pub_js4ds.png" class="pubimg" />
-  </div>
-  
-  </div>
-  </div>
 
-  <div class="Skills">
+    <card class="fancy-card">
+      <header><strong>Gans, MR </strong><a href="https://alittlejs.netlify.app/#1">A Little JS Goes a Long Way</a></header>
+      <p>RLadies Dammamm and RLadies Tunis</p>
+      <img src="img/talk_alittlejs.png" class="pubimg" alt="a little js goes a long way cover photo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header><strong>Gans, MR </strong> <a href="https://phuseus-jsandr.netlify.app/">JS + R = Amazing Applications</a></header>
+      <p>Phuse US 2021</p>
+      <img src="img/talk_jsplusr.png" class="pubimg" alt="JS + R = Amazing Applications cover photo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header><strong>Gans, MR </strong><a href="https://r4dsbookclub.netlify.app/#1">Starting an R Book Club: Finding Friendship in
+        Isolation.</a></header>
+      <p>rstudio::global(2021). January, 2021.</p>
+      <img src="img/talk_bookclub.png" class="pubimg" alt="rstudio bookclub cover photo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header>Episode 15, <strong>Maya Gans</strong></header>
+      <p>Shiny Developer Podcast</p>
+      <img src="img/talk_shinydev.png" class="pubimg" alt="shiny developer podcast logo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header><strong>Gans, MR</strong>, From Manuscript to R Package.</header>
+      <p>INBRE Summer of Code. August 2020, Virtual.</p>
+      <img src="img/talk_inbre.png" class="pubimg" alt="inbre summer of code cover photo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header><strong>Gans, MR</strong>, Gotti, M. TidyCDISC</header>
+      <p>R/Pharma, R/Medicine, and Phuse EU. September 2020, Virtual</p>
+      <img src="img/talk_rmed.png" class="pubimg" alt="tidycdisc cover photo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header><strong>Gans, MR</strong> TidyBlocks: using the language of the Tidyverse in a blocks-based interface.</header>
+      <p>RStudio Conference January 2020, San Francisco, CA.</p>
+      <img src="img/talk_tidyblocks.png" class="pubimg" alt="tidyblocks cover photo"/>
+    </card>
+
+    <card class="fancy-card">
+      <header><strong>Gans, MR</strong></header>
+      <p>JavaScript for Data Science. CRC Press, 2020</p>
+      <img src="img/pub_js4ds.png" class="pubimg" alt="js4ds book cover"/>
+    </card>
+      
+</section>
+
+  <section class="expertise">
     <h3>Expertise</h3>
     <hr>
-    <br><br>
-    DATA VISUALIZATION<br>
-    <br><br>
-    <strong>HTMLWIDGETS</strong><br>
-    <br><br>
-    SHINY<br>
-    <br><br>
-    <strong>PACKAGE DEVELOPMENT</strong>
-  </div>
+    <ul class="alternating-list">
+      <li>DATA VISUALIZATION</li>
+      <li>HTMLWIDGETS</li>
+      <li>SHINY</li>
+      <li>PACKAGE DEVELOPMENT</li>
+    </ul>
+  </section>
 
-  <div class="Awards">
+  <section class="awards">
     <h3>Awards</h3>
     <hr>
-    <div class="awards-container">
-    <strong>R Studio Table Contest</strong><br>
-    Runner-up: a Shiny GUI to generate clinical trial tables<br>
-    <br>
-    <strong>WILHELM G AND RAGNHIL DSOLHEIM MEMORIAL SCHOLORSHIP 2019</strong><br>
-    Totaling $600 for an outstanding Botany graduate student<br>
-    <br>
-  <strong>DATA CARPENTRY 2018</strong><br>
-    Totalling $1150 for certification to teach R Programming<br>
-    <br>
-   <strong>INSURETECH CONNECT 2018</strong><br>
-    Totaling $1500 for registration to attend InsureTech Connect 2018 in Las Vegas, NV<br>
-    <br>
-  <strong>FISHER INNOVATION CHALLENGE 2018</strong><br>
-    Totalling $31500 for technology start up seed funding<br>
-    </div>
-  </div>
 
-  <div class="Hobbies">
+    <card class="description">
+      <header>RSTUDIO TABLE CONTEST</header>
+      <p>Runner-up: a Shiny GUI to generate clinical trial tables</p>
+    </card>
+
+    <card class="description">
+      <header>WILHELM G AND RAGNHIL D SOLHEIM MEMORIAL SCHOLORSHIP 2019</header>
+      <p>Totaling $600 for an outstanding Botany graduate student</p>
+    </card>
+
+    <card class="description">
+      <header>DATA CARPENTRY 2018</header>
+      <p>Totalling $1150 for certification to teach R Programming</p>
+    </card>
+    
+    <card class="description">
+      <header>INSURETECH CONNECT 2018</header>
+      <p>Totaling $1500 for registration to attend InsureTech Connect 2018 in Las Vegas, NV</p>
+    </card>
+
+    <card class="description">
+      <header>FISHER INNOVATION CHALLENGE 2018</header>
+      <p> Totalling $31500 for technology start up seed funding</p>
+    </card>
+
+  </section>
+
+  <section class="hobbies">
     <h3>Hobbies</h3>
     <hr>
-    <br><br>
-    ROCK CLIMBING<br>
-    <br><br>
-    <strong>PLAYING BASS</strong><br>
-    <br><br>
-    MUSIC ANALYTICS<br>
-    <br><br>
-    <strong>STATISTICS</strong>
-  </div>
-</div>
+    <ul class="alternating-list">
+      <li>ROCK CLIMBING</li>
+      <li>PLAYING BASS</li>
+      <li>MUSIC ANALYTICS</li>
+      <li>STATISTICS</li>
+    </ul>
+</section>
 
+</div>
 
 <script>
 
@@ -708,5 +398,4 @@ function constantUpdate() {
 }
 
 constantUpdate()
-
 </script>

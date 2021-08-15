@@ -1,0 +1,218 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+  :root {
+    --hotpink: #EE5963;
+    --pink: #fadadd;
+  }
+  body {
+    font-family: 'Source Sans Pro';
+    text-align: center;
+    background-color: var(--pink);
+    color: gray;
+  }
+
+  strong {
+    color: var(--hotpink);
+  }
+
+ h1, 
+ h2, 
+ h3 {
+   text-align: center;
+   text-transform: uppercase;
+   color: var(--hotpink);
+   margin: 0;
+   font-family: 'Libre Baskerville';
+ }
+
+ section {
+   margin: 0 10px;
+   padding: 20px;
+   border-left: solid 5px var(--hotpink);
+   border-right: solid 5px var(--hotpink);
+   border-top: solid 5px var(--hotpink);
+ }
+
+hr {
+  background: var(--hotpink);
+  height: 5px;
+  border: 0px;
+  margin: 20px -20px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--hotpink);
+}
+
+a svg:hover {
+  fill: var(--hotpink);
+  font-weight: 900;
+}
+
+ h1 {
+   font-size: 3em;
+ }
+
+ h3 {
+   font-size: 2em;
+ }
+
+ .grid-container {
+   display: inline-block;
+ }
+
+ .title p {
+   text-transform: uppercase;
+   line-height: -1em;
+   font-family: 'Libre Baskerville';
+ }
+
+ .description {
+   padding: 20px;
+ }
+
+ .description header {
+   font-family: 'Libre Baskerville';
+   color: var(--hotpink);
+ }
+
+ .description p {
+   margin: 0;
+ }
+
+ .hobbies {
+   border-bottom: 5px solid var(--hotpink);
+ }
+
+  .alternating-list {
+    list-style: none;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+  }
+
+  .alternating-list li:nth-child(odd){
+    font-weight: 900;
+    color: var(--hotpink);
+  }
+
+  .fancy-card {
+    display: grid;
+    margin: 15px;
+    text-align: left;
+    justify-content: space-between;
+    justify-items: stretch;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 3px 10px rgb(	238, 89, 99);
+  }
+
+  .fancy-card header {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .fancy-card p {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fancy-card img {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    width: 100px;
+  }
+
+
+  /* Desktop and Tablet */
+  @media (min-width : 700px) {
+
+    .grid-container {
+      display: grid;
+      gap: 0;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: 0.8fr 0.8fr 0.5fr 3fr 5fr 3fr;
+    }
+
+    .fancy-card img {
+      grid-column: 2/3;
+      grid-row: 1/3;
+    }
+
+    section {
+      margin: 0;
+    }
+
+    /* 3 columns, 6 rows */
+
+    .logo {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    .title {
+      grid-column: 2/4;
+      grid-row: 1/2;
+      border-left: 0;
+    }
+
+    .intro {
+      grid-column: 1/4;
+      grid-row: 2/3;
+    }
+
+    .social {
+      grid-column: 1/2;
+      grid-row: 3/4;
+    }
+
+    .experience {
+      grid-column: 2/4;
+      grid-row: 3/5;
+      border-left: 0;
+    }
+
+    .education {
+      grid-column: 1/2;
+      grid-row: 4/5;
+    }
+
+    .skills {
+      grid-row: 5/6;
+      grid-column: 1/2;
+    }
+
+    .publications {
+      grid-row: 5/6;
+      grid-column: 2/4;
+      border-left: 0;
+    }
+
+    .expertise {
+      grid-row: 6/7;
+      grid-column: 1/2;
+      border-bottom: solid 5px var(--hotpink);
+    }
+
+    .awards {
+      grid-row: 6/7;
+      grid-column: 2/3;
+      border-left: 0;
+      border-bottom: solid 5px var(--hotpink);
+    }
+
+    .hobbies {
+      grid-row: 6/7;
+      grid-column: 3/4;
+      border-left: 0;
+      border-bottom: solid 5px var(--hotpink);
+    }
+
+  }

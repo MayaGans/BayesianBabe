@@ -17,6 +17,15 @@
     color: var(--hotpink);
   }
 
+.col-lg-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.row {
+  display: block;
+}
+
  h1, 
  h2, 
  h3 {

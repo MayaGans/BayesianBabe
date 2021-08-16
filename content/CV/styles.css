@@ -37,8 +37,11 @@
  }
 
  section {
-   margin: 0 10px;
-   padding: 20px;
+  margin: 0 10px;
+  padding: 20px;
+}
+
+ .section {
    border-left: solid 5px var(--hotpink);
    border-right: solid 5px var(--hotpink);
    border-top: solid 5px var(--hotpink);
@@ -66,7 +69,7 @@ a svg:hover {
  }
 
  h3 {
-   font-size: 2em;
+   font-size: 1.8em;
  }
 
  .grid-container {

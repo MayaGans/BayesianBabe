@@ -4,20 +4,20 @@
 </head>
 <div class="grid-container">
   
-  <section class="logo"></section>
+  <section class="logo section"></section>
 
-  <section class="title">
+  <section class="title section">
     <h1>MAYA GANS</h1>
     <p>Data Visualization Engineer</p>
    </section>
 
   
-  <section class="intro">
+  <section class="intro section">
     <p>I graduated from the University of Wyoming with my Master’s in Science May 2019. My thesis was on the bacterial communities of a parasitic plant and how it interacts with fungi and adjacent trees. Working in ecology provided the foundation for studying complex, interconnected networks. My interests shifted from my study system to the statistical methods needed to model complex interactions and large datasets. After completing my degree, I worked at RStudio as an Intern where I created tidyblocks.tech, a blocks-based coding language to teach high school statistical students the fundamentals of programming. 
       After my internship I have been applying my R and JavaScript skills as a web developer in the clinical trial space.</p>
   </section>
 
-  <section class="experience">
+  <section class="experience section">
     <h3>Experience</h3>
     <hr>
 
@@ -55,7 +55,7 @@
 
   </section>
 
-  <section class="social">
+  <section class="social section">
     <div class="link-container">
     <a href="https://twitter.com/Mayacelium">
       <svg class="icon" version="1.1" width="50px" height="50px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -141,7 +141,7 @@
   </div>
 </section>
 
-  <section class="education">
+  <section class="education section">
     <h3>Education</h3>
     <hr>
     <card class="description">
@@ -158,7 +158,7 @@
 </section>
 
 
-  <section class="skills">
+  <section class="skills section">
     <h3>Skills</h3>
     <hr>
     <strong>R</strong>
@@ -198,7 +198,7 @@
     </div>
   </section>
 
-  <section class="publications">
+  <section class="publications section">
     <h3>Talks and Publications</h3>
     <hr>
 
@@ -253,7 +253,7 @@
       
 </section>
 
-  <section class="expertise">
+  <section class="expertise section">
     <h3>Expertise</h3>
     <hr>
     <ul class="alternating-list">
@@ -264,7 +264,7 @@
     </ul>
   </section>
 
-  <section class="awards">
+  <section class="awards section">
     <h3>Awards</h3>
     <hr>
 
@@ -295,7 +295,7 @@
 
   </section>
 
-  <section class="hobbies">
+  <section class="hobbies section">
     <h3>Hobbies</h3>
     <hr>
     <ul class="alternating-list">
@@ -316,7 +316,7 @@ var margin = {top: 30, right: 15, bottom: 10, left: 15},
     height = 150 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select(".LOGO")
+var svg = d3.select(".logo")
     .append("svg")
     .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
     .append("g")

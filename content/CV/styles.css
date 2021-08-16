@@ -69,7 +69,7 @@ a svg:hover {
  }
 
  h3 {
-   font-size: 1.8em;
+   font-size: 1.5em;
  }
 
  .grid-container {
@@ -139,7 +139,8 @@ a svg:hover {
   .fancy-card img {
     grid-column: 2/3;
     grid-row: 1/3;
-    width: 100px;
+      width: 112px;
+  height: 85px;
   }
 
 
@@ -151,11 +152,6 @@ a svg:hover {
       gap: 0;
       grid-template-columns: 1fr 2fr 1fr;
       grid-template-rows: 0.8fr 0.8fr 0.5fr 3fr 5fr 3fr;
-    }
-
-    .fancy-card img {
-      grid-column: 2/3;
-      grid-row: 1/3;
     }
 
     section {

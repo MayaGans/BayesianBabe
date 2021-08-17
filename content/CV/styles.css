@@ -64,6 +64,10 @@ a svg:hover {
   font-weight: 900;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
  h1 {
    font-size: 4vw;
  }
@@ -221,6 +225,11 @@ a svg:hover {
     .social {
       grid-column: 1/2;
       grid-row: 3/4;
+      display: flex;
+    }
+
+    .social svg {
+      align-self: center;
     }
 
     .experience {
@@ -265,4 +274,28 @@ a svg:hover {
       border-bottom: solid 5px var(--hotpink);
     }
 
+  }
+
+  @media (min-width 1200px) {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width 992px) {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width 768px) {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width 576px) {
+    .container {
+      max-width: none;
+    }
   }

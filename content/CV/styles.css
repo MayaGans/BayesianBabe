@@ -65,11 +65,11 @@ a svg:hover {
 }
 
  h1 {
-   font-size: 3em;
+   font-size: 4vw;
  }
 
  h3 {
-   font-size: 1.5em;
+   font-size: 5vw;
  }
 
  .grid-container {
@@ -100,8 +100,8 @@ a svg:hover {
  }
 
   .alternating-list {
+    font-size: 4.5vw;
     list-style: none;
-    line-height: 1.5em;
     text-transform: uppercase;
     padding: 0;
     margin: 0;
@@ -139,19 +139,61 @@ a svg:hover {
   .fancy-card img {
     grid-column: 2/3;
     grid-row: 1/3;
-      width: 112px;
-  height: 85px;
+    width: 112px;
+    height: 85px;
   }
 
+  .job {
+    display: grid;
+    grid-template-columns: 1fr 0.2fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "position . role-attrs role-attrs " 
+    "role . role-attrs role-attrs"
+    "date . role-attrs role-attrs";
+    text-align: left;
+    padding: 20px;
+  }
+
+  .position {
+    grid-area: position;
+    color: var(--hotpink);
+    font-weight: 900;
+  }
+  
+  .date {
+    grid-area: date;
+  }
+
+  .role {
+    grid-area: role;
+    color: var(--hotpink);
+  }
+
+  .role-attrs {
+    grid-area: role-attrs;
+  }
 
   /* Desktop and Tablet */
   @media (min-width : 700px) {
+
+     h1 {
+   font-size: 4vw;
+ }
+
+ h3 {
+   font-size: 2vw;
+ }
+
+ .alternating-list {
+  font-size: 2vw;
+  line-height: 5vw;
+}
 
     .grid-container {
       display: grid;
       gap: 0;
       grid-template-columns: 1fr 2fr 1fr;
-      grid-template-rows: 0.8fr 0.8fr 0.5fr 3fr 5fr 3fr;
     }
 
     section {

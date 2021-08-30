@@ -1,0 +1,259 @@
+---
+title: Skip Links
+author: Maya Gans
+date: '2021-08-30'
+slug: skip-links
+categories:
+  - Tutorial
+tags:
+  - Shiny
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-08-30T08:27:02-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="{{< blogdown/postref >}}index.en_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="{{< blogdown/postref >}}index.en_files/bootstrap/accessibility/css/bootstrap-accessibility.min.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/bootstrap/accessibility/js/bootstrap-accessibility.min.js"></script>
+
+
+<p>I took Jon Kuperman’s amazing accessibility intro course on Frontend Masters and one of the coolest things he demonstrated was how to create a skip link. <strong>Skip links allow a keyboard only user to tab directly to the content of a page, rather than first tab through the page’s entire menu.</strong> In this post, I wanted to share what I learned as it applies to Shiny!</p>
+<p>I like to demonstrate where we’re going before I break it down. In the navbar below you see a link with the text “Skip to Main Content”. Clicking this link directs us to the button with the text “Tab Skip to Here!” [visible by the focus ring around the button]. In this post we’re going to create and style the skip link!</p>
+<p><br>
+<br></p>
+<a id="skiplink-pre" href="#first-button-pre">Skip to Main Content</a>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<span class="navbar-brand">App Title</span>
+</div>
+<ul class="nav navbar-nav" data-tabsetid="6083">
+<li class="active">
+<a href="#tab-6083-1" data-toggle="tab" data-value="Plot">Plot</a>
+</li>
+<li>
+<a href="#tab-6083-2" data-toggle="tab" data-value="Summary">Summary</a>
+</li>
+<li>
+<a href="#tab-6083-3" data-toggle="tab" data-value="Table">Table</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="container-fluid">
+<div class="tab-content" data-tabsetid="6083">
+<div class="tab-pane active" data-value="Plot" id="tab-6083-1"></div>
+<div class="tab-pane" data-value="Summary" id="tab-6083-2"></div>
+<div class="tab-pane" data-value="Table" id="tab-6083-3"></div>
+</div>
+</div>
+<button id="first-button-pre">Tab Skip to Here!</button>
+<p><br>
+<br></p>
+<div id="nav-bar" class="section level2">
+<h2>Nav Bar</h2>
+<p>In Shiny, when we create a navigation bar, we get a <code>&lt;nav&gt;</code> element with the ARIA role “navigation”. The navbar contains a tabbable list with <code>data-values</code> set to the tab’s titles.</p>
+<pre class="r"><code>shiny::navbarPage(&quot;App Title&quot;,
+  shiny::tabPanel(&quot;Plot&quot;),
+  shiny::tabPanel(&quot;Summary&quot;),
+  shiny::tabPanel(&quot;Table&quot;)
+)</code></pre>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<span class="navbar-brand">App Title</span>
+</div>
+<ul class="nav navbar-nav" data-tabsetid="2330">
+<li class="active">
+<a href="#tab-2330-1" data-toggle="tab" data-value="Plot">Plot</a>
+</li>
+<li>
+<a href="#tab-2330-2" data-toggle="tab" data-value="Summary">Summary</a>
+</li>
+<li>
+<a href="#tab-2330-3" data-toggle="tab" data-value="Table">Table</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="container-fluid">
+<div class="tab-content" data-tabsetid="2330">
+<div class="tab-pane active" data-value="Plot" id="tab-2330-1"></div>
+<div class="tab-pane" data-value="Summary" id="tab-2330-2"></div>
+<div class="tab-pane" data-value="Table" id="tab-2330-3"></div>
+</div>
+</div>
+<p><br>
+<br></p>
+<pre class="js"><code>&lt;nav class=&quot;navbar navbar-default navbar-static-top&quot; role=&quot;navigation&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;span class=&quot;navbar-brand&quot;&gt;App Title&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot; data-tabsetid=&quot;8029&quot;&gt;
+      &lt;li class=&quot;active&quot;&gt;
+        &lt;a href=&quot;#tab-8029-1&quot; data-toggle=&quot;tab&quot; data-value=&quot;Plot&quot;&gt;Plot&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href=&quot;#tab-8029-2&quot; data-toggle=&quot;tab&quot; data-value=&quot;Summary&quot;&gt;Summary&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href=&quot;#tab-8029-3&quot; data-toggle=&quot;tab&quot; data-value=&quot;Table&quot;&gt;Table&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+<script type="text/javascript">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">App Title</span>
+    </div>
+    <ul class="nav navbar-nav" data-tabsetid="8029">
+      <li class="active">
+        <a href="#tab-8029-1" data-toggle="tab" data-value="Plot">Plot</a>
+      </li>
+      <li>
+        <a href="#tab-8029-2" data-toggle="tab" data-value="Summary">Summary</a>
+      </li>
+      <li>
+        <a href="#tab-8029-3" data-toggle="tab" data-value="Table">Table</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</script>
+<p>Now, let’s imagine your navbar has some drop down menues. If the navbar has 20 tabbable items, the user is going to need to tab through to number 21 in order to get to the links on the page they are browsing!</p>
+</div>
+<div id="create-a-link" class="section level2">
+<h2>Create a link</h2>
+<p>The first step in creating a skip link is to create the link itself. Before our navbar let’s pre-append a link with the <code>id=skiplink</code>.</p>
+<pre class="r"><code>shiny::tags$a(id=&quot;skiplink&quot;, &quot;Skip to Main Content&quot;)</code></pre>
+<pre class="r"><code>&lt;a id=&quot;skiplink&quot;&gt;Skip to Main Content&lt;/a&gt;</code></pre>
+</div>
+<div id="styling" class="section level2">
+<h2>Styling</h2>
+<p>Now let’s style the link as hidden when it’s not being tabbed/focused. We will do this by positioning the link out of frame using a <code>transform</code>.</p>
+<p>We’ll also use the css pseudo class <code>focus</code> so that when the link is tabbed over it is put back in frame and made obvious to the user:</p>
+<pre class="css"><code>#skiplink {
+  position: absolute;
+  transform: translateY(-100%);
+}
+
+#skiplink:focus {
+  transform: translateY(0%);
+  background-color: lightyellow;
+  padding: 20px;
+  z-index: 9999;
+}</code></pre>
+<style type="text/css">
+#skiplink {
+  position: absolute;
+  transform: translateY(-100%);
+}
+
+#skiplink:focus {
+  transform: translateY(0%);
+  background-color: lightyellow;
+  padding: 20px;
+  z-index: 9999;
+}
+</style>
+</div>
+<div id="link-re-direct" class="section level2">
+<h2>Link Re-direct</h2>
+<p>The last step is to make our link go where we want it - to the first tabbable element on our page (“first-button”). We can do this by making the <code>href</code> of the link match the id of the first tabbable element:</p>
+<pre class="r"><code>shiny::tags$a(id=&quot;skiplink&quot;, &quot;Skip to Main Content&quot;, href=&quot;first-button&quot;)</code></pre>
+<pre class="r"><code>&lt;a id=&quot;skiplink&quot; href=&quot;#first-button&quot;&gt;Skip to Main Content&lt;/a&gt;</code></pre>
+</div>
+<div id="putting-it-all-together" class="section level2">
+<h2>Putting it all together</h2>
+<p>Now we have a link before our navbar, followed by the content of our page and the <code>css</code> needed to style our link:</p>
+<pre class="r"><code>shinyApp(
+  ui = basicPage(
+    tags$a(id=&quot;skiplink&quot;, &quot;Skip to Main Content&quot;, href=&quot;#first-button&quot;),
+    shiny::navbarPage(&quot;App Title&quot;,
+                      shiny::tabPanel(&quot;Plot&quot;),
+                      shiny::tabPanel(&quot;Summary&quot;),
+                      shiny::tabPanel(&quot;Table&quot;)
+    ),
+    tags$button(id=&quot;first-button&quot;, &quot;Tab Skip to Here!&quot;),
+    tags$style(HTML(&quot;
+      #skiplink {
+        position: absolute;
+        transform: translateY(-100%);
+      }
+      #skiplink:focus {
+      transform: translateY(0%);
+      background-color: lightyellow;
+      padding: 20px;
+      z-index: 9999;
+      }&quot;))
+  ),
+  server = function(input, output) {
+  }
+)</code></pre>
+<p><br></p>
+<p>By clicking tab to go forwards (or shift tab to go backwards), you should now be able to only see the skip link when it’s being focused on:</p>
+<a id="skiplink" href="#first-button">Skip to Main Content</a>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+<span class="navbar-brand">App Title</span>
+</div>
+<ul class="nav navbar-nav" data-tabsetid="3734">
+<li class="active">
+<a href="#tab-3734-1" data-toggle="tab" data-value="Plot">Plot</a>
+</li>
+<li>
+<a href="#tab-3734-2" data-toggle="tab" data-value="Summary">Summary</a>
+</li>
+<li>
+<a href="#tab-3734-3" data-toggle="tab" data-value="Table">Table</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="container-fluid">
+<div class="tab-content" data-tabsetid="3734">
+<div class="tab-pane active" data-value="Plot" id="tab-3734-1"></div>
+<div class="tab-pane" data-value="Summary" id="tab-3734-2"></div>
+<div class="tab-pane" data-value="Table" id="tab-3734-3"></div>
+</div>
+</div>
+<button id="first-button">Tab Skip to Here!</button>
+<style>
+#skiplink {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+      }
+      #skiplink:focus {
+      transform: translateY(0%);
+      background-color: lightyellow;
+      padding: 20px;
+      z-index: 9999;
+      width: auto;
+      position: relative;
+      }
+      #skiplink-pre{
+      transform: translateY(0%);
+      background-color: lightyellow;
+      padding: 20px;
+      z-index: 9999;
+      }
+</style>
+<p><br></p>
+<p>There are SO many gems in Jon’s course, and it is genuinely fun to start to think about how to integrate these changes and make your website as accessible as possible. Shiny uses bootstrap, a design system that has put a lot of time and thought into accessibility so we get a lot for free, but I hope to continue this series with some other tips if you’re building any custom components.</p>
+</div>

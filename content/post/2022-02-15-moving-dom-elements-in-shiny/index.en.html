@@ -1,0 +1,155 @@
+---
+title: Moving DOM Elements in Shiny
+author: Maya Gans
+date: '2022-02-15'
+slug: moving-dom-elements-in-shiny
+categories:
+  - Tutorial
+tags:
+  - R
+  - JavaScript
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-02-15T08:29:14-08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>As a Shiny web developer it’s really common to leverage existing packages to create your HTML. But what if a package gets you 90% of where you want to go, and you want to customize it a little?</p>
+<p>In this tutorial I give a default <code>DT</code> table a small makeover by combining the datatable’s <code>dataTables_length</code> element and the datatables `dataTables_info element. <em>How did I find the names of these elements? The inspector!</em></p>
+<p><img src="before.png" /></p>
+<p>My goal is to combine these into a single element at the bottom of the table:</p>
+<p><img src="after.png" /></p>
+<div id="the-plan" class="section level2">
+<h2>The Plan</h2>
+<p>Given the following Shiny app:</p>
+<pre id="r"><code>library(shiny)
+
+ui &lt;- fluidPage(
+  DT::dataTableOutput(&quot;table&quot;)
+)
+
+server &lt;- function(input, output, session) {
+  output$table &lt;- DT::renderDataTable(
+    data.frame(cars),
+    rownames = FALSE,
+    # I want to scroll the y-axis 
+    # so the table is always the same height
+    options = list(
+      scrollY = &#39;50vh&#39;
+    )
+  )
+}
+
+shinyApp(ui, server)</code></pre>
+<p>We need to:</p>
+<ol style="list-style-type: decimal">
+<li>Store the select within <code>dataTables_length</code> as an object</li>
+<li>Create a new HTML element, <code>new_bottom</code> that we will use for our revamped <code>dataTables_info</code></li>
+<li>Add the preamble text <code>Showing</code></li>
+<li>Append the select dropdown from <code>dataTables_length</code> to the new element</li>
+<li>Add the total number of rows information in R</li>
+<li>Add the suffix text <code>entries</code></li>
+<li>Replace <code>dataTables_info</code> with our new element</li>
+<li>Give the new element the <code>dataTables_info</code> class for styling</li>
+<li>Remove the <code>dataTables_length</code> node from the DOM</li>
+</ol>
+</div>
+<div id="implementation" class="section level2">
+<h2>Implementation</h2>
+<p>My general workflow for applying JS to Shiny apps is to run the application and then actually do my manipulation in the browser’s console.</p>
+<div id="step-1" class="section level3">
+<h3>Step 1</h3>
+<p>Using jQuery I stored the select dropdown to the object dropdown by finding the element of class <code>dataTables_length</code>, and then finding the <code>select</code> element inside it</p>
+<pre><code>const dropdown = $(&#39;.dataTables_length&#39;)
+                         .find(&#39;label&#39;)
+                         .find(&#39;select&#39;)
+</code></pre>
+</div>
+<div id="step-2-3" class="section level3">
+<h3>Step 2 &amp; 3</h3>
+<p>Next I created a new DOM element, added the class <code>custom_dropdown</code> to make selecting the node easier, and added the prefix text <code>Showing</code></p>
+<pre><code>let new_bottom = document.createElement(&#39;div&#39;)
+new_bottom.classList.add(&#39;custom_dropdown&#39;)
+new_bottom.innerHTML = &#39;Showing &#39;</code></pre>
+</div>
+<div id="step-4" class="section level3">
+<h3>Step 4</h3>
+<p>Using jQuery’s append function, we can add the isolated select to our new DOM element:</p>
+<pre><code>dropdown.appendTo(new_bottom)</code></pre>
+</div>
+<div id="step-5-6" class="section level3">
+<h3>Step 5 &amp; 6</h3>
+<p>And because we’re writing JS as a string in R we can interpolate the <code>nrows</code> number to use in the suffix text <code>of 50 entries</code></p>
+<pre><code>new_bottom.append(&#39; of &#39; +&quot;, nrow(cars), &quot; + &#39; entries&#39;)</code></pre>
+</div>
+<div id="step-7" class="section level3">
+<h3>Step 7</h3>
+<p>Now we can replace the existing element with our new custom one!</p>
+<pre><code>$(&#39;.dataTables_info&#39;).replaceWith(new_bottom)</code></pre>
+</div>
+<div id="step-8" class="section level3">
+<h3>Step 8</h3>
+<p>We can remove the custom class we added, and give it the class <code>dataTables_info</code> so that the same styling of the old element is applied to our new one.</p>
+<pre><code>$(&#39;.custom_dropdown&#39;)
+    .removeClass(&#39;custom_dropdown&#39;)
+    .addClass(&#39;dataTables_info&#39;) </code></pre>
+</div>
+<div id="step-9" class="section level3">
+<h3>Step 9</h3>
+<p>And now we can remove the <code>dataTables_length</code> element from the DOM!</p>
+<pre><code>$(&#39;.dataTables_length&#39;).remove()</code></pre>
+</div>
+</div>
+<div id="putting-it-all-together" class="section level2">
+<h2>Putting it All Together</h2>
+<p>The DT function <code>renderDataTable</code> function has a <code>callback</code> argument, a function that is run once the table is rendered. We can apply our JS here as a string:</p>
+<pre><code>library(shiny)
+
+ui &lt;- fluidPage(
+  DT::dataTableOutput(&quot;table&quot;)
+)
+
+server &lt;- function(input, output, session) {
+  output$table &lt;- DT::renderDataTable(
+    data.frame(cars),
+    rownames = FALSE,
+    options = list(
+      scrollY = &#39;50vh&#39;
+    ),
+    callback = DT::JS(paste0(&quot;
+     const dropdown = $(&#39;.dataTables_length&#39;)
+                         .find(&#39;label&#39;)
+                         .find(&#39;select&#39;)
+
+     let new_bottom = document.createElement(&#39;div&#39;)
+     new_bottom.classList.add(&#39;custom_dropdown&#39;)
+     new_bottom.innerHTML = &#39;Showing &#39;
+     
+     dropdown.appendTo(new_bottom)
+                      
+     new_bottom.append(&#39; of &#39; +&quot;, nrow(cars), &quot; + &#39; entries&#39;)
+                      
+     $(&#39;.dataTables_info&#39;)
+          .replaceWith(new_bottom)
+                           
+     $(&#39;.custom_dropdown&#39;)
+         .removeClass(&#39;custom_dropdown&#39;)
+         .addClass(&#39;dataTables_info&#39;) 
+                         
+     $(&#39;.dataTables_length&#39;).remove()&quot;))
+  )
+}
+
+shinyApp(ui, server)</code></pre>
+<p>Et Viola! It’s a small UI fix that makes a world of difference!</p>
+<p>I leverage jQuery here a LOT because Shiny is already loading the library, but vanilla JS can do <strong>all</strong> of this now. I’m hoping to refactor this code to get more familiar with vanilla JS DOM manipulation: stay tuned for more!</p>
+</div>
